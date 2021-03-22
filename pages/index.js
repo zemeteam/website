@@ -5,15 +5,15 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>ZEME.team</title>
+        <title>Zeme.team</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          ZEME team
+          Zeme team
         </h1>
-        <b>coming soon</b>
+        <b>Earn shielded Zcash for creating zemes.</b>
       </main>
     </div>
   )
