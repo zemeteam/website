@@ -16,7 +16,6 @@ export default function Home() {
         <h1 className={styles.title}>
           ZEME TEAM
         </h1>
-        <b>Earn shielded Zcash for creating fun and educational zemes.</b>
       </main>
     </div>
   )
