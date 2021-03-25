@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Zeme.team</title>
+        <title>Zeme Team</title>
         <link rel="icon" href="/favicon.ico" />
         <style>
           @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&display=swap');
