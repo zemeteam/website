@@ -14,7 +14,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <img src="/zemeteam-logo.png" />
+        <img src="/zemeteam-logo.png" style={{width: '150px'}} />
       </main>
     </div>
   )
