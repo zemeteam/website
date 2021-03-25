@@ -7,6 +7,7 @@ export default function Home() {
       <Head>
         <title>Zeme Team</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="theme-color" content="#000000" />
         <style>
           @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&display=swap');
         </style>
