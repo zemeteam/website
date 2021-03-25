@@ -14,9 +14,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          ZEME TEAM
-        </h1>
+        <img src="/zemeteam-logo.png" />
       </main>
     </div>
   )
