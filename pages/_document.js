@@ -12,7 +12,7 @@ class MyDocument extends Document {
                 <Head />
                 <body id="body">
                     <Main />
-                    <NextScript />
+                    <NextScript /> 
                 </body>
             </Html>
         )
