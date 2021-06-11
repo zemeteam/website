@@ -1,11 +1,11 @@
 .container {
+  align-items: center;
   background-color: #F4B728;
-  min-height: 100vh;
-  padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  min-height: 100vh;
+  padding: 0 0.5rem;
 }
 
 .main {
@@ -15,6 +15,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 2;
+
 }
 
 .footer {

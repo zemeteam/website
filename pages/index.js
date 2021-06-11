@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import Background from '../components/Background'
 
 export default function Home() {
   return (
@@ -13,8 +14,10 @@ export default function Home() {
         </style>
       </Head>
 
+      <Background animate />
+
       <main className={styles.main}>
-        <img src="/zemeteam-logo.png" style={{width: '175px'}} />
+        <img src="/zemeteam-logo.png" style={{width: '150px'}} />
       </main>
     </div>
   )

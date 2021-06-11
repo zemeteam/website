@@ -26,6 +26,7 @@ export default class Background extends React.Component {
                         background-repeat: no-repeat;
                         background-size: cover;
                         height: 100vh;
+                        left: 0;
                         position: fixed;
                         width: 100%;
                         z-index: 1
@@ -37,6 +38,7 @@ export default class Background extends React.Component {
                         background-repeat: no-repeat;
                         background-size: cover;
                         height: 100vh;
+                        left: 0;
                         opacity: 1;
                         position: fixed;
                         width: 100%;
