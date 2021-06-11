@@ -15,7 +15,7 @@ export default function Home() {
       </Head>
 
       <Background animate />
-
+ 
       <main className={styles.main}>
         <img src="/zemeteam-logo.png" style={{width: '150px'}} />
       </main>
