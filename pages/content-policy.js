@@ -55,6 +55,10 @@ export default class ContentPolicy extends React.Component {
                             font-size: 24px;
                             line-height: 34px;
                         }
+
+                        .policy {
+                            padding: 92px 16px;
+                        }
                     }
                 `}
                 </style>
