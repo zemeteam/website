@@ -54,7 +54,7 @@ export default class Terms extends React.Component {
                         h1 {
                             font-size: 24px;
                             line-height: 34px;
-                        }
+                        } 
 
                         .policy {
                             padding: 92px 16px;
