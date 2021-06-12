@@ -1,5 +1,5 @@
 .postCardHover {
-    animation: fade .35s;
+    animation: fade .25s;
     background-color: #ffffff;
     border-radius: 10px;
     cursor: pointer;
@@ -14,7 +14,7 @@
 }
 
 .QRblock {
-    animation: fade .35;
+    animation: fade .5s;
     cursor: pointer;
     display: block;
     font-size: 12px;
@@ -24,7 +24,7 @@
     position: absolute;
     text-align: center;
     top: calc(50% - 80px);
-    transition: opacity .25s;
+    transition: opacity .5s;
     width: 140px;
 }
 
