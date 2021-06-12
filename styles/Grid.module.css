@@ -13,7 +13,6 @@
     margin: 0;
     padding: 0;
     margin-left: 24px; /* gutter size */
-    min-width: 380px !important;
     max-width: 436px !important;
 }
 .grid_column > div { 
@@ -35,4 +34,10 @@
     padding: 0;
     transition: all .25s;
     width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+    .grid {
+        padding: 0;
+    }
 }
