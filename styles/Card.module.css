@@ -1,0 +1,29 @@
+.postCardHover {
+    animation: fade .25s;
+    background-color: #ffffff;
+    border-radius: 10px;
+    cursor: pointer;
+    display: block;
+    font-size: 12px;
+    height: 100%;
+    overflow: hidden;
+    padding: 12px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.QRblock {
+    animation: fade .25s;
+    cursor: pointer;
+    display: block;
+    font-size: 12px;
+    height: 140px;
+    left: calc(50% - 70px);
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    top: calc(50% - 80px);
+    transition: opacity .25s;
+    width: 140px;
+}

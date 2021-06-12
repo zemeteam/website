@@ -1,0 +1,36 @@
+.grid {
+    display: -webkit-box; /* Not needed if autoprefixing */
+    display: -ms-flexbox; /* Not needed if autoprefixing */
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-left: -24px; 
+    width: auto;
+}
+.grid_column {
+    background-clip: padding-box;
+    margin: 0;
+    padding: 0;
+    margin-left: 24px; /* gutter size */
+    width: 436px !important;
+}
+.grid_column > div { 
+    background-color: rgba(255, 255, 255, .2);
+    border-radius: 12px;
+    margin: 0;
+    margin-bottom: 24px;
+    min-height: 196px;
+    padding: 0;
+    width: 100%;
+
+}
+.grid_column > div img { 
+    border-radius: 12px;
+    display: block;
+    margin: 0;
+    min-height: 196px;
+    object-fit: cover;
+    padding: 0;
+    transition: all .25s;
+    width: 100%;
+}
