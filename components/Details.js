@@ -2,28 +2,19 @@ import React from 'react'
 import { Supabase } from '../lib/supabase'
 import _ from 'underscore'
 import InfiniteScroll from 'react-infinite-scroller'
-import Masonry from 'react-masonry-css'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import ReactTooltip from 'react-tooltip'
-import Card from './Card'
+import Grid from './Grid'
 import QR from './QR'
 import Button from './Button'
 import Wallets from './Wallets'
 import Dialog from './Dialog'
-import styles from '../styles/Grid.module.css'
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
 
 const POST_STATUS_LIVE = 1
 const POST_STATUS_IN_REVIEW = 2
 const POSTS_PER_PAGE = 50
 const FETCH_MORE_THRESHOLD = 1200
-const BREAKPOINT_COLS = { 
-    default: 5,
-    2276: 4, 
-    1840: 3, 
-    1404: 2, 
-    940: 1 
-}
 
 export default class Details extends React.Component {
     constructor(props) {
@@ -297,20 +288,14 @@ export default class Details extends React.Component {
                         hasMore={this.state.hasMore}
                         threshold={FETCH_MORE_THRESHOLD}
                     >
-                        <Masonry
-                            breakpointCols={BREAKPOINT_COLS}
-                            className={styles.grid}
-                            columnClassName={styles.grid_column}>
-                                {this.state.posts.map((post) => (
-                                    <Card 
-                                        post={post} 
-                                        key={`${post.slug}-${Math.random().toString(36).substr(2, 9)}`} 
-                                        id={post.slug} 
-                                        theme="details" 
-                                        display={this.props.display}
-                                        handleOpenModal={this.handleDetailsModal} />
-                                ))}
-                        </Masonry>
+                        <Grid 
+                            display={this.props.display}
+                            hasMore={false}
+                            handleDetailsModal={this.handleDetailsModal}
+                            isScrolling={this.state.isScrolling}
+                            posts={this.state.posts} 
+                            theme="details" />
+
                     </InfiniteScroll>
                 </div>
 

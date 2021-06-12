@@ -2,34 +2,17 @@ import React from 'react'
 import { withRouter } from 'next/router'
 import { Supabase } from '../lib/supabase'
 import InfiniteScroll from 'react-infinite-scroller'
-import Masonry from 'react-masonry-css'
-import Card from '../components/Card'
 import Tabs from '../components/Tabs'
 import Layout from '../components/Layout'
+import Grid from '../components/Grid'
 import Background from '../components/Background'
 import Modal from '../components/Modal'
-import styles from '../styles/Grid.module.css'
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
 
 const POST_STATUS_LIVE = 1
 const POSTS_PER_PAGE = 50
 const TRENDING_DAYS_BACK = 7
 const FETCH_MORE_THRESHOLD = 1200
-const BREAKPOINT_COLS_1280 = { 
-    default: 5,
-    2044: 4, 
-    1640: 3, 
-    1236: 2, 
-    832: 1 
-}
-
-const BREAKPOINT_COLS_1440 = { 
-    default: 5,
-    2276: 4, 
-    1840: 3, 
-    1404: 2, 
-    940: 1 
-}
 
 class Discover extends React.Component {
 
@@ -47,7 +30,6 @@ class Discover extends React.Component {
             isScrolling: false,
             tabsVisible: true,
             page: 'discover', //props.router.query.page
-            screenWidth: 0,
             title: 'Zeme Team🛡️: Zcash memes, Zcash gifs, Zcash art',
             posts: [],
             router: props.router,
@@ -71,16 +53,18 @@ class Discover extends React.Component {
         // event listener for scrolling
         document.addEventListener("scroll", this.handleScrolling, false)
 
-
-        // set screen width
-        this.setState({ 
-            screenWidth: window.innerWidth
-        })
+        // event listener for window resize
+        window.addEventListener('resize', this.handleResize)
     }
 
     componentWillUnmount() {
         // remove listener for scrolling
         document.removeEventListener("scroll", this.handleScrolling, false)
+
+        // remove listener for window resize
+        window.removeEventListener('resize', this.handleResize)
+
+        // clear body scroll locks
         clearAllBodyScrollLocks()
     }
 
@@ -141,6 +125,10 @@ class Discover extends React.Component {
                 })
             }, 500)
         }
+    }
+
+    handleResize = () => {
+        console.log('resize')
     }
 
     fetchLatest = async () => {
@@ -235,31 +223,14 @@ class Discover extends React.Component {
                         hasMore={this.state.hasMore}
                         threshold={FETCH_MORE_THRESHOLD}
                     >
-                        <Masonry
-                            breakpointCols={this.state.screenWidth >= 1400 ? BREAKPOINT_COLS_1440 : BREAKPOINT_COLS_1280}
-                            className={styles.grid}
-                            columnClassName={styles.grid_column}>
-                                {this.state.posts.map((post) => (
-                                    <Card 
-                                        post={post} 
-                                        key={post.slug} 
-                                        id={post.slug} 
-                                        theme="discover" 
-                                        display="modal"
-                                        isScrolling={this.state.isScrolling} 
-                                        handleOpenModal={this.handleDetailsModal} />
-                                ))}
+                        <Grid 
+                            display="modal"
+                            hasMore={this.state.hasMore}
+                            handleDetailsModal={this.handleDetailsModal}
+                            isScrolling={this.state.isScrolling}
+                            posts={this.state.posts} 
+                            theme="discover" />
 
-                                {this.state.hasMore ? <div className="post-loading"></div> : '' }
-                                {this.state.hasMore ? <div className="post-loading"></div> : '' }
-                                {this.state.hasMore ? <div className="post-loading"></div> : '' }
-                                {this.state.hasMore ? <div className="post-loading"></div> : '' }
-                                {this.state.hasMore ? <div className="post-loading"></div> : '' }
-                                {this.state.hasMore ? <div className="post-loading"></div> : '' } 
-                                {this.state.hasMore ? <div className="post-loading"></div> : '' }
-                                {this.state.hasMore ? <div className="post-loading"></div> : '' }
-                                {this.state.hasMore ? <div className="post-loading"></div> : '' }
-                        </Masonry>
                     </InfiniteScroll>
                 </main>
 
