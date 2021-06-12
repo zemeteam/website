@@ -15,7 +15,15 @@ const POST_STATUS_LIVE = 1
 const POSTS_PER_PAGE = 50
 const TRENDING_DAYS_BACK = 7
 const FETCH_MORE_THRESHOLD = 1200
-const BREAKPOINT_COLS = { 
+const BREAKPOINT_COLS_1280 = { 
+    default: 5,
+    2044: 4, 
+    1640: 3, 
+    1236: 2, 
+    832: 1 
+}
+
+const BREAKPOINT_COLS_1440 = { 
     default: 5,
     2276: 4, 
     1840: 3, 
@@ -39,9 +47,10 @@ class Discover extends React.Component {
             isScrolling: false,
             tabsVisible: true,
             page: 'discover', //props.router.query.page
+            screenWidth: 0,
             title: 'Zeme Team🛡️: Zcash memes, Zcash gifs, Zcash art',
             posts: [],
-            router: props.router
+            router: props.router,
         }
 
         this._timeout = null
@@ -61,6 +70,12 @@ class Discover extends React.Component {
 
         // event listener for scrolling
         document.addEventListener("scroll", this.handleScrolling, false)
+
+
+        // set screen width
+        this.setState({ 
+            screenWidth: window.innerWidth
+        })
     }
 
     componentWillUnmount() {
@@ -182,6 +197,7 @@ class Discover extends React.Component {
     }
 
     render() {
+        console.log(this.state.screenWidth)
         return (
             <Layout 
                 title={this.state.title} 
@@ -221,7 +237,7 @@ class Discover extends React.Component {
                         threshold={FETCH_MORE_THRESHOLD}
                     >
                         <Masonry
-                            breakpointCols={BREAKPOINT_COLS}
+                            breakpointCols={this.state.screenWidth >= 1400 ? BREAKPOINT_COLS_1440 : BREAKPOINT_COLS_1280}
                             className={styles.grid}
                             columnClassName={styles.grid_column}>
                                 {this.state.posts.map((post) => (
