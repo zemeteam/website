@@ -66,6 +66,7 @@ class Discover extends React.Component {
     componentWillUnmount() {
         // remove listener for scrolling
         document.removeEventListener("scroll", this.handleScrolling, false)
+        clearAllBodyScrollLocks()
     }
 
     handleTabChange = (tab) => {

@@ -52,8 +52,8 @@ export default class ContentPolicy extends React.Component {
 
                     @media only screen and (max-width: 600px) {
                         h1 {
-                            font-size: 30px;
-                            line-height: 40px;
+                            font-size: 24px;
+                            line-height: 34px;
                         }
                     }
                 `}

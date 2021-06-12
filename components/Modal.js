@@ -155,7 +155,7 @@ export default class Modal extends React.Component {
 
                     @media only screen and (max-width: 600px) {
                         .modal-close {
-                            background-color: rgba(245,245,245,.65);
+                            background-color: rgba(245,245,245,.85);
                             height: 38px;
                             line-height: 38px;
                             top: 8px;
