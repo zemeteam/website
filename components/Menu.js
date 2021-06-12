@@ -71,7 +71,7 @@ export default class Menu extends React.Component {
                             </li>
                             <li>
                                 <a href="/terms" title="Terms of Service">
-                                    Terms of Service
+                                    Terms
                                 </a>
                             </li>
                             <li style={{color: '#00acee'}}>

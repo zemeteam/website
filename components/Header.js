@@ -88,7 +88,7 @@ export default class Menu extends React.Component {
                         }
 
                         .menu div {
-                            left: 26px;
+                            display: none;
                         }
                     }
                 `}</style>
