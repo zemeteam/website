@@ -40,7 +40,7 @@ export default class Terms extends React.Component {
                         max-width: 100%;
                         padding: 92px 24px;
                         width: 900px;
-                    }
+                    } 
 
                     .copy {
                         font-family: 'Overpass Mono', monospace;
