@@ -197,7 +197,6 @@ class Discover extends React.Component {
     }
 
     render() {
-        console.log(this.state.screenWidth)
         return (
             <Layout 
                 title={this.state.title} 

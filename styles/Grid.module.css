@@ -5,6 +5,7 @@
     justify-content: center;
     margin: auto;
     margin-left: -24px; 
+    padding: auto 24px;
     width: auto;
 }
 .grid_column {
