@@ -84,8 +84,11 @@ export default class Menu extends React.Component {
 
                     @media only screen and (max-width: 600px) {
                         .menu img {
+                            height: 36px;
                             left: 20px;
+                            top: 22px;
                         }
+                        
 
                         .menu div {
                             display: none;
