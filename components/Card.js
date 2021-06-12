@@ -242,13 +242,17 @@ export default class Card extends React.Component {
                         }
                     }
 
-                    @media only screen and (max-width: 600px) {
+                    @media only screen and (max-width: 800px) {
                         .post-card-hover {
                             background-color: transparent;
                         }
 
                         .QR-block,
                         .tweet {
+                            display: none;
+                        }
+
+                        .QR-address {
                             display: none;
                         }
                     }
