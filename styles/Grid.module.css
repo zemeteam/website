@@ -4,21 +4,21 @@
     display: flex;
     justify-content: center;
     margin: auto;
-    margin-left: -24px; 
+    margin-left: -20px; 
     width: auto;
 }
 .grid_column {
     background-clip: padding-box;
     margin: 0;
     padding: 0;
-    margin-left: 24px; /* gutter size */
-    width: 436px !important;
+    margin-left: 20px; /* gutter size */
+    width: 420px !important;
 }
 .grid_column > div { 
     background-color: rgba(255, 255, 255, .2);
     border-radius: 12px;
     margin: 0;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     min-height: 196px;
     padding: 0;
     width: 100%;
