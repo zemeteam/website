@@ -61,7 +61,7 @@ export default class Card extends React.Component {
 
     render() {
         const post = this.props.post
-        const postCardHover = (
+        const cardHover = (
             <div className={styles.postCardHover} 
                 style={{ 
                     height: this.state.imgHeight,
@@ -108,7 +108,7 @@ export default class Card extends React.Component {
                                 {this.state.isHovering && !this.props.isScrolling && 
                                     <div>
                                         
-                                        {/* if PostCard is being opened in a modal the Link needs to use Next.js links */}
+                                        {/* if the card is being opened in a modal the Link needs to use Next.js links */}
                                         {this.props.display === 'modal' &&
                                             <Link 
                                                 href={`/discover?page=discover&id=${post.id}`} 
@@ -116,15 +116,15 @@ export default class Card extends React.Component {
                                                 scroll={false}
                                             >
                                                 <a href={post.slug} title={post.title} onClick={() => this.props.handleOpenModal(post) }>   
-                                                    {postCardHover}
+                                                    {cardHover}
                                                 </a>
                                             </Link>
                                         }
 
-                                        {/* if PostCard is being opened as a page don't use Next.js links */}
+                                        {/* if the card is being opened as a page don't use Next.js links */}
                                         {this.props.display === 'page' &&
                                             <a href={post.slug} title={post.title}>   
-                                                {postCardHover}
+                                                {cardHover}
                                             </a>
                                         }
 
