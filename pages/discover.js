@@ -10,7 +10,7 @@ import Modal from '../components/Modal'
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
 
 const POST_STATUS_LIVE = 1
-const POSTS_PER_PAGE = 50
+const POSTS_PER_PAGE = 100
 const TRENDING_DAYS_BACK = 7
 const FETCH_MORE_THRESHOLD = 1200
 
