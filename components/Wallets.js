@@ -23,6 +23,7 @@ export default class Wallets extends React.Component {
                         <div className="platforms">Android, iOS</div>
                     </a>
                 </div>
+
                 <div className="wallet-choice">
                     <a href="https://unstoppable.money/" target="_blank" title="Unstoppable Wallet">
                         <img src="icon-unstoppable.png" width={68} />
@@ -30,6 +31,7 @@ export default class Wallets extends React.Component {
                         <div className="platforms">Android, iOS</div>
                     </a>
                 </div>
+                
                 <div className="wallet-choice">
                     <a href="https://www.zecwallet.co/" target="_blank" title="Zecwallet Lite">
                         <img src="icon-zeclite.png" width={68} />

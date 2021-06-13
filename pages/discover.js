@@ -242,7 +242,7 @@ class Discover extends React.Component {
                     }
 
                     .discover {
-                        animation: fade .5s;
+                        animation: fade .25s;
                         margin: auto;
                         margin-bottom: 300px;
                         padding: 0px;

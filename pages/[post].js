@@ -67,7 +67,7 @@ export default class Discover extends React.Component {
 
                     @media only screen and (max-width: 800px) {
                         .details {
-                            padding-top: 80px;
+                            padding-top: 78px;
                         }
                     }
                 `}
