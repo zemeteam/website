@@ -14,7 +14,6 @@ import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'bo
 const POST_STATUS_LIVE = 1
 const POST_STATUS_IN_REVIEW = 2
 const POSTS_PER_PAGE = 50
-const FETCH_MORE_THRESHOLD = 1200
 
 export default class Details extends React.Component {
     constructor(props) {
@@ -35,7 +34,8 @@ export default class Details extends React.Component {
         this._timeout = null
         this.tipRef = React.createRef()
         this.targetElement = null
-        this.image = React.createRef();
+        this.image = React.createRef()
+        this.fetchMoreThreshold = null
     }
 
     static async getInitialProps(context) {
@@ -56,6 +56,9 @@ export default class Details extends React.Component {
                 isLoaded: true,
             })
         }
+
+        // set infinite scroll prefetch position
+        this.fetchMoreThreshold = window.innerHeight * 2
     }
 
     fetchRandom = async () => {
@@ -299,7 +302,7 @@ export default class Details extends React.Component {
                         pageStart={0}
                         loadMore={this.fetchRandom}
                         hasMore={this.state.hasMore}
-                        threshold={FETCH_MORE_THRESHOLD}
+                        threshold={this.fetchMoreThreshold}
                     >
                         <Grid 
                             display={this.props.display}

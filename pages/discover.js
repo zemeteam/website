@@ -12,7 +12,6 @@ import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'bo
 const POST_STATUS_LIVE = 1
 const POSTS_PER_PAGE = 100
 const TRENDING_DAYS_BACK = 7
-const FETCH_MORE_THRESHOLD = 1200
 
 class Discover extends React.Component {
 
@@ -37,6 +36,7 @@ class Discover extends React.Component {
 
         this._timeout = null
         this.targetElement = null
+        this.fetchMoreThreshold = null
     }
 
     componentDidMount() {
@@ -53,8 +53,8 @@ class Discover extends React.Component {
         // event listener for scrolling
         document.addEventListener("scroll", this.handleScrolling, false)
 
-        // event listener for window resize
-        window.addEventListener('resize', this.handleResize)
+        // set infinite scroll prefetch position
+        this.fetchMoreThreshold = window.innerHeight * 2
     }
 
     componentWillUnmount() {
@@ -125,10 +125,6 @@ class Discover extends React.Component {
                 })
             }, 500)
         }
-    }
-
-    handleResize = () => {
-        console.log('resize')
     }
 
     fetchLatest = async () => {
@@ -218,7 +214,7 @@ class Discover extends React.Component {
                         pageStart={0}
                         loadMore={this.state.currentTab === 'trending' ? this.fetchTrending : this.fetchLatest}
                         hasMore={this.state.hasMore}
-                        threshold={FETCH_MORE_THRESHOLD}
+                        threshold={this.fetchMoreThreshold}
                     >
                         <Grid 
                             display="modal"
