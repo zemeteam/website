@@ -29,8 +29,8 @@ class Discover extends React.Component {
             hasMore: true,
             isScrolling: false,
             tabsVisible: true,
-            page: 'discover', //props.router.query.page
-            title: 'Zeme Team🛡️: Zcash memes, Zcash gifs, Zcash art',
+            page: 'discover',
+            title: '',
             posts: [],
             router: props.router,
         }
@@ -96,7 +96,7 @@ class Discover extends React.Component {
             title: post.title + ' - Zeme Team🛡️'
         })   
 
-        disableBodyScroll(this.targetElement)
+        // disableBodyScroll(this.targetElement)
     }
 
     handleCloseDetailsModal = () => {
@@ -106,7 +106,7 @@ class Discover extends React.Component {
         this.setState({ 
             detailsModalVisible: false,
             page: 'discover',
-            title: 'Zeme Team🛡️: Zcash memes, Zcash gifs, Zcash art'
+            title: ''
         })   
 
         enableBodyScroll(this.targetElement)

@@ -23,7 +23,7 @@ export default class Layout extends React.Component {
     render() {
         const children = this.props.children
         const description = this.props.description ? this.props.description : ''
-        const title = this.props.title ? this.props.title : 'Zeme Team'
+        const title = this.props.title ? this.props.title : 'Zeme Team 🛡️: Zcash memes, Zcash gifs, Zcash art'
         const logo = this.props.logo === 'dark' ? 'zemeteam-logo-dark' : 'zemeteam-logo'
 
         return ( 
