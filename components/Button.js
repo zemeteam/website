@@ -94,7 +94,7 @@ export default class Button extends React.Component {
                             height: 46px;
                             font-size: 13px;
                             line-height: 46px;
-                            right: 16px;
+                            right: 12px;
                         }
 
                         .button-tweet {
