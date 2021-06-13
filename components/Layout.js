@@ -22,7 +22,7 @@ export default class Layout extends React.Component {
 
     render() {
         const children = this.props.children
-        const description = this.props.description ? this.props.description : 'Earn shielded Zcash for creating Zcash content (zcash gifs, zcash memes, zemes, zcash infographics, zcash price charts, zcash educational graphics, zcash quotes, etc).'
+        const description = this.props.description ? this.props.description.substring(0,200) : 'Earn shielded Zcash for creating Zcash content (zcash gifs, zcash memes, zemes, zcash infographics, zcash price charts, zcash educational graphics, zcash quotes, etc).'
         const title = this.props.title ? this.props.title : 'Zeme Team 🛡️: Zcash memes, Zcash gifs, Zcash art'
         const logo = this.props.logo === 'dark' ? 'zemeteam-logo-dark' : 'zemeteam-logo'
 
