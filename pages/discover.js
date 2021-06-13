@@ -239,6 +239,7 @@ class Discover extends React.Component {
 
                     .modal {
                         overflow: auto;
+                        -webkit-overflow-scrolling: touch;
                     }
 
                     .discover {
