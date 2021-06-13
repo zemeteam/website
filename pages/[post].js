@@ -30,8 +30,6 @@ export default class Discover extends React.Component {
             res.statusCode = 404
         }
 
-        console.log(error)
-
         return { post: data, statusCode: statusCode }
     }
 

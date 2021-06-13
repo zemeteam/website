@@ -543,7 +543,7 @@ export default class Details extends React.Component {
                         }
                     }
 
-                    @media only screen and (max-width: 800px) {
+                    @media only screen and (max-width: 750px) {
                         .post-details .inner {
                             max-width: 100%;
                             min-width: 100%;  

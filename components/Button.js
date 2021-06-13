@@ -88,6 +88,25 @@ export default class Button extends React.Component {
                         vertical-align: middle;
                         width: 20px;
                     }
+
+                    @media only screen and (max-width: 800px) {
+                        .button {
+                            height: 50px;
+                            font-size: 13px;
+                            line-height: 52px;
+                            right: 16px;
+                        }
+
+                        .button-tweet {
+                            bottom: 16px;
+                            width: 128px;
+                        }
+
+                        .button-tip {
+                            bottom: 74px;
+                            width: 96px;
+                        }
+                    }
                 `}</style>
             </div>
         )
