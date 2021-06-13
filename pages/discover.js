@@ -239,7 +239,6 @@ class Discover extends React.Component {
 
                     .modal {
                         overflow: auto;
-                        -webkit-overflow-scrolling: touch;
                     }
 
                     .discover {
@@ -251,38 +250,6 @@ class Discover extends React.Component {
                         position: relative;
                         transition: opacity .25s ease-in;
                         z-index: 3;
-                    }
-
-                    .disable-scroll {
-                        height: 100%; 
-                        overflow: hidden;
-                    }
-
-                    .loader {
-                        display: flex;
-                        justify-content: center;
-                        position: relative;
-                        width: 100%;
-                        z-index: 3;
-                    }
-
-                    .post-loading {
-                        animation: pulsate 1.25s infinite;
-                        height: 244px;
-                    }
-
-                    @keyframes pulsate {
-                        0% {
-                            opacity: 1;
-                        }
-                    
-                        50% {
-                            opacity: .35;
-                        }
-
-                        100% {
-                            opacity: 1;
-                        }
                     }
 
                     @keyframes fade {

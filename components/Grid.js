@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'underscore'
 import Masonry from 'react-masonry-css'
 import Card from '../components/Card'
 import styles from '../styles/Grid.module.css'
@@ -46,6 +47,7 @@ export default class Grid extends React.Component {
     }
 
     render() {
+        const loading = _(9).times(id => <div id={id} className={styles.loading}></div>)
 
         return ( 
             <div className="grid">
@@ -64,19 +66,11 @@ export default class Grid extends React.Component {
                                 handleOpenModal={this.props.handleDetailsModal} />
                         ))}
 
-                        {this.props.hasMore ? <div className="post-loading"></div> : '' }
-                        {this.props.hasMore ? <div className="post-loading"></div> : '' }
-                        {this.props.hasMore ? <div className="post-loading"></div> : '' }
-                        {this.props.hasMore ? <div className="post-loading"></div> : '' }
-                        {this.props.hasMore ? <div className="post-loading"></div> : '' }
-                        {this.props.hasMore ? <div className="post-loading"></div> : '' } 
-                        {this.props.hasMore ? <div className="post-loading"></div> : '' }
-                        {this.props.hasMore ? <div className="post-loading"></div> : '' }
-                        {this.props.hasMore ? <div className="post-loading"></div> : '' }
+                        {/* show loading if user hits end of feed */}
+                        {this.props.hasMore ? loading : '' }
                 </Masonry>
 
                 <style jsx>{`
-                    
                 `}</style>
             </div>
         )
