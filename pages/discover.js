@@ -96,7 +96,7 @@ class Discover extends React.Component {
             title: post.title + ' - Zeme Team🛡️'
         })   
 
-        // disableBodyScroll(this.targetElement)
+        disableBodyScroll(this.targetElement)
     }
 
     handleCloseDetailsModal = () => {
@@ -186,14 +186,11 @@ class Discover extends React.Component {
 
     render() {
         return (
-            <Layout 
-                title={this.state.title} 
-                description="Earn shielded Zcash for creating Zcash graphics (zcash gifs, zcash memes, zemes, zcash infographics, zcash price charts, zcash educational graphics, zcash quotes, etc)." 
-                url="https://zeme.team">
+            <Layout title={this.state.title} url="https://zeme.team">
 
                 <Background animate />
 
-                <div id="modal">
+                <div id="modal" className="modal">
                     {this.state.createModalVisible &&
                         <Modal 
                             page='create' 
@@ -238,6 +235,10 @@ class Discover extends React.Component {
                     html,
                     body {
                         background-color: #F9D149;
+                    }
+
+                    .modal {
+                        overflow: auto;
                     }
 
                     .discover {
