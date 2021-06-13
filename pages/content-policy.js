@@ -46,7 +46,7 @@ export default class ContentPolicy extends React.Component {
                         font-family: 'Overpass Mono', monospace;
                         font-size: 16px;
                         letter-spacing: -0.6px;
-                        line-height: 30px;
+                        line-height: 28px;
                         padding-top: 12px;
                     }
 

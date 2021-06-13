@@ -164,7 +164,7 @@ export default class Modal extends React.Component {
                         }
 
                         .modal-close img {
-                            margin-top: 8px;
+                            margin-top: 7px;
                         }
                     }
                 `}</style>

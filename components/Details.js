@@ -51,7 +51,10 @@ export default class Details extends React.Component {
         // preload the image
         const img = this.image.current
         if (img && img.complete) {
-            this.onImgLoad(img)
+            this.setState({ 
+                imgWidth: img.offsetWidth,
+                isLoaded: true,
+            })
         }
     }
 
@@ -81,7 +84,7 @@ export default class Details extends React.Component {
         }
     }
 
-    onImgLoad = (img) => {
+    onImgLoad = ({target:img}) => {
         if (!this.state.isLoaded) {
             this.setState({ 
                 imgWidth: img.offsetWidth,
@@ -367,7 +370,7 @@ export default class Details extends React.Component {
                         font-family: 'Overpass Mono', monospace;
                         font-size: 16px;
                         letter-spacing: -0.6px;
-                        line-height: 30px;
+                        line-height: 28px;
                         margin-top: 12px;
                         text-align: left;
                         white-space: pre-line;
