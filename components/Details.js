@@ -35,6 +35,7 @@ export default class Details extends React.Component {
         this._timeout = null
         this.tipRef = React.createRef()
         this.targetElement = null
+        this.image = React.createRef();
     }
 
     static async getInitialProps(context) {
@@ -46,6 +47,12 @@ export default class Details extends React.Component {
 
     componentDidMount() {
         this.targetElement = document.querySelector('#dialog')
+
+        // preload the image
+        const img = this.image.current
+        if (img && img.complete) {
+            this.onImgLoad(img)
+        }
     }
 
     fetchRandom = async () => {
@@ -74,11 +81,13 @@ export default class Details extends React.Component {
         }
     }
 
-    onImgLoad = ({target:img}) => {
-        this.setState({ 
-            imgWidth: img.offsetWidth,
-            isLoaded: true
-        })
+    onImgLoad = (img) => {
+        if (!this.state.isLoaded) {
+            this.setState({ 
+                imgWidth: img.offsetWidth,
+                isLoaded: true,
+            })
+        }
     }
 
     extractImageId = (asset_url) => {
@@ -162,16 +171,17 @@ export default class Details extends React.Component {
                 {post.status === POST_STATUS_LIVE &&
                     <div>
                         <div className="inner" style={{ width: this.state.imgWidth }}>
-                            <div className="image-container">
+                            <div className={`image-container ${!this.state.isLoaded ? 'pulsate' : '' }`}>
                                 <picture>
                                     <source 
                                         srcSet={`https://res.cloudinary.com/zemeteam/image/upload/c_scale/${this.extractImageId(post.asset_url)}.webp`}
-                                        onLoad={this.onImgLoad}
                                         className="image"
+                                        onLoad={this.onImgLoad}
                                         type="image/webp" />
                                     <img 
                                         src={`https://res.cloudinary.com/zemeteam/image/upload/c_scale/${this.extractImageId(post.asset_url)}`}
                                         alt={post.title}
+                                        ref={this.image}
                                         className="image"
                                         style={{ width: this.state.imgWidth }}
                                         onLoad={this.onImgLoad} />
