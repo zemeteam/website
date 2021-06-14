@@ -26,6 +26,7 @@ export default class Grid extends React.Component {
         super(props)
 
         this.state = {
+            isScrolling: false,
             screenWidth: 0,
         }
     }
@@ -44,10 +45,33 @@ export default class Grid extends React.Component {
         this.setState({ 
             screenWidth: window.innerWidth
         })
+
+        // event listener for scrolling
+        document.addEventListener("scroll", this.handleScrolling, false)
+    }
+    
+    componentWillUnmount() {
+        // remove listener for scrolling
+        document.removeEventListener("scroll", this.handleScrolling, false)
+    }
+
+    handleScrolling = () => {
+        if(!this.state.isScrolling) {
+            this.setState({
+                isScrolling: true
+            })
+       
+            this._timeout = setTimeout(() => {
+                this._timeout = null
+                this.setState({
+                    isScrolling: false
+                })
+            }, 500)
+        }
     }
 
     render() {
-        const loading = _(9).times(id => <div id={id} className={styles.loading}></div>)
+        const loading = _(9).times(id => <div id={id} key={id} className={styles.loading}></div>)
 
         return ( 
             <div className="grid">
@@ -62,7 +86,7 @@ export default class Grid extends React.Component {
                                 id={post.slug} 
                                 theme={this.props.theme} 
                                 display={this.props.display}
-                                isScrolling={this.props.isScrolling} 
+                                isScrolling={this.state.isScrolling} 
                                 handleOpenModal={this.props.handleDetailsModal} />
                         ))}
 

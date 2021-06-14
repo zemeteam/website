@@ -10,7 +10,7 @@ import Modal from '../components/Modal'
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
 
 const POST_STATUS_LIVE = 1
-const POSTS_PER_PAGE = 100
+const POSTS_PER_PAGE = 99
 const TRENDING_DAYS_BACK = 7
 
 class Discover extends React.Component {
@@ -26,7 +26,6 @@ class Discover extends React.Component {
             currentRangeEnd: POSTS_PER_PAGE,
             detailsModalVisible: false,
             hasMore: true,
-            isScrolling: false,
             tabsVisible: true,
             page: 'discover',
             title: '',
@@ -50,26 +49,35 @@ class Discover extends React.Component {
 
         this.targetElement = document.querySelector('#modal')
 
-        // event listener for scrolling
-        document.addEventListener("scroll", this.handleScrolling, false)
-
         // set infinite scroll prefetch position
-        this.fetchMoreThreshold = window.innerHeight * 2
+        this.fetchMoreThreshold = window.innerHeight
     }
 
     componentWillUnmount() {
-        // remove listener for scrolling
-        document.removeEventListener("scroll", this.handleScrolling, false)
-
-        // remove listener for window resize
-        window.removeEventListener('resize', this.handleResize)
-
         // clear body scroll locks
         clearAllBodyScrollLocks()
     }
 
     handleTabChange = (tab) => {
-        this.setState({ currentTab: tab })  
+        if (tab === 'trending'){
+            this.setState({
+                currentRangeStart: 0,
+                currentRangeEnd: POSTS_PER_PAGE,
+                currentTab: tab,
+                posts: []
+            })
+
+            this.fetchTrending(true, true)
+        } else if (tab === 'latest') {
+            this.setState({
+                currentRangeStart: 0,
+                currentRangeEnd: POSTS_PER_PAGE,
+                currentTab: tab,
+                posts: []
+            })
+
+            this.fetchLatest(true, true)
+        } 
     }
 
     handleCreateModal = () => {
@@ -112,39 +120,23 @@ class Discover extends React.Component {
         enableBodyScroll(this.targetElement)
     }
 
-    handleScrolling = () => {
-        if(!this.state.isScrolling) {
-            this.setState({
-                isScrolling: true
-            })
-       
-            this._timeout = setTimeout(() => {
-                this._timeout = null
-                this.setState({
-                    isScrolling: false
-                })
-            }, 500)
-        }
-    }
-
-    fetchLatest = async () => {
-        const posts = await Supabase
+    fetchLatest = async (first = true, reset = false) => {
+        const { data, error } = await Supabase
             .from('posts')
             .select('id, slug, asset_url, title, description, address, created_at, status')
-            .range(this.state.currentRangeStart, this.state.currentRangeEnd)
+            .range(reset ? 0 : this.state.currentRangeStart, reset ? POSTS_PER_PAGE : this.state.currentRangeEnd)
             .filter('status', 'eq', POST_STATUS_LIVE)
             .order('created_at', { 
                 ascending: false 
             })
 
         // check to ensure the query returned results
-        if (posts.data.length > 0){
+        if (data.length > 0){
 
             // update states 
-            this.setState({ 
-                posts: [...this.state.posts, ...posts.data],
-                currentRangeStart: this.state.currentRangeStart++ + POSTS_PER_PAGE,
-                currentRangeEnd: this.state.currentRangeEnd++ + POSTS_PER_PAGE
+            this.setState({ posts: [...this.state.posts, ...data],
+                currentRangeStart: this.state.currentRangeStart + POSTS_PER_PAGE + 1,
+                currentRangeEnd: this.state.currentRangeEnd + POSTS_PER_PAGE + 1
             })
 
         } else {
@@ -153,25 +145,24 @@ class Discover extends React.Component {
         }            
     }
 
-    fetchTrending = async () => {
-        // add days back to query
-        const posts = await Supabase
+    fetchTrending = async (first = true, reset = false) => {
+        const { data, error } = await Supabase
             .from('posts')
             .select('id, slug, asset_url, title, description, address, created_at, status')
-            .range(this.state.currentRangeStart, this.state.currentRangeEnd)
+            .range(reset ? 0 : this.state.currentRangeStart, reset ? POSTS_PER_PAGE : this.state.currentRangeEnd)
             .filter('status', 'eq', POST_STATUS_LIVE)
             .order('view_count', { 
                 ascending: false 
             })          
-            
+
         // check to ensure the query returned results
-        if (posts.data.length > 0){
+        if (data.length > 0){
 
             // update states 
             this.setState({ 
-                posts: [...this.state.posts, ...posts.data],
-                // currentRangeStart: this.state.currentRangeStart++ + POSTS_PER_PAGE,
-                // currentRangeEnd: this.state.currentRangeEnd++ + POSTS_PER_PAGE
+                posts: [...this.state.posts, ...data],
+                currentRangeStart: this.state.currentRangeStart + POSTS_PER_PAGE + 1,
+                currentRangeEnd: this.state.currentRangeEnd + POSTS_PER_PAGE + 1
             })
             
         } else {
@@ -220,7 +211,6 @@ class Discover extends React.Component {
                             display="modal"
                             hasMore={this.state.hasMore}
                             handleDetailsModal={this.handleDetailsModal}
-                            isScrolling={this.state.isScrolling}
                             posts={this.state.posts} 
                             theme="discover" />
 

@@ -74,12 +74,9 @@ export default class Details extends React.Component {
             // update states 
             this.setState({ 
                 posts: [...this.state.posts, ..._.shuffle(data)],
-                // currentRangeStart: this.state.currentRangeStart++ + POSTS_PER_PAGE,
-                // currentRangeEnd: this.state.currentRangeEnd++ + POSTS_PER_PAGE
+                currentRangeStart: this.state.currentRangeStart + POSTS_PER_PAGE + 1,
+                currentRangeEnd: this.state.currentRangeEnd + POSTS_PER_PAGE + 1
             })
-
-            // we set this to ensure we only return one page of results on the details view
-            // this.setState({ hasMore: false }) 
             
         } else {
             // no more post results exist
@@ -308,7 +305,6 @@ export default class Details extends React.Component {
                             display={this.props.display}
                             hasMore={false}
                             handleDetailsModal={this.handleDetailsModal}
-                            isScrolling={this.state.isScrolling}
                             posts={this.state.posts} 
                             theme="details" />
 
