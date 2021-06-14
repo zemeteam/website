@@ -1,6 +1,7 @@
 import React from 'react'
 import _ from 'underscore'
 import Masonry from 'react-masonry-css'
+import { isMobile } from 'react-device-detect'
 import Card from '../components/Card'
 import styles from '../styles/Grid.module.css'
 
@@ -70,8 +71,12 @@ export default class Grid extends React.Component {
         }
     }
 
+    setRandomHeight (min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min
+    }
+
     render() {
-        const loading = _(9).times(id => <div id={id} key={id} className={styles.loading}></div>)
+        const loading = _(isMobile ? 1 : 6).times(id => <div id={id} key={id} className={styles.loading} style={{height: this.setRandomHeight(244,500)}}></div>)
 
         return ( 
             <div className="grid">

@@ -35,7 +35,6 @@ class Discover extends React.Component {
 
         this._timeout = null
         this.targetElement = null
-        this.fetchMoreThreshold = null
     }
 
     componentDidMount() {
@@ -48,9 +47,6 @@ class Discover extends React.Component {
         })
 
         this.targetElement = document.querySelector('#modal')
-
-        // set infinite scroll prefetch position
-        this.fetchMoreThreshold = window.innerHeight
     }
 
     componentWillUnmount() {
@@ -59,25 +55,19 @@ class Discover extends React.Component {
     }
 
     handleTabChange = (tab) => {
-        if (tab === 'trending'){
-            this.setState({
-                currentRangeStart: 0,
-                currentRangeEnd: POSTS_PER_PAGE,
-                currentTab: tab,
-                posts: []
-            })
+        // update state
+        this.setState({
+            currentRangeStart: 0,
+            currentRangeEnd: POSTS_PER_PAGE,
+            currentTab: tab,
+            posts: []
+        })
 
-            this.fetchTrending(true, true)
-        } else if (tab === 'latest') {
-            this.setState({
-                currentRangeStart: 0,
-                currentRangeEnd: POSTS_PER_PAGE,
-                currentTab: tab,
-                posts: []
-            })
+        // fetch post data
+        tab === 'trending' ? this.fetchTrending(true, true) : this.fetchLatest(true, true)
 
-            this.fetchLatest(true, true)
-        } 
+        // scroll to top
+        window.scrollTo(0, 0)
     }
 
     handleCreateModal = () => {
@@ -136,7 +126,8 @@ class Discover extends React.Component {
             // update states 
             this.setState({ posts: [...this.state.posts, ...data],
                 currentRangeStart: this.state.currentRangeStart + POSTS_PER_PAGE + 1,
-                currentRangeEnd: this.state.currentRangeEnd + POSTS_PER_PAGE + 1
+                currentRangeEnd: this.state.currentRangeEnd + POSTS_PER_PAGE + 1,
+                hasMore: data.length === (POSTS_PER_PAGE + 1) ? true : false
             })
 
         } else {
@@ -157,12 +148,12 @@ class Discover extends React.Component {
 
         // check to ensure the query returned results
         if (data.length > 0){
-
             // update states 
             this.setState({ 
                 posts: [...this.state.posts, ...data],
                 currentRangeStart: this.state.currentRangeStart + POSTS_PER_PAGE + 1,
-                currentRangeEnd: this.state.currentRangeEnd + POSTS_PER_PAGE + 1
+                currentRangeEnd: this.state.currentRangeEnd + POSTS_PER_PAGE + 1,
+                hasMore: data.length === (POSTS_PER_PAGE + 1) ? true : false
             })
             
         } else {
@@ -205,8 +196,8 @@ class Discover extends React.Component {
                         pageStart={0}
                         loadMore={this.state.currentTab === 'trending' ? this.fetchTrending : this.fetchLatest}
                         hasMore={this.state.hasMore}
-                        threshold={this.fetchMoreThreshold}
-                    >
+                        threshold={500}>
+                            
                         <Grid 
                             display="modal"
                             hasMore={this.state.hasMore}

@@ -13,7 +13,7 @@ import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'bo
 
 const POST_STATUS_LIVE = 1
 const POST_STATUS_IN_REVIEW = 2
-const POSTS_PER_PAGE = 50
+const POSTS_PER_PAGE = 99
 
 export default class Details extends React.Component {
     constructor(props) {
@@ -75,7 +75,8 @@ export default class Details extends React.Component {
             this.setState({ 
                 posts: [...this.state.posts, ..._.shuffle(data)],
                 currentRangeStart: this.state.currentRangeStart + POSTS_PER_PAGE + 1,
-                currentRangeEnd: this.state.currentRangeEnd + POSTS_PER_PAGE + 1
+                currentRangeEnd: this.state.currentRangeEnd + POSTS_PER_PAGE + 1,
+                hasMore: data.length === (POSTS_PER_PAGE + 1) ? true : false
             })
             
         } else {
