@@ -36,7 +36,7 @@ export default class Wallets extends React.Component {
                     <a href="https://www.zecwallet.co/" target="_blank" title="Zecwallet Lite">
                         <img src="icon-zeclite.png" width={68} />
                         <div className="name">Zecwallet Lite</div>
-                        <div className="platforms">Android, iOS, desktop</div>
+                        <div className="platforms">Android, iOS, PC</div>
                     </a>
                 </div>
 
@@ -81,10 +81,12 @@ export default class Wallets extends React.Component {
 
                         .download-wallets .wallet-choice .name {
                             font-size: 12px;
+                            line-height: 14px;
                         }
 
                         .download-wallets .wallet-choice .platforms {
                             font-size: 11px;
+                            line-height: 13px;
                         }
                     }
                 `}</style>
