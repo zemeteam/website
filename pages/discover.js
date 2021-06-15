@@ -85,6 +85,7 @@ class Discover extends React.Component {
     }
 
     handleDetailsModal = (post) => {
+        alert (post.title)
         this.setState({ 
             currentPost: post,
             detailsModalVisible: true,

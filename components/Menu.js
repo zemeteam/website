@@ -203,7 +203,7 @@ export default class Menu extends React.Component {
                                 }
 
                                 .menu-body {
-                                    height: 70vh;
+                                    height: 75vh;
                                 }
                             }
                         `}</style>

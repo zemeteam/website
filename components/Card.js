@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import VisibilitySensor from 'react-visibility-sensor'
+import { isMobile } from 'react-device-detect'
 import QR from './QR'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import styles from '../styles/Card.module.css'
@@ -104,7 +105,7 @@ export default class Card extends React.Component {
                                     <div style={{height: 1}}></div> 
                                 }
 
-                                {this.state.isHovering && 
+                                {!isMobile && this.state.isHovering && 
                                     <div>
                                         
                                         {/* if the card is being opened in a modal the Link needs to use Next.js links */}
