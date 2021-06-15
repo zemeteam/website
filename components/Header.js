@@ -23,11 +23,12 @@ export default class Menu extends React.Component {
                     <div>Menu</div>
                 </div>
 
-                <a href="/discover" title="Zeme Team🛡️: Zcash memes, Zcash gifs, Zcash art"> 
-                    <div className="logo">
-                        <img src={`/${logo}.png`} />
-                    </div>
-                </a>
+            
+                <div className="logo">
+                    <a href="/discover" title="Zeme Team🛡️: Zcash memes, Zcash gifs, Zcash art"> 
+                        <img src={`/${logo}.png`} alt="Zeme Team" />
+                    </a>
+                </div>
 
                 <style jsx>{`
                     .header {

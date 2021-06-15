@@ -46,48 +46,50 @@ export default class Menu extends React.Component {
             <div id="menu">
                 {visible && 
                     <div className={`menu ${visible ? "menu-show" : "menu-hide"}`}>
-                        <div className="menu-close" onClick={() => this.handleClose() }>
-                            <img src="/icon-close-white.png" alt="Close" />
-                        </div>
 
-                        <ul>
-                            <li>
-                                <a href="/discover" title="Zeme Team🛡️: Zcash memes, Zcash gifs, Zcash art">Home</a>
-                            </li>
-                            <li>
-                                <a href="mailto:hi@zeme.team" title="Contact">
-                                    Contact
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/content-policy" title="Content Policy">
-                                    Content Policy
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/privacy-policy" title="Privacy Policy">
-                                    Privacy Policy
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/terms" title="Terms of Service">
-                                    Terms
-                                </a>
-                            </li>
-                            <li style={{color: '#00acee'}}>
-                                <a href="https://twitter.com/zemeteam" target="_blank" title="Zeme Team on Twitter">
-                                    @zemeteam
-                                </a>
-                            </li>
-                        </ul>
+                        <div className="menu-body">
+                            <div className="menu-close" onClick={() => this.handleClose() }>
+                                <img src="/icon-close-white.png" alt="Close" />
+                            </div>
+
+                            <ul>
+                                <li>
+                                    <a href="/discover" title="Zeme Team🛡️: Zcash memes, Zcash gifs, Zcash art">Home</a>
+                                </li>
+                                <li>
+                                    <a href="mailto:hi@zeme.team" title="Contact">
+                                        Contact
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/content-policy" title="Content Policy">
+                                        Content Policy
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/privacy-policy" title="Privacy Policy">
+                                        Privacy Policy
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/terms" title="Terms of Service">
+                                        Terms
+                                    </a>
+                                </li>
+                                <li style={{color: '#00acee'}}>
+                                    <a href="https://twitter.com/zemeteam" target="_blank" title="Zeme Team on Twitter">
+                                        @zemeteam
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
 
                         <style jsx>{`
                             .menu {
                                 align-items: center;
                                 background-color: rgba(0,0,0,.92);
                                 color: #ffffff;
-                                display: flex;
-                                height: 100vh;
+                                height: 100%;
                                 left: 0;
                                 margin: 0;
                                 overflow: scroll;
@@ -96,6 +98,11 @@ export default class Menu extends React.Component {
                                 text-align: center;
                                 width: 100%;
                                 z-index: 5;
+                            }
+
+                            .menu-body {
+                                height: 100vh;
+                                display: flex;
                             }
 
                             .menu ul {
@@ -193,6 +200,10 @@ export default class Menu extends React.Component {
                                     font-size: 20px;
                                     height: 64px;
                                     line-height: 64px;
+                                }
+
+                                .menu-body {
+                                    height: 70vh;
                                 }
                             }
                         `}</style>
