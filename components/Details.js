@@ -35,7 +35,6 @@ export default class Details extends React.Component {
         this.tipRef = React.createRef()
         this.targetElement = null
         this.image = React.createRef()
-        this.fetchMoreThreshold = null
     }
 
     static async getInitialProps(context) {
@@ -56,9 +55,6 @@ export default class Details extends React.Component {
                 isLoaded: true,
             })
         }
-
-        // set infinite scroll prefetch position
-        this.fetchMoreThreshold = window.innerHeight * 2
     }
 
     fetchRandom = async () => {
@@ -300,7 +296,7 @@ export default class Details extends React.Component {
                         pageStart={0}
                         loadMore={this.fetchRandom}
                         hasMore={this.state.hasMore}
-                        threshold={this.fetchMoreThreshold}
+                        threshold={1500}
                     >
                         <Grid 
                             display={this.props.display}

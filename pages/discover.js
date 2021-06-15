@@ -33,7 +33,6 @@ class Discover extends React.Component {
             router: props.router,
         }
 
-        this._timeout = null
         this.targetElement = null
     }
 
@@ -151,9 +150,9 @@ class Discover extends React.Component {
             // update states 
             this.setState({ 
                 posts: [...this.state.posts, ...data],
-                currentRangeStart: this.state.currentRangeStart + POSTS_PER_PAGE + 1,
-                currentRangeEnd: this.state.currentRangeEnd + POSTS_PER_PAGE + 1,
-                hasMore: data.length === (POSTS_PER_PAGE + 1) ? true : false
+                // currentRangeStart: this.state.currentRangeStart + POSTS_PER_PAGE + 1,
+                // currentRangeEnd: this.state.currentRangeEnd + POSTS_PER_PAGE + 1,
+                // hasMore: data.length === (POSTS_PER_PAGE + 1) ? true : false
             })
             
         } else {
@@ -196,8 +195,8 @@ class Discover extends React.Component {
                         pageStart={0}
                         loadMore={this.state.currentTab === 'trending' ? this.fetchTrending : this.fetchLatest}
                         hasMore={this.state.hasMore}
-                        threshold={500}>
-                            
+                        threshold={1500}>
+                                                        
                         <Grid 
                             display="modal"
                             hasMore={this.state.hasMore}

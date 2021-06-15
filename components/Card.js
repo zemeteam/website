@@ -21,7 +21,6 @@ export default class Card extends React.Component {
         return { 
             id: id,
             display: display,
-            isScrolling: isScrolling,
             post: post,
             theme: theme
         }
@@ -105,7 +104,7 @@ export default class Card extends React.Component {
                                     <div style={{height: 1}}></div> 
                                 }
 
-                                {this.state.isHovering && !this.props.isScrolling && 
+                                {this.state.isHovering && 
                                     <div>
                                         
                                         {/* if the card is being opened in a modal the Link needs to use Next.js links */}

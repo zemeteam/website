@@ -33,6 +33,10 @@ export default class Discover extends React.Component {
         return { post: data, statusCode: statusCode }
     }
 
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
+
     handleScrollToTop = () => { 
     }
 

@@ -166,6 +166,14 @@ export default class Modal extends React.Component {
                         .modal-close img {
                             margin-top: 7px;
                         }
+
+                        .modal-show {
+                            animation: slideIn .3s;
+                        }
+
+                        .modal-hide {
+                            animation: slideOut .3s;
+                        }
                     }
                 `}</style>
             </div>

@@ -27,9 +27,9 @@ export default class Grid extends React.Component {
         super(props)
 
         this.state = {
-            isScrolling: false,
             screenWidth: 0,
         }
+
     }
 
     static async getInitialProps(context) {
@@ -46,29 +46,6 @@ export default class Grid extends React.Component {
         this.setState({ 
             screenWidth: window.innerWidth
         })
-
-        // event listener for scrolling
-        document.addEventListener("scroll", this.handleScrolling, false)
-    }
-    
-    componentWillUnmount() {
-        // remove listener for scrolling
-        document.removeEventListener("scroll", this.handleScrolling, false)
-    }
-
-    handleScrolling = () => {
-        if(!this.state.isScrolling) {
-            this.setState({
-                isScrolling: true
-            })
-       
-            this._timeout = setTimeout(() => {
-                this._timeout = null
-                this.setState({
-                    isScrolling: false
-                })
-            }, 500)
-        }
     }
 
     setRandomHeight (min, max) {
@@ -87,11 +64,10 @@ export default class Grid extends React.Component {
                         {this.props.posts.map((post) => (
                             <Card 
                                 post={post} 
-                                key={post.slug} 
+                                key={post.slug + Math.random().toString(36).substring(7)} 
                                 id={post.slug} 
                                 theme={this.props.theme} 
                                 display={this.props.display}
-                                isScrolling={this.state.isScrolling} 
                                 handleOpenModal={this.props.handleDetailsModal} />
                         ))}
 
