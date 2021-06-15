@@ -3,6 +3,12 @@ html,
 body {
   background-color: #F9D149;
   color: #000000;
+  cursor: url(/cursor.png), auto;
+  cursor: -webkit-image-set(
+    url('/cursor.png') 1x,
+    url('/cursor@2x.png') 2x,
+    url('/cursor@3x.png') 3x
+  ), auto;  
   padding: 0;
   margin: 0;
   font-family: "Syncopate", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -11,6 +17,12 @@ body {
 
 a {
   color: inherit;
+  cursor: url(/pointer.png), auto;
+  cursor: -webkit-image-set(
+    url('/pointer.png') 1x,
+    url('/pointer@2x.png') 2x,
+    url('/pointer@3x.png') 3x
+  ), auto;  
   text-decoration: none;
 }
 

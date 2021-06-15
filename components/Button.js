@@ -34,7 +34,12 @@ export default class Button extends React.Component {
                     .button {
                         border-radius: 12px;
                         color: #000000;
-                        cursor: pointer;
+                        cursor: url(/pointer.png), auto;
+                        cursor: -webkit-image-set(
+                            url('/pointer.png') 1x,
+                            url('/pointer@2x.png') 2x,
+                            url('/pointer@3x.png') 3x
+                        ), auto;  
                         display: flex;
                         font-size: 15px;
                         height: 58px;

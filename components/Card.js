@@ -83,7 +83,7 @@ export default class Card extends React.Component {
                     onLoad={this.onImgLoad} />
             </picture>    
         )
-        
+
         return ( 
             <div 
                 className="post-card" 
@@ -185,7 +185,12 @@ export default class Card extends React.Component {
 
                     .QR-address {
                         color: #666666;
-                        cursor: pointer;
+                        cursor: url(/pointer.png), auto;
+                        cursor: -webkit-image-set(
+                            url('/pointer.png') 1x,
+                            url('/pointer@2x.png') 2x,
+                            url('/pointer@3x.png') 3x
+                        ), auto;  
                         font-family: 'Overpass Mono', monospace;
                         font-size: 12px;
                         left: calc(50% - 90px);
@@ -205,7 +210,12 @@ export default class Card extends React.Component {
                         background-repeat: no-repeat;
                         background-size: cover;
                         bottom: 16px;
-                        cursor: pointer;
+                        cursor: url(/pointer.png), auto;
+                        cursor: -webkit-image-set(
+                            url('/pointer.png') 1x,
+                            url('/pointer@2x.png') 2x,
+                            url('/pointer@3x.png') 3x
+                        ), auto;  
                         height: 40px;
                         position: absolute;
                         right: 16px;

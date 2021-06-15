@@ -34,10 +34,11 @@ export default class Discover extends React.Component {
     }
 
     componentDidMount() {
-        window.scrollTo(0, 0)
+        this.handleScrollToTop()
     }
 
     handleScrollToTop = () => { 
+        window.scrollTo(0, 0)
     }
 
     render() {

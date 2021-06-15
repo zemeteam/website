@@ -80,7 +80,12 @@ export default class Tabs extends React.Component {
                     .tabs ul li {
                         border-bottom: solid 3px #000000;
                         color: #999999;
-                        cursor: pointer;
+                        cursor: url(/pointer.png), auto;
+                        cursor: -webkit-image-set(
+                            url('/pointer.png') 1x,
+                            url('/pointer@2x.png') 2x,
+                            url('/pointer@3x.png') 3x
+                        ), auto;  
                         display: inline-block;
                         font-size: 13px;
                         line-height: 53px;
@@ -132,7 +137,12 @@ export default class Tabs extends React.Component {
                         border-radius: 30px;
                         box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.85);
                         color: #ffffff;
-                        cursor: pointer;
+                        cursor: url(/pointer.png), auto;
+                        cursor: -webkit-image-set(
+                            url('/pointer.png') 1x,
+                            url('/pointer@2x.png') 2x,
+                            url('/pointer@3x.png') 3x
+                        ), auto;  
                         font-size: 24px;
                         height: 56px;
                         left: calc(50% - 28px);
@@ -145,7 +155,12 @@ export default class Tabs extends React.Component {
                     }
 
                     .tabs-create img {
-                        cursor: pointer;
+                        cursor: url(/pointer.png), auto;
+                        cursor: -webkit-image-set(
+                            url('/pointer.png') 1x,
+                            url('/pointer@2x.png') 2x,
+                            url('/pointer@3x.png') 3x
+                        ), auto;  
                         line-height: 56px;
                         margin: 11px 0;
                         transition: opacity .5s;

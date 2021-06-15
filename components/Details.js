@@ -331,7 +331,7 @@ export default class Details extends React.Component {
                     }
 
                     .post-details .image-container {
-                        background-color: #f9f9f9;
+                        background-color: #fff7dd;
                         border-radius: 20px;
                         height: auto;
                         padding: 0;
@@ -379,7 +379,12 @@ export default class Details extends React.Component {
                     .post-details .QR {
                         border: solid 1px #E9E9E9;
                         border-radius: 24px;
-                        cursor: pointer;
+                        cursor: url(/pointer.png), auto;
+                        cursor: -webkit-image-set(
+                            url('/pointer.png') 1x,
+                            url('/pointer@2x.png') 2x,
+                            url('/pointer@3x.png') 3x
+                        ), auto;  
                         margin: auto;
                         margin-top: 28px;
                         padding: 32px;
@@ -393,7 +398,12 @@ export default class Details extends React.Component {
 
                     .post-details .QR-address {
                         color: #666666;
-                        cursor: pointer;
+                        cursor: url(/pointer.png), auto;
+                        cursor: -webkit-image-set(
+                            url('/pointer.png') 1x,
+                            url('/pointer@2x.png') 2x,
+                            url('/pointer@3x.png') 3x
+                        ), auto;  
                         font-family: 'Overpass Mono', monospace;
                         font-size: 13px;
                         margin: auto;
@@ -453,7 +463,12 @@ export default class Details extends React.Component {
                     .post-details .report,
                     .post-details .wallet {
                         color: #909090;
-                        cursor: pointer;
+                        cursor: url(/pointer.png), auto;
+                        cursor: -webkit-image-set(
+                            url('/pointer.png') 1x,
+                            url('/pointer@2x.png') 2x,
+                            url('/pointer@3x.png') 3x
+                        ), auto;  
                         display: flex;
                         float: right;
                         font-family: 'Overpass Mono', monospace;

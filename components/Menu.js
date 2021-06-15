@@ -103,7 +103,7 @@ export default class Menu extends React.Component {
                                 margin: auto;
                                 padding: 0;
                                 position: relative;
-                                width: 80%;
+                                width: auto;
                             }
 
                             .menu ul li {
@@ -121,7 +121,12 @@ export default class Menu extends React.Component {
 
                             .menu ul li:hover {
                                 color: #F4B728;
-                                cursor: pointer;
+                                cursor: url(/pointer.png), auto;
+                                cursor: -webkit-image-set(
+                                    url('/pointer.png') 1x,
+                                    url('/pointer@2x.png') 2x,
+                                    url('/pointer@3x.png') 3x
+                                ), auto;  
                             }
 
                             .menu ul li a {
@@ -132,7 +137,12 @@ export default class Menu extends React.Component {
                             .menu-close {
                                 background-color: #323232;
                                 border-radius: 25px;
-                                cursor: pointer;
+                                cursor: url(/pointer.png), auto;
+                                cursor: -webkit-image-set(
+                                    url('/pointer.png') 1x,
+                                    url('/pointer@2x.png') 2x,
+                                    url('/pointer@3x.png') 3x
+                                ), auto;  
                                 height: 50px;
                                 line-height: 50px;
                                 position: fixed;

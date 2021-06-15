@@ -51,7 +51,7 @@ export default class Grid extends React.Component {
     }
 
     render() {
-        const loading = _(isMobile ? 1 : 6).times(id => <div id={id} key={id} className={styles.loading} style={{height: this.setRandomHeight(244,500)}}></div>)
+        const loading = _(isMobile ? 1 : 9).times(id => <div id={id} key={id} className={styles.loading} style={{height: this.setRandomHeight(200,544)}}></div>)
 
         return ( 
             <div className="grid">

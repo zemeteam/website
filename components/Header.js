@@ -53,7 +53,12 @@ export default class Menu extends React.Component {
                     }
 
                     .menu img {
-                        cursor: pointer;
+                        cursor: url(/pointer.png), auto;
+                        cursor: -webkit-image-set(
+                            url('/pointer.png') 1x,
+                            url('/pointer@2x.png') 2x,
+                            url('/pointer@3x.png') 3x
+                        ), auto;  
                         display: inline-block;
                         height: 26px;
                         left: 38px;
@@ -63,7 +68,12 @@ export default class Menu extends React.Component {
 
                     .menu div {
                         color: #000000;
-                        cursor: pointer;
+                        cursor: url(/pointer.png), auto;
+                        cursor: -webkit-image-set(
+                            url('/pointer.png') 1x,
+                            url('/pointer@2x.png') 2x,
+                            url('/pointer@3x.png') 3x
+                        ), auto;  
                         display: inline-block;
                         left: 46px;
                         position: relative;

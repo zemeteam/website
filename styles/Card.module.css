@@ -2,7 +2,12 @@
     animation: fade .25s;
     background-color: #ffffff;
     border-radius: 10px;
-    cursor: pointer;
+    cursor: url(/pointer.png), auto;
+    cursor: -webkit-image-set(
+        url('/pointer.png') 1x,
+        url('/pointer@2x.png') 2x,
+        url('/pointer@3x.png') 3x
+    ), auto;  
     display: block;
     font-size: 12px;
     height: 100%;
@@ -15,7 +20,12 @@
 
 .QRblock {
     animation: fade .5s;
-    cursor: pointer;
+    cursor: url(/pointer.png), auto;
+    cursor: -webkit-image-set(
+        url('/pointer.png') 1x,
+        url('/pointer@2x.png') 2x,
+        url('/pointer@3x.png') 3x
+    ), auto;  
     display: block;
     font-size: 12px;
     height: 140px;

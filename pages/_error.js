@@ -66,7 +66,12 @@ function CustomError({ statusCode }) {
                     border: solid 1px #F4B728;
                     border-radius: 80px;
                     color: #F4B728;
-                    cursor: pointer;
+                    cursor: url(/pointer.png), auto;
+                    cursor: -webkit-image-set(
+                        url('/pointer.png') 1x,
+                        url('/pointer@2x.png') 2x,
+                        url('/pointer@3x.png') 3x
+                    ), auto;  
                     font-size: 13px;
                     height: 40px;
                     line-height: 40px;

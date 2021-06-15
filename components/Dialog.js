@@ -81,7 +81,12 @@ export default class Dialog extends React.Component {
                     .dialog-close {
                         background-color: #DBDBDB;
                         border-radius: 25px;
-                        cursor: pointer;
+                        cursor: url(/pointer.png), auto;
+                        cursor: -webkit-image-set(
+                            url('/pointer.png') 1x,
+                            url('/pointer@2x.png') 2x,
+                            url('/pointer@3x.png') 3x
+                        ), auto;  
                         height: 50px;
                         float: right;
                         line-height: 50px;
