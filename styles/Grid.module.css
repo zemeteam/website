@@ -61,4 +61,8 @@
     .grid {
         padding: 0;
     }
+
+    .grid_column > div { 
+        margin-bottom: 16px;
+    }
 }

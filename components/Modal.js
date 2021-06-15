@@ -168,11 +168,11 @@ export default class Modal extends React.Component {
                         }
 
                         .modal-show {
-                            animation: slideIn .3s;
+                            animation: slideIn .25s;
                         }
 
                         .modal-hide {
-                            animation: slideOut .3s;
+                            animation: slideOut .25s;
                         }
                     }
                 `}</style>
