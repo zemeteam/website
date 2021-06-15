@@ -7,11 +7,9 @@ import styles from '../styles/Grid.module.css'
 
 const LARGE_VIEWPORT = 1400
 const BREAKPOINT_COLS_SMALL = { 
-    default: 5,
-    2044: 4, 
-    1640: 3, 
-    1236: 2, 
-    832: 1 
+    default: 3, 
+    1264: 2, 
+    940: 1 
 }
 
 const BREAKPOINT_COLS_LARGE = { 
@@ -64,7 +62,7 @@ export default class Grid extends React.Component {
                         {this.props.posts.map((post) => (
                             <Card 
                                 post={post} 
-                                key={post.slug + Math.random().toString(36).substring(7)} 
+                                key={`${this.props.theme}-${post.slug}`} 
                                 id={post.slug} 
                                 theme={this.props.theme} 
                                 display={this.props.display}

@@ -10,7 +10,7 @@ import Modal from '../components/Modal'
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
 
 const POST_STATUS_LIVE = 1
-const POSTS_PER_PAGE = 99
+const POSTS_PER_PAGE = 500
 const TRENDING_DAYS_BACK = 7
 
 class Discover extends React.Component {
@@ -150,9 +150,9 @@ class Discover extends React.Component {
             // update states 
             this.setState({ 
                 posts: [...this.state.posts, ...data],
-                // currentRangeStart: this.state.currentRangeStart + POSTS_PER_PAGE + 1,
-                // currentRangeEnd: this.state.currentRangeEnd + POSTS_PER_PAGE + 1,
-                // hasMore: data.length === (POSTS_PER_PAGE + 1) ? true : false
+                currentRangeStart: this.state.currentRangeStart + POSTS_PER_PAGE + 1,
+                currentRangeEnd: this.state.currentRangeEnd + POSTS_PER_PAGE + 1,
+                hasMore: data.length === (POSTS_PER_PAGE + 1) ? true : false
             })
             
         } else {
@@ -196,7 +196,7 @@ class Discover extends React.Component {
                         loadMore={this.state.currentTab === 'trending' ? this.fetchTrending : this.fetchLatest}
                         hasMore={this.state.hasMore}
                         threshold={1500}>
-                                                        
+
                         <Grid 
                             display="modal"
                             hasMore={this.state.hasMore}

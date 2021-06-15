@@ -87,6 +87,7 @@ export default class Tabs extends React.Component {
                         padding: 0 10px;
                         text-transform: uppercase;
                         transition: all .25s;
+                        user-select: none;
                     }
 
                     .tabs ul li:active {
@@ -139,6 +140,7 @@ export default class Tabs extends React.Component {
                         text-align: center;
                         transition: transform .5s;
                         top: -20px;
+                        user-select: none;
                         width: 56px;
                     }
 
@@ -166,11 +168,37 @@ export default class Tabs extends React.Component {
                             border: 0;
                             border-radius: 0;
                             left: 0;
+                            height: 64px;
                             width: 100%;
                         }
 
+                        .tabs-create {
+                            top: -27px;
+                        }
+
+                        .tabs ul li {
+                            line-height: 60px;
+                            padding: 0;
+                            text-align: center;
+                            width: 50%
+                        }
+
                         .tabs ul li:nth-child(1) {
+                            float: none;
                             margin-left: 0;
+                        }
+
+                        .tabs ul li:nth-child(2) {
+                            float: none;
+                            margin-right: 0;
+                        }
+
+                        .tabs ul li .icon {
+                            display: none;
+                        }
+
+                        .tabs ul li .label {
+                            font-size: 12px;
                         }
                     }
                 `}</style>

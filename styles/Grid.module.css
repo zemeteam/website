@@ -41,7 +41,6 @@
 
 .loading {
     animation: pulsate 1.25s infinite;
-    height: 244px;
 }
 
 @keyframes pulsate {

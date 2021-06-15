@@ -13,7 +13,7 @@ import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'bo
 
 const POST_STATUS_LIVE = 1
 const POST_STATUS_IN_REVIEW = 2
-const POSTS_PER_PAGE = 99
+const POSTS_PER_PAGE = 500
 
 export default class Details extends React.Component {
     constructor(props) {
@@ -55,6 +55,9 @@ export default class Details extends React.Component {
                 isLoaded: true,
             })
         }
+
+        // fetch random posts
+        this.fetchRandom()
     }
 
     fetchRandom = async () => {
@@ -72,9 +75,9 @@ export default class Details extends React.Component {
                 posts: [...this.state.posts, ..._.shuffle(data)],
                 currentRangeStart: this.state.currentRangeStart + POSTS_PER_PAGE + 1,
                 currentRangeEnd: this.state.currentRangeEnd + POSTS_PER_PAGE + 1,
-                hasMore: data.length === (POSTS_PER_PAGE + 1) ? true : false
+                hasMore: false
             })
-            
+        
         } else {
             // no more post results exist
             this.setState({ hasMore: false }) 
@@ -291,21 +294,14 @@ export default class Details extends React.Component {
 
                 <div className="more">
                     <div className="label">More Zemes</div>
+                    
+                    <Grid 
+                        display={this.props.display}
+                        hasMore={false}
+                        handleDetailsModal={this.handleDetailsModal}
+                        posts={this.state.posts} 
+                        theme="details" />
 
-                    <InfiniteScroll
-                        pageStart={0}
-                        loadMore={this.fetchRandom}
-                        hasMore={this.state.hasMore}
-                        threshold={1500}
-                    >
-                        <Grid 
-                            display={this.props.display}
-                            hasMore={false}
-                            handleDetailsModal={this.handleDetailsModal}
-                            posts={this.state.posts} 
-                            theme="details" />
-
-                    </InfiniteScroll>
                 </div>
 
                 {post.status === POST_STATUS_LIVE &&

@@ -83,7 +83,7 @@ export default class Card extends React.Component {
                     onLoad={this.onImgLoad} />
             </picture>    
         )
-
+        
         return ( 
             <div 
                 className="post-card" 
