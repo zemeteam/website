@@ -87,11 +87,14 @@ export default class Modal extends React.Component {
                         text-align: center;
                         width: 100%;
                         z-index: 5;
+                        -webkit-overflow-scrolling: touch;
                     }
 
                     .modal-body {
-                        position: relative;
+                        position: absolute;
                         z-index: 6;
+                        -webkit-overflow-scrolling: touch;
+
                     }
 
                     .modal-close {

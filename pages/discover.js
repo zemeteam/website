@@ -168,7 +168,7 @@ class Discover extends React.Component {
 
                 <Background animate />
 
-                <div id="modal" className="modal" ref={this.targetRef}>
+                <div id="modal" className="modal-container" ref={this.targetRef}>
                     {this.state.createModalVisible &&
                         <Modal 
                             page='create' 
@@ -209,6 +209,11 @@ class Discover extends React.Component {
                 </main>
 
                 <style jsx>{`
+                    .modal-container {
+                        overflow: auto;
+                        -webkit-overflow-scrolling: touch;
+                    }
+
                     .discover {
                         animation: fade .25s;
                         margin: auto;
