@@ -57,25 +57,29 @@ export default class Modal extends React.Component {
     render() {
         const page = this.props.page
         const post = this.props.post
-        const visible = this.state.visible
+        const visible = this.props.visible 
 
         return ( 
-            <div className={`modal ${visible ? "modal-show" : "modal-hide"}`} ref={this.modalRef}>
-                <div className="modal-body">
-                    <div className="modal-close" onClick={() => this.handleClose() }>
-                        <img src="/icon-close.png" alt="Close" />
-                    </div>
+            <div>
+                {visible && 
+                    <div className={`modal ${visible ? "modal-show" : "modal-hide"}`} ref={this.modalRef}>
+                        <div className="modal-body">
+                            <div className="modal-close" onClick={() => this.handleClose() }>
+                                <img src="/icon-close.png" alt="Close" />
+                            </div>
 
-                    {page === 'details' && 
-                        <div className="modal-post">
-                            <Details post={post} handleScrollToTop={this.handleScrollToTop} display="modal" />
+                            {page === 'details' && 
+                                <div className="modal-post">
+                                    <Details post={post} handleScrollToTop={this.handleScrollToTop} display="modal" />
+                                </div>
+                            } 
+
+                            {visible && page === 'create' && 
+                                <div>CREATE ZEME</div>
+                            } 
                         </div>
-                    } 
-
-                    {page === 'create' && 
-                        <div>CREATE ZEME</div>
-                    } 
-                </div>
+                    </div>
+                }
 
                 <style jsx>{`
                     .modal {
