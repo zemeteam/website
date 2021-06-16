@@ -183,16 +183,10 @@ export default class Tabs extends React.Component {
                             border: 0;
                             border-radius: 0;
                             left: 0;
-                            height: 64px;
                             width: 100%;
                         }
 
-                        .tabs-create {
-                            top: -27px;
-                        }
-
                         .tabs ul li {
-                            line-height: 60px;
                             padding: 0;
                             text-align: center;
                             width: 50%
