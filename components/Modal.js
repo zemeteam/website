@@ -92,7 +92,6 @@ export default class Modal extends React.Component {
 
                     .modal-body {
                         z-index: 6;
-                        -webkit-overflow-scrolling: touch;
                     }
 
                     .modal-close {

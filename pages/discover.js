@@ -14,6 +14,7 @@ const POSTS_PER_PAGE = 500
 const TRENDING_DAYS_BACK = 7
 
 class Discover extends React.Component {
+    
 
     constructor(props) {
         super(props)  
@@ -33,8 +34,8 @@ class Discover extends React.Component {
             router: props.router,
         }
 
-        this.targetElement = null
-        this.targetRef = React.createRef()
+        this.targetRef = React.createRef();
+        this.targetElement = null;
     }
 
     componentDidMount() {
@@ -168,11 +169,12 @@ class Discover extends React.Component {
 
                 <Background animate />
 
-                <div id="modal" className="modal-container" ref={this.targetRef}>
+                <div id="modal" className="modal-container" >
                     {this.state.createModalVisible &&
                         <Modal 
                             page='create' 
                             post={[]}
+                            ref={this.targetRef}
                             visible={this.state.createModalVisible} 
                             handleCloseModal={this.handleCreateModal} />
                     }
@@ -181,6 +183,7 @@ class Discover extends React.Component {
                         <Modal 
                             page='details' 
                             post={this.state.currentPost}
+                            ref={this.targetRef}
                             visible={this.state.detailsModalVisible} 
                             handleCloseModal={this.handleCloseDetailsModal} />
                     }   
