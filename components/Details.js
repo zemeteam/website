@@ -165,6 +165,14 @@ export default class Details extends React.Component {
           }
     }
 
+    setImageUrl = (asset, extension) => {
+        if (asset.includes('.gif')) {
+            return `https://res.cloudinary.com/zemeteam/image/upload/c_scale/${this.extractImageId(asset)}.webp`
+        } else {
+            return `https://res.cloudinary.com/zemeteam/image/upload/w_1200,c_scale/${this.extractImageId(asset)}${extension}`
+        }
+    }
+
     render() {
         const post = this.state.currentPost ? this.state.currentPost : this.props.post
         const dateCreated = new Date(post.created_at)
@@ -177,12 +185,12 @@ export default class Details extends React.Component {
                             <div className={`image-container ${!this.state.isLoaded ? 'pulsate' : '' }`}>
                                 <picture>
                                     <source 
-                                        srcSet={`https://res.cloudinary.com/zemeteam/image/upload/c_scale/${this.extractImageId(post.asset_url)}.webp`}
+                                        srcSet={this.setImageUrl(post.asset_url, '.webp')}
                                         className="image"
                                         onLoad={this.onImgLoad}
                                         type="image/webp" />
                                     <img 
-                                        src={`https://res.cloudinary.com/zemeteam/image/upload/c_scale/${this.extractImageId(post.asset_url)}`}
+                                        src={this.setImageUrl(post.asset_url)}
                                         alt={post.title}
                                         ref={this.image}
                                         className="image"
@@ -331,7 +339,7 @@ export default class Details extends React.Component {
                     }
 
                     .post-details .image-container {
-                        background-color: #fff7dd;
+                        background-color: #f9f9f9;
                         border-radius: 20px;
                         height: auto;
                         padding: 0;
@@ -542,7 +550,7 @@ export default class Details extends React.Component {
                         }
                     
                         50% {
-                            opacity: .1;
+                            opacity: .25;
                         }
 
                         100% {
