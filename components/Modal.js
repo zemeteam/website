@@ -60,26 +60,22 @@ export default class Modal extends React.Component {
         const visible = this.props.visible 
 
         return ( 
-            <div>
-                {visible && 
-                    <div className={`modal ${visible ? "modal-show" : "modal-hide"}`} ref={this.modalRef}>
-                        <div className="modal-body">
-                            <div className="modal-close" onClick={() => this.handleClose() }>
-                                <img src="/icon-close.png" alt="Close" />
-                            </div>
-
-                            {page === 'details' && 
-                                <div className="modal-post">
-                                    <Details post={post} handleScrollToTop={this.handleScrollToTop} display="modal" />
-                                </div>
-                            } 
-
-                            {visible && page === 'create' && 
-                                <div>CREATE ZEME</div>
-                            } 
-                        </div>
+            <div className={`modal ${visible ? "modal-show" : "modal-hide"}`} ref={this.modalRef}>
+                <div className="modal-body">
+                    <div className="modal-close" onClick={() => this.handleClose() }>
+                        <img src="/icon-close.png" alt="Close" />
                     </div>
-                }
+
+                    {visible && page === 'details' && 
+                        <div className="modal-post">
+                            <Details post={post} handleScrollToTop={this.handleScrollToTop} display="modal" />
+                        </div>
+                    } 
+
+                    {visible && page === 'create' && 
+                        <div>CREATE ZEME</div>
+                    } 
+                </div>
 
                 <style jsx>{`
                     .modal {
@@ -90,6 +86,7 @@ export default class Modal extends React.Component {
                         position: fixed;
                         text-align: center;
                         width: 100%;
+                        display: none;
                         z-index: 5;
                         -webkit-overflow-scrolling: touch;
                     }
@@ -140,10 +137,13 @@ export default class Modal extends React.Component {
 
                     .modal-show {
                         animation: slideIn .2s;
+                        display: block;
                     }
 
                     .modal-hide {
                         animation: slideOut .2s;
+                        display: none;
+
                     }
                     
                     @keyframes slideIn {

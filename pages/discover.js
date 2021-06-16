@@ -94,7 +94,6 @@ class Discover extends React.Component {
             title: post.title + ' - Zeme Team🛡️'
         })   
 
-
         this.targetElement = this.targetDetailsModalref.current
 
         disableBodyScroll(this.targetElement)
