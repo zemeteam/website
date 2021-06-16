@@ -15,15 +15,34 @@ export default class ContentPolicy extends React.Component {
                     <h1>Content Policy</h1>
 
                     <div className="copy">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis.<br />
+                        <p>We want to keep Zeme Team a safe and supportive place where you can create, share, and browse Zcash content. Our content policy outlines what we do and don’t allow on Zeme Team. </p>
                         <br />
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis.<br />
+                        
+                        <h2>Don’t spam.</h2>
+                        <p>Don’t post spammy content, including suspicious links and offers. </p>
                         <br />
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis.<br />
+                        
+                        <h2>Don’t bully or harass others.</h2>
+                        <p>Don’t bully, harass, or attack anyone for any reason. We don’t tolerate threats of violence, hate speech, and content that aims to degrade, shame, or harm other people. </p>
                         <br />
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis.<br />
+                        
+                        <h2>Keep it appropriate.</h2>
+                        <p>In the interest of keeping all Zemers safe, please ensure your posts are appropriate for a diverse audience. This means no:</p>
+                        <ul>
+                            <li>Graphic violence</li>
+                            <li>Pornography</li>
+                            <li>Illegal content (for example: attempting to distribute weapons and drugs).</li>
+                        </ul>
                         <br />
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet quis eu est vitae libero, at vel congue. Quis aliquam sapien at dignissim aliquam sagittis.
+                        
+                        <h2>Respect intellectual property & copyrights.</h2>
+                        <p>Make sure you have the rights to post the content you’re sharing. If you believe someone has infringed on your copyright on Zeme Team, contact us. </p>
+                        <br />
+                        
+                        <h2>Keep it relevant to Zcash.</h2>
+                        <p>There are lots of great projects out there (and we love them too!), but Zeme Team is specifically designed for sharing Zcash content. We kindly ask that you help keep our platform cohesive by posting only Zcash-related media. </p>
+                        <br />
+                        
                     </div>
                 </main>
 

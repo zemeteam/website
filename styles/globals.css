@@ -26,6 +26,24 @@ a {
   text-decoration: none;
 }
 
+h1 {
+  font-size: 36px;
+  line-height: 46px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin-bottom: 10px;
+  line-height: 32px;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
 * {
   box-sizing: border-box;
 }
