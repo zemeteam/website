@@ -88,7 +88,6 @@ export default class Modal extends React.Component {
                         width: 100%;
                         display: none;
                         z-index: 5;
-                        -webkit-overflow-scrolling: touch;
                     }
 
                     .modal-body {

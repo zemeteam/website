@@ -170,7 +170,7 @@ class Discover extends React.Component {
 
                 <Background animate />
 
-                <div>
+                <div className="modal">
                     <Modal 
                         page='create' 
                         post={[]}
@@ -184,7 +184,6 @@ class Discover extends React.Component {
                         ref={this.targetDetailsModalref}
                         visible={this.state.detailsModalVisible} 
                         handleCloseModal={this.handleCloseDetailsModal} />
-                    
                 </div>
                 
                 <Tabs 
@@ -210,6 +209,10 @@ class Discover extends React.Component {
                 </main>
 
                 <style jsx>{`
+                    .modal {
+                        -webkit-overflow-scrolling: touch;
+                    }
+
                     .discover {
                         animation: fade .25s;
                         margin: auto;
