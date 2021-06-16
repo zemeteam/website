@@ -1,5 +1,5 @@
 import React from 'react'
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
+import { lock, unlock, clearBodyLocks } from 'tua-body-scroll-lock'
 
 export default class Menu extends React.Component {
     constructor(props) {
@@ -25,7 +25,7 @@ export default class Menu extends React.Component {
     }
 
     componentDidUpdate(){
-        this.props.visible ? disableBodyScroll(this.targetElement) : enableBodyScroll(this.targetElement)
+        this.props.visible ? lock(this.targetElement) : unlock(this.targetElement)
     }
 
     escFunction(event){
@@ -36,7 +36,7 @@ export default class Menu extends React.Component {
 
     handleClose(){
         this.props.handleMenuToggle()
-        enableBodyScroll(this.targetElement)
+        unlock(this.targetElement)
     }
 
     render() {

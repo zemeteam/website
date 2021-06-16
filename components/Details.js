@@ -9,7 +9,7 @@ import QR from './QR'
 import Button from './Button'
 import Wallets from './Wallets'
 import Dialog from './Dialog'
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
+import { lock, unlock, clearBodyLocks } from 'tua-body-scroll-lock'
 
 const POST_STATUS_LIVE = 1
 const POST_STATUS_IN_REVIEW = 2
@@ -138,7 +138,7 @@ export default class Details extends React.Component {
 
     handleReport = () => {
         // enable or disable body scroll if dialog is open
-        this.state.dialogVisible ? enableBodyScroll(this.targetElement) : disableBodyScroll(this.targetElement)
+        this.state.dialogVisible ? lock(this.targetElement) : unlock(this.targetElement)
 
         this.setState({
             dialogVisible: !this.state.dialogVisible
