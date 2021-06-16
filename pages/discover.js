@@ -112,7 +112,7 @@ class Discover extends React.Component {
     fetchLatest = async (first = true, reset = false) => {
         const { data, error } = await Supabase
             .from('posts')
-            .select('id, slug, asset_url, title, description, address, created_at, status')
+            .select('id, slug, asset_url, title, description, address, created_at, status, view_count')
             .range(reset ? 0 : this.state.currentRangeStart, reset ? POSTS_PER_PAGE : this.state.currentRangeEnd)
             .filter('status', 'eq', POST_STATUS_LIVE)
             .order('created_at', { 
@@ -138,7 +138,7 @@ class Discover extends React.Component {
     fetchTrending = async (first = true, reset = false) => {
         const { data, error } = await Supabase
             .from('posts')
-            .select('id, slug, asset_url, title, description, address, created_at, status')
+            .select('id, slug, asset_url, title, description, address, created_at, status, view_count')
             .range(reset ? 0 : this.state.currentRangeStart, reset ? POSTS_PER_PAGE : this.state.currentRangeEnd)
             .filter('status', 'eq', POST_STATUS_LIVE)
             .order('view_count', { 

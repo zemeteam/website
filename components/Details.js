@@ -13,6 +13,7 @@ import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'bo
 
 const POST_STATUS_LIVE = 1
 const POST_STATUS_IN_REVIEW = 2
+const POST_VIEW_THRESHOLD = 5
 const POSTS_PER_PAGE = 500
 
 export default class Details extends React.Component {
@@ -57,19 +58,29 @@ export default class Details extends React.Component {
         }
 
         // fetch random posts
-        this.fetchRandom()
+        this.fetchRandom(this.props.post.view_count)
     }
 
-    fetchRandom = async () => {
-        const { data, error } = await Supabase
-            .from('posts')
-            .select('id, slug, asset_url, title, description, address, created_at, status')
-            .range(this.state.currentRangeStart, this.state.currentRangeEnd)
-            .filter('status', 'eq', POST_STATUS_LIVE)      
+    fetchRandom = async (views) => {
+        // display random posts based on their view_count
+        if (views >= POST_VIEW_THRESHOLD) {
+            var { data, error } = await Supabase
+                .from('posts')
+                .select('id, slug, asset_url, title, description, address, created_at, status, view_count')
+                .range(this.state.currentRangeStart, this.state.currentRangeEnd)
+                .filter('status', 'eq', POST_STATUS_LIVE)
+                .lte('view_count', views)     
+        } else {
+            var { data, error } = await Supabase
+                .from('posts')
+                .select('id, slug, asset_url, title, description, address, created_at, status, view_count')
+                .range(this.state.currentRangeStart, this.state.currentRangeEnd)
+                .filter('status', 'eq', POST_STATUS_LIVE)
+                .gte('view_count', views)  
+        }
             
         // check to ensure the query returned results
         if (data.length > 0){
-
             // update states 
             this.setState({ 
                 posts: [...this.state.posts, ..._.shuffle(data)],

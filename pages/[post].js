@@ -19,7 +19,7 @@ export default class Discover extends React.Component {
 
         const { data, error } = await Supabase
             .from('posts')
-            .select('id, slug, asset_url, title, description, address, created_at, status')
+            .select('id, slug, asset_url, title, description, address, created_at, status, view_count')
             .eq('slug', slug)  
 
         if (data.length >= 1){

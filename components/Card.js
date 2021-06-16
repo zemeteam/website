@@ -173,6 +173,7 @@ export default class Card extends React.Component {
                 <style jsx>{`
                     .post-card {
                         position: relative;
+                        user-select: none;
                     }
 
                     .post-card-inner {
