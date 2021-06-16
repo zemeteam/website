@@ -34,6 +34,7 @@ class Discover extends React.Component {
         }
 
         this.targetElement = null
+        this.targetRef = React.createRef()
     }
 
     componentDidMount() {
@@ -45,7 +46,7 @@ class Discover extends React.Component {
             }
         })
 
-        this.targetElement = document.querySelector('#modal')
+        this.targetElement = this.targetRef.current
     }
 
     componentWillUnmount() {
@@ -167,7 +168,7 @@ class Discover extends React.Component {
 
                 <Background animate />
 
-                <div id="modal" className="modal">
+                <div id="modal" className="modal" ref={this.targetRef}>
                     {this.state.createModalVisible &&
                         <Modal 
                             page='create' 
