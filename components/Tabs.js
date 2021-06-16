@@ -130,6 +130,7 @@ export default class Tabs extends React.Component {
 
                     .tabs ul li .label {
                         display: inline-block;
+                        user-select: none;
                     }
 
                     .tabs-create {

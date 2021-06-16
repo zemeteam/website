@@ -76,13 +76,6 @@ export default class Privacy extends React.Component {
                 </main>
 
                 <style jsx>{`
-                    h1 {
-                      font-size: 36px;
-                      line-height: 46px;
-                      text-align: center;
-                      text-transform: uppercase;
-                  }
-
                   .policy {
                       margin: auto;
                       max-width: 100%;

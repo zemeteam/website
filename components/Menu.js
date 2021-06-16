@@ -156,6 +156,7 @@ export default class Menu extends React.Component {
                                 top: 24px;
                                 transition: opacity .25s;
                                 right: 24px;
+                                user-select: none;
                                 width: 50px;
                                 z-index: 66;
                             }
@@ -166,6 +167,7 @@ export default class Menu extends React.Component {
 
                             .menu-close img { 
                                 margin-top: 13px;
+                                user-select: none;
                                 width: 24px;
                             }
 

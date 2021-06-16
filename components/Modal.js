@@ -111,6 +111,7 @@ export default class Modal extends React.Component {
                         top: 16px;
                         transition: opacity .25s;
                         right: 16px;
+                        user-select: none;
                         width: 50px;
                     }
 
@@ -120,6 +121,7 @@ export default class Modal extends React.Component {
 
                     .modal-close img { 
                         margin-top: 13px;
+                        user-select: none;
                         width: 24px;
                     }
 
