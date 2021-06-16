@@ -209,15 +209,6 @@ class Discover extends React.Component {
                 </main>
 
                 <style jsx>{`
-                    html,
-                    body {
-                        background-color: #F9D149;
-                    }
-
-                    .modal {
-                        overflow: auto;
-                    }
-
                     .discover {
                         animation: fade .25s;
                         margin: auto;
