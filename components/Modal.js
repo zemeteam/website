@@ -82,7 +82,7 @@ export default class Modal extends React.Component {
                         background-color: #ffffff;
                         height: 100vh;
                         margin: auto;
-                        overflow: scroll;
+                        overflow: auto;
                         position: fixed;
                         text-align: center;
                         width: 100%;

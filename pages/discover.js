@@ -95,6 +95,7 @@ class Discover extends React.Component {
         })   
 
         this.targetElement = this.targetDetailsModalref.current
+        console.log(this.targetDetailsModalref.current)
 
         disableBodyScroll(this.targetElement)
     }
