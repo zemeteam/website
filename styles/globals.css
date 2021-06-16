@@ -15,6 +15,10 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+body {
+  overflow: hidden;
+}
+
 a {
   color: inherit;
   cursor: url(/pointer.png), auto;
