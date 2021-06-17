@@ -523,7 +523,7 @@ export default class Details extends React.Component {
                         font-size: 16px;
                         margin: auto;
                         margin-top: 176px;
-                        margin-bottom: 176px;
+                        padding-bottom: 176px;
                         text-align: center;
                         width: 95%;
                     }
