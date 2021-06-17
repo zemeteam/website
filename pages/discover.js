@@ -15,7 +15,6 @@ const TRENDING_DAYS_BACK = 7
 
 class Discover extends React.Component {
     
-
     constructor(props) {
         super(props)  
 
@@ -35,8 +34,7 @@ class Discover extends React.Component {
         }
 
         this.targetElement = null
-        this.targetCreateModalref = React.createRef()
-        this.targetDetailsModalref = React.createRef()
+        this.targetRef = React.createRef()
     }
 
     componentDidMount() {
@@ -47,6 +45,9 @@ class Discover extends React.Component {
                 this.handleCloseDetailsModal()
             }
         })
+
+        this.targetElement = this.targetRef.current
+        console.log(this.targetElement)
     }
 
     componentWillUnmount() {
@@ -93,9 +94,6 @@ class Discover extends React.Component {
             page: 'details',
             title: post.title + ' - Zeme Team🛡️'
         })   
-
-        this.targetElement = this.targetDetailsModalref.current
-        console.log(this.targetDetailsModalref.current)
 
         disableBodyScroll(this.targetElement)
     }
@@ -175,14 +173,14 @@ class Discover extends React.Component {
                     <Modal 
                         page='create' 
                         post={[]}
-                        ref={this.targetCreateModalref}
+                        ref={this.targetRef}
                         visible={this.state.createModalVisible} 
                         handleCloseModal={this.handleCreateModal} />
 
                     <Modal 
                         page='details' 
                         post={this.state.currentPost}
-                        ref={this.targetDetailsModalref}
+                        ref={this.targetRef}
                         visible={this.state.detailsModalVisible} 
                         handleCloseModal={this.handleCloseDetailsModal} />
                 </div>

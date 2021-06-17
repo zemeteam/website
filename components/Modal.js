@@ -11,7 +11,7 @@ export default class Modal extends React.Component {
         }
 
         this.escFunction = this.escFunction.bind(this)
-        this.modalRef = React.createRef()
+        // this.modalRef = React.createRef()
     }
 
     static async getInitialProps(context) {
@@ -40,7 +40,7 @@ export default class Modal extends React.Component {
     }
 
     handleScrollToTop = () => { 
-        this.modalRef.current.scrollTop = 0
+        // this.modalRef.current.scrollTop = 0
     }
 
     handleClose = () => {
@@ -60,7 +60,7 @@ export default class Modal extends React.Component {
         const visible = this.props.visible 
 
         return ( 
-            <div className={`modal ${visible ? "modal-show" : "modal-hide"}`} ref={this.modalRef}>
+            <div className={`modal ${visible ? "modal-show" : "modal-hide"}`}>
                 <div className="modal-body">
                     <div className="modal-close" onClick={() => this.handleClose() }>
                         <img src="/icon-close.png" alt="Close" />
