@@ -25,6 +25,7 @@ export default class Layout extends React.Component {
         const description = this.props.description ? this.props.description.substring(0,200) : 'Earn shielded Zcash for creating Zcash content (zcash gifs, zcash memes, zemes, zcash infographics, zcash price charts, zcash educational graphics, zcash quotes, etc).'
         const title = this.props.title ? this.props.title : 'Zeme Team 🛡️: Zcash memes, Zcash gifs, Zcash art'
         const logo = this.props.logo === 'dark' ? 'zemeteam-logo-dark' : 'zemeteam-logo'
+        const header = this.props.header
 
         return ( 
             <div className="layout">
@@ -48,10 +49,12 @@ export default class Layout extends React.Component {
                     handleMenuToggle={this.handleMenuToggle} />
 
                 <div className="container">
-                    <Header 
-                        background="transparent"
-                        handleMenuToggle={this.handleMenuToggle} 
-                        logo={logo} />
+                    {header &&
+                        <Header 
+                            background="transparent"
+                            handleMenuToggle={this.handleMenuToggle} 
+                            logo={logo} />
+                        }
 
                     {children}
                 </div>

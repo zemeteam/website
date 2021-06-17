@@ -7,6 +7,7 @@ export default class Terms extends React.Component {
         return (
             <Layout 
                 logo="dark"
+                header={true}
                 title="Terms of Service - Zeme Team"
                 description="The official terms of service for Zeme Team."
                 url="https://zeme.team/terms">

@@ -7,6 +7,7 @@ export default class ContentPolicy extends React.Component {
         return (
             <Layout 
                 logo="dark"
+                header={true}
                 title="Content Policy - Zeme Team"
                 description="The official content policy for Zeme Team."
                 url="https://zeme.team/content-policy">

@@ -7,6 +7,7 @@ export default class Privacy extends React.Component {
         return (
             <Layout 
                 logo="dark"
+                header={true}
                 title="Privacy Policy - Zeme Team"
                 description="The official privacy policy for Zeme Team."
                 url="https://zeme.team/privacy-policy">

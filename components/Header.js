@@ -8,7 +8,7 @@ export default class Menu extends React.Component {
 
     static async getInitialProps(context) {
         return { 
-            background: 'transparent'
+            background: background
         }
     }
 
@@ -17,7 +17,7 @@ export default class Menu extends React.Component {
         const logo = this.props.logo
 
         return ( 
-            <div className="header">
+            <div className="header" style={{backgroundColor: background}}>
                 <div className="menu" onClick={() => this.props.handleMenuToggle() }>
                     <img src="/icon-menu.png" />
                     <div>Menu</div>

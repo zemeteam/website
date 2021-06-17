@@ -125,6 +125,7 @@ export default class Modal extends React.Component {
                         right: 16px;
                         user-select: none;
                         width: 50px;
+                        z-index: 7;
                     }
 
                     .modal-close:active {
