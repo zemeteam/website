@@ -168,7 +168,6 @@ class Discover extends React.Component {
                     <Modal 
                         page='create' 
                         post={[]}
-                        ref={this.targetCreateModalref}
                         visible={this.state.createModalVisible} 
                         handleCloseModal={this.handleCreateModal} />
                 }
@@ -177,7 +176,6 @@ class Discover extends React.Component {
                     <Modal 
                         page='details' 
                         post={this.state.currentPost}
-                        ref={this.targetDetailsModalref}
                         visible={this.state.detailsModalVisible} 
                         handleCloseModal={this.handleCloseDetailsModal} />
                 }   

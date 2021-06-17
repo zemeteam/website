@@ -29,8 +29,10 @@ export default class Modal extends React.Component {
         // event listener for esc key
         window.addEventListener("keydown", this.escFunction, false)
 
+        // set the targetRef
         this.targetElement = this.targetRef.current
 
+        // disable body scrolling
         disableBodyScroll(this.targetElement)
     }
 
@@ -38,6 +40,7 @@ export default class Modal extends React.Component {
         // remove listener for esc key
         window.removeEventListener("keydown", this.escFunction, false)
         
+        // enable body scrolling
         enableBodyScroll(this.targetElement)
     }
 
@@ -49,6 +52,7 @@ export default class Modal extends React.Component {
     }
 
     handleScrollToTop = () => { 
+        // scroll to top
         this.targetRef.current.scrollTop = 0
     }
 
