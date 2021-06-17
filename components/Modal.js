@@ -20,7 +20,6 @@ export default class Modal extends React.Component {
         return { 
             page: page, 
             post: post, 
-            ref: ref,
             visible: visible 
         }
     }
@@ -64,13 +63,13 @@ export default class Modal extends React.Component {
         // close the modal once the transistion finishes
         setTimeout(() => {        
             this.props.handleCloseModal()
-        }, 150)
+        }, 200)
     }
 
     render() {
         const page = this.props.page
         const post = this.props.post
-        const visible = this.props.visible 
+        const visible = this.state.visible
 
         return ( 
             <div className={`modal ${visible ? "modal-show" : "modal-hide"}`} ref={this.targetRef}>
@@ -93,7 +92,6 @@ export default class Modal extends React.Component {
                 <style jsx>{`
                     .modal {
                         background-color: #ffffff;
-                        display: none;
                         height: 100vh;
                         margin: auto;
                         overflow: auto;
@@ -150,13 +148,10 @@ export default class Modal extends React.Component {
 
                     .modal-show {
                         animation: slideIn .2s;
-                        display: block;
                     }
 
                     .modal-hide {
                         animation: slideOut .2s;
-                        display: none;
-
                     }
                     
                     @keyframes slideIn {
