@@ -49,7 +49,7 @@ export default class Modal extends React.Component {
     }
 
     handleScrollToTop = () => { 
-        // this.modalRef.current.scrollTop = 0
+        this.targetRef.current.scrollTop = 0
     }
 
     handleClose = () => {
