@@ -128,9 +128,9 @@ export default class Modal extends React.Component {
                         line-height: 50px;
                         position: absolute;
                         text-align: center;
-                        top: 20px;
+                        top: 16px;
                         transition: opacity .25s;
-                        right: 20px;
+                        right: 16px;
                         user-select: none;
                         width: 50px;
                         z-index: 6;
