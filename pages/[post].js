@@ -52,7 +52,7 @@ export default class Discover extends React.Component {
         return (
             <Layout 
                 logo="dark"
-                header={false}
+                header={true}
                 title={` ${post.title} - Zeme Team🛡️`} 
                 description={post.description} 
                 url="https://zeme.team">

@@ -9,7 +9,6 @@ import QR from './QR'
 import Button from './Button'
 import Wallets from './Wallets'
 import Dialog from './Dialog'
-import Header from './Header'
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
 
 const POST_STATUS_LIVE = 1
@@ -191,11 +190,6 @@ export default class Details extends React.Component {
 
         return ( 
             <div className="post-details">
-                <Header 
-                    background="#ffffff"
-                    handleMenuToggle={this.handleMenuToggle} 
-                    logo="zemeteam-logo-dark" />
-                    
                 {post.status === POST_STATUS_LIVE &&
                     <div>
                         <div className="inner" style={{ width: this.state.imgWidth }}>
@@ -358,7 +352,7 @@ export default class Details extends React.Component {
                     }
 
                     .post-details .image-container {
-                        background-color: #f9f9f9;
+                        background-color: #ececec;
                         border-radius: 20px;
                         height: auto;
                         padding: 0;
@@ -528,7 +522,7 @@ export default class Details extends React.Component {
                         border-top: solid 1px #E9E9E9;
                         font-size: 16px;
                         margin: auto;
-                        margin-top: 96px;
+                        margin-top: 176px;
                         text-align: center;
                         width: 95%;
                     }
@@ -569,7 +563,7 @@ export default class Details extends React.Component {
                         }
                     
                         50% {
-                            opacity: .25;
+                            opacity: .15;
                         }
 
                         100% {

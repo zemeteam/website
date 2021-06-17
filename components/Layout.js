@@ -10,14 +10,7 @@ export default class Layout extends React.Component {
         super(props)
 
         this.state = { 
-            menuVisible: false
         }
-    }
-
-    handleMenuToggle = () => {
-        this.setState({ 
-            menuVisible: !this.state.menuVisible,
-        })   
     }
 
     render() {
@@ -44,18 +37,13 @@ export default class Layout extends React.Component {
                     <meta property="twitter:creator" content="@zemeteam" />
                 </Head>
                 
-                <Menu 
-                    visible={this.state.menuVisible} 
-                    handleMenuToggle={this.handleMenuToggle} />
-
                 <div className="container">
                     {header &&
                         <Header 
                             background="transparent"
                             handleMenuToggle={this.handleMenuToggle} 
                             logo={logo} />
-                        }
-
+                    }
                     {children}
                 </div>
                 

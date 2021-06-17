@@ -1,5 +1,6 @@
 import React from 'react'
 import Details from './Details'
+import Header from './Header'
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
 
 export default class Modal extends React.Component {
@@ -7,6 +8,7 @@ export default class Modal extends React.Component {
         super(props)
 
         this.state = {
+            menuVisible: false,
             post: [],
             visible: true,
         }
@@ -74,6 +76,12 @@ export default class Modal extends React.Component {
         return ( 
             <div className={`modal ${visible ? "modal-show" : "modal-hide"}`} ref={this.targetRef}>
                 <div className="modal-body">
+
+                    <Header 
+                        background="#ffffff"
+                        handleClose={this.handleClose}
+                        logo="zemeteam-logo-dark" />
+
                     <div className="modal-close" onClick={() => this.handleClose() }>
                         <img src="/icon-close.png" alt="Close" />
                     </div>
@@ -107,7 +115,7 @@ export default class Modal extends React.Component {
                     }
 
                     .modal-close {
-                        background-color: #DBDBDB;
+                        background-color: #ececec;
                         border-radius: 25px;
                         cursor: url(/pointer.png), auto;
                         cursor: -webkit-image-set(
@@ -120,12 +128,12 @@ export default class Modal extends React.Component {
                         line-height: 50px;
                         position: absolute;
                         text-align: center;
-                        top: 16px;
+                        top: 20px;
                         transition: opacity .25s;
-                        right: 16px;
+                        right: 20px;
                         user-select: none;
                         width: 50px;
-                        z-index: 7;
+                        z-index: 6;
                     }
 
                     .modal-close:active {
@@ -176,15 +184,12 @@ export default class Modal extends React.Component {
                     @media only screen and (max-width: 600px) {
                         .modal-close {
                             background-color: rgba(245,245,245,.85);
-                            height: 38px;
-                            line-height: 38px;
-                            top: 8px;
                             right: 12px;
-                            width: 38px;
+                            top: 12px;
                         }
 
                         .modal-close img {
-                            margin-top: 7px;
+                            // margin-top: 7px;
                         }
                     }
                 `}</style>

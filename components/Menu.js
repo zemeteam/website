@@ -5,6 +5,10 @@ export default class Menu extends React.Component {
     constructor(props) {
         super(props)
 
+        this.state = {
+            menuVisible: false
+        }
+
         this.escFunction = this.escFunction.bind(this)
         this.targetElement = null
     }
@@ -14,7 +18,7 @@ export default class Menu extends React.Component {
             visible: false
         }
     }
-
+    
     componentDidMount(){
         document.addEventListener("keydown", this.escFunction, false)
         this.targetElement = document.querySelector('#menu')
@@ -29,6 +33,8 @@ export default class Menu extends React.Component {
     }
 
     escFunction(event){
+        event.stopPropagation()
+
         if(this.props.visible && event.keyCode === 27) {
             this.handleClose()
         }
@@ -93,11 +99,12 @@ export default class Menu extends React.Component {
                                 left: 0;
                                 margin: 0;
                                 overflow: scroll;
-                                padding: 16px;
+                                padding: 0;
                                 position: fixed;
                                 text-align: center;
+                                top: 0;
                                 width: 100%;
-                                z-index: 5;
+                                z-index: 8;
                             }
 
                             .menu-body {
@@ -158,7 +165,7 @@ export default class Menu extends React.Component {
                                 right: 24px;
                                 user-select: none;
                                 width: 50px;
-                                z-index: 66;
+                                z-index: 9;
                             }
 
                             .menu-close:active {

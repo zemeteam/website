@@ -1,15 +1,27 @@
 import React from 'react'
-import Link from 'next/link'
+import Menu from './Menu'
 
-export default class Menu extends React.Component {
+export default class Header extends React.Component {
     constructor(props) {
         super(props)
+
+        this.state = {
+            menuVisible: false
+        }
     }
 
     static async getInitialProps(context) {
         return { 
-            background: background
+            background: background,
+            logo: logo,
+            handleClose: handle
         }
+    }
+
+    handleMenuToggle = () => {
+        this.setState({ 
+            menuVisible: !this.state.menuVisible,
+        })   
     }
 
     render() {
@@ -17,18 +29,33 @@ export default class Menu extends React.Component {
         const logo = this.props.logo
 
         return ( 
-            <div className="header" style={{backgroundColor: background}}>
-                <div className="menu" onClick={() => this.props.handleMenuToggle() }>
-                    <img src="/icon-menu.png" />
-                    <div>Menu</div>
-                </div>
+            <div className="header" style={{backgroundColor: background, zIndex: this.state.menuVisible ? 10 : 4}}>
+                {!this.state.menuVisible &&
+                    <div className="menu" onClick={() => this.handleMenuToggle() }>
+                        <img src="/icon-menu.png" />
+                        <div>Menu</div>
+                    </div>
+                }
 
-            
-                <div className="logo">
-                    <a href="/discover" title="Zeme Team🛡️: Zcash memes, Zcash gifs, Zcash art"> 
+                {this.props.handleClose &&
+                    <div className="logo" onClick={() => this.props.handleClose()}>
                         <img src={`/${logo}.png`} alt="Zeme Team" />
-                    </a>
-                </div>
+                    </div>
+                }
+
+                {!this.props.handleClose &&
+                    <div className="logo">
+                        <a href="/discover" title="Zeme Team🛡️: Zcash memes, Zcash gifs, Zcash art"> 
+                            <img src={`/${logo}.png`} alt="Zeme Team" />
+                        </a>
+                    </div>
+                }
+                                
+                {this.state.menuVisible && 
+                    <Menu 
+                        visible={this.state.menuVisible} 
+                        handleMenuToggle={this.handleMenuToggle} />
+                }
 
                 <style jsx>{`
                     .header {
@@ -36,7 +63,6 @@ export default class Menu extends React.Component {
                         position: absolute;
                         text-transform: uppercase;
                         width: 100%;
-                        z-index: 4;
                     }
 
                     .menu {
@@ -45,8 +71,6 @@ export default class Menu extends React.Component {
                         position: absolute;
                         transition: opacity .25s;
                         user-select: none;
-                        width: 160px;
-                        z-index: 4;
                     }
 
                     .menu:active {
@@ -62,7 +86,7 @@ export default class Menu extends React.Component {
                         ), auto;  
                         display: inline-block;
                         height: 26px;
-                        left: 38px;
+                        left: 30px;
                         position: relative;
                         top: 28px;
                     }
@@ -76,7 +100,7 @@ export default class Menu extends React.Component {
                             url('/pointer@3x.png') 3x
                         ), auto;  
                         display: inline-block;
-                        left: 46px;
+                        left: 38px;
                         position: relative;
                         top: 20px;
                     }
@@ -85,6 +109,12 @@ export default class Menu extends React.Component {
                         left: calc(50% - 21px);
                         position: relative;
                         top: 27px;
+                        cursor: url(/pointer.png), auto;
+                        cursor: -webkit-image-set(
+                            url('/pointer.png') 1x,
+                            url('/pointer@2x.png') 2x,
+                            url('/pointer@3x.png') 3x
+                        ), auto;  
                         width: 42px;
                     }
 
