@@ -18,6 +18,7 @@ export default class Modal extends React.Component {
         return { 
             page: page, 
             post: post, 
+            ref: ref,
             visible: visible 
         }
     }
@@ -80,14 +81,15 @@ export default class Modal extends React.Component {
                 <style jsx>{`
                     .modal {
                         background-color: #ffffff;
+                        display: none;
                         height: 100vh;
                         margin: auto;
                         overflow: auto;
                         position: fixed;
                         text-align: center;
                         width: 100%;
-                        display: none;
                         z-index: 5;
+                        -webkit-overflow-scrolling: touch;
                     }
 
                     .modal-body {

@@ -170,12 +170,12 @@ class Discover extends React.Component {
                 <Background animate />
 
                 <div className="modal">
-                    <Modal 
+                    {/* <Modal 
                         page='create' 
                         post={[]}
                         ref={this.targetRef}
                         visible={this.state.createModalVisible} 
-                        handleCloseModal={this.handleCreateModal} />
+                        handleCloseModal={this.handleCreateModal} /> */}
 
                     <Modal 
                         page='details' 
