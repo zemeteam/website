@@ -65,7 +65,7 @@ export default class Modal extends React.Component {
         // close the modal once the transistion finishes
         setTimeout(() => {        
             this.props.handleCloseModal()
-        }, 200)
+        }, 100)
     }
 
     render() {

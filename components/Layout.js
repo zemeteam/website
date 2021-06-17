@@ -41,7 +41,6 @@ export default class Layout extends React.Component {
                     {header &&
                         <Header 
                             background="transparent"
-                            handleMenuToggle={this.handleMenuToggle} 
                             logo={logo} />
                     }
                     {children}
