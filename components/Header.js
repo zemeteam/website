@@ -106,15 +106,16 @@ export default class Header extends React.Component {
                     }
 
                     .logo {
-                        left: calc(50% - 21px);
-                        position: relative;
-                        top: 27px;
                         cursor: url(/pointer.png), auto;
                         cursor: -webkit-image-set(
                             url('/pointer.png') 1x,
                             url('/pointer@2x.png') 2x,
                             url('/pointer@3x.png') 3x
                         ), auto;  
+                        left: calc(50% - 21px);
+                        position: relative;
+                        top: 27px;
+                        user-select: none;
                         width: 42px;
                     }
 

@@ -357,6 +357,7 @@ export default class Details extends React.Component {
                         height: auto;
                         padding: 0;
                         min-height: 320px;
+                        user-select: none;
                         width: 100%;
                     }
 
