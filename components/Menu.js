@@ -160,9 +160,9 @@ export default class Menu extends React.Component {
                                 height: 50px;
                                 line-height: 50px;
                                 position: fixed;
-                                top: 24px;
+                                top: 16px;
                                 transition: opacity .25s;
-                                right: 24px;
+                                right: 16px;
                                 user-select: none;
                                 width: 50px;
                                 z-index: 9;
