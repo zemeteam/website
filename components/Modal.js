@@ -1,5 +1,6 @@
 import React from 'react'
 import Details from './Details'
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
 
 export default class Modal extends React.Component {
     constructor(props) {
@@ -11,7 +12,8 @@ export default class Modal extends React.Component {
         }
 
         this.escFunction = this.escFunction.bind(this)
-        // this.modalRef = React.createRef()
+        this.targetElement = null
+        this.targetRef = React.createRef()
     }
 
     static async getInitialProps(context) {
@@ -26,11 +28,17 @@ export default class Modal extends React.Component {
     componentDidMount(){
         // event listener for esc key
         window.addEventListener("keydown", this.escFunction, false)
+
+        this.targetElement = this.targetRef.current
+
+        disableBodyScroll(this.targetElement)
     }
 
     componentWillUnmount(){
         // remove listener for esc key
         window.removeEventListener("keydown", this.escFunction, false)
+        
+        enableBodyScroll(this.targetElement)
     }
 
     escFunction = (event) => {
@@ -61,7 +69,7 @@ export default class Modal extends React.Component {
         const visible = this.props.visible 
 
         return ( 
-            <div className={`modal ${visible ? "modal-show" : "modal-hide"}`}>
+            <div className={`modal ${visible ? "modal-show" : "modal-hide"}`} ref={this.targetRef}>
                 <div className="modal-body">
                     <div className="modal-close" onClick={() => this.handleClose() }>
                         <img src="/icon-close.png" alt="Close" />

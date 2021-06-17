@@ -15,6 +15,7 @@ const TRENDING_DAYS_BACK = 7
 
 class Discover extends React.Component {
     
+
     constructor(props) {
         super(props)  
 
@@ -32,9 +33,6 @@ class Discover extends React.Component {
             posts: [],
             router: props.router,
         }
-
-        this.targetElement = null
-        this.targetRef = React.createRef()
     }
 
     componentDidMount() {
@@ -45,9 +43,6 @@ class Discover extends React.Component {
                 this.handleCloseDetailsModal()
             }
         })
-
-        this.targetElement = this.targetRef.current
-        console.log(this.targetElement)
     }
 
     componentWillUnmount() {
@@ -75,9 +70,9 @@ class Discover extends React.Component {
         // change router state
         if (this.state.createModalVisible) {
             this.state.router.push('/discover') //todo change this to / instead of /discover
-            disableBodyScroll(this.targetElement)
+            // disableBodyScroll(this.targetElement)
         } else {
-            enableBodyScroll(this.targetElement)
+            // enableBodyScroll(this.targetElement)
         }
 
         this.setState({ 
@@ -95,7 +90,7 @@ class Discover extends React.Component {
             title: post.title + ' - Zeme Team🛡️'
         })   
 
-        disableBodyScroll(this.targetElement)
+        // disableBodyScroll(this.targetElement)
     }
 
     handleCloseDetailsModal = () => {
@@ -108,7 +103,7 @@ class Discover extends React.Component {
             title: ''
         })   
 
-        enableBodyScroll(this.targetElement)
+        // enableBodyScroll(this.targetElement)
     }
 
     fetchLatest = async (first = true, reset = false) => {
@@ -169,21 +164,23 @@ class Discover extends React.Component {
 
                 <Background animate />
 
-                <div className="modal">
-                    {/* <Modal 
+                {this.state.createModalVisible &&
+                    <Modal 
                         page='create' 
                         post={[]}
-                        ref={this.targetRef}
+                        ref={this.targetCreateModalref}
                         visible={this.state.createModalVisible} 
-                        handleCloseModal={this.handleCreateModal} /> */}
+                        handleCloseModal={this.handleCreateModal} />
+                }
 
+                {this.state.detailsModalVisible &&
                     <Modal 
                         page='details' 
                         post={this.state.currentPost}
-                        ref={this.targetRef}
+                        ref={this.targetDetailsModalref}
                         visible={this.state.detailsModalVisible} 
                         handleCloseModal={this.handleCloseDetailsModal} />
-                </div>
+                }   
                 
                 <Tabs 
                     active={this.state.currentTab} 
@@ -208,10 +205,6 @@ class Discover extends React.Component {
                 </main>
 
                 <style jsx>{`
-                    .modal {
-                        -webkit-overflow-scrolling: touch;
-                    }
-
                     .discover {
                         animation: fade .25s;
                         margin: auto;
