@@ -66,12 +66,12 @@ export default class Discover extends React.Component {
 
                 <style jsx>{`
                     .details {
-                        // padding-top: 50px;
+                        padding-top: 0;
                     }
 
                     @media only screen and (max-width: 800px) {
                         .details {
-                            padding-top: 76px;
+                            padding-top: 0;
                         }
                     }
                 `}
