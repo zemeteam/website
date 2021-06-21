@@ -1,5 +1,4 @@
 import React from 'react'
-import Button from './button'
 import ReCAPTCHA from 'react-google-recaptcha'
 
 export default class Dialog extends React.Component {
