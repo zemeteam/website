@@ -81,7 +81,7 @@ export default class Dialog extends React.Component {
                                     <label htmlFor="unrelated">Unrelated to Zcash</label>
                                 </div>
 
-                                <ReCAPTCHA sitekey="6Ld8DEsbAAAAAAe7iYFd4qwmEWmWDn8mpTd4qcN8"  />
+                                <ReCAPTCHA sitekey="6LePDksbAAAAAPhvZ2I1IAQ1bHnn7z3F7ikHnExd"  />
                                 
                                 <button className="report" type="submit">Report</button>
                             </form>
