@@ -59,6 +59,9 @@ export default class Details extends React.Component {
 
         // fetch random posts
         this.fetchRandom(this.props.post.view_count)
+
+        // save page view
+        this.savePageView(this.props.post.id, this.props.post.status)
     }
 
     fetchRandom = async (views) => {
@@ -109,6 +112,26 @@ export default class Details extends React.Component {
         const imageId = asset_url.match(regex)[0]
 
         return imageId
+    }
+
+    savePageView = async (id, status) => {
+        // only update the counters if the post is live
+        if (status === POST_STATUS_LIVE) {
+            // save the page view to the database 
+            // no identifying information is saved
+            const { data, error } = await Supabase
+            .from('views')
+            .insert([
+                { post_id: id, }
+            ])
+
+            // increment the counter on the posts object
+            const { data1, error1 } = await Supabase
+            .rpc('increment', { 
+                x: 1, 
+                post_id: id 
+            })
+        }
     }
 
     handleDetailsModal = (post) => {

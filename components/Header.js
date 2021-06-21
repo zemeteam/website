@@ -86,7 +86,7 @@ export default class Header extends React.Component {
                         ), auto;  
                         display: inline-block;
                         height: 26px;
-                        left: 30px;
+                        left: 34px;
                         position: relative;
                         top: 28px;
                     }
@@ -100,7 +100,7 @@ export default class Header extends React.Component {
                             url('/pointer@3x.png') 3x
                         ), auto;  
                         display: inline-block;
-                        left: 38px;
+                        left: 42px;
                         position: relative;
                         top: 20px;
                     }
@@ -114,7 +114,7 @@ export default class Header extends React.Component {
                         ), auto;  
                         left: calc(50% - 21px);
                         position: relative;
-                        top: 27px;
+                        top: 25px;
                         user-select: none;
                         width: 42px;
                     }
