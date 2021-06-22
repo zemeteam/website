@@ -1,7 +1,6 @@
 import React from 'react'
 import { Supabase } from '../lib/supabase'
 import _ from 'underscore'
-import InfiniteScroll from 'react-infinite-scroller'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import ReactTooltip from 'react-tooltip'
 import Grid from './Grid'
