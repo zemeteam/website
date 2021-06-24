@@ -168,11 +168,6 @@ export default class Tabs extends React.Component {
                         width: 32px;
                     }
 
-                    .tabs-create:hover,
-                    .tabs-create img:hover {
-                        transform: scale(1.05);
-                    }
-
                     .tabs-create:active,
                     .tabs-create img:active {
                         transform: scale(.95);

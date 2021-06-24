@@ -18,7 +18,7 @@ export default class Button extends React.Component {
 
         return ( 
             <div className={`button ${type}`}>
-                {type === 'button-tweet' || type === 'button-tip' &&
+                {(type === 'button-tweet' || type === 'button-tip') &&
                     <div className="image">
                         {type === 'button-tweet' &&
                             <img src="icon-twitter.png" alt="Icon" />

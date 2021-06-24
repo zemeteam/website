@@ -45,8 +45,6 @@ export default class Wallets extends React.Component {
                         display: flex;
                         font-family: 'Overpass Mono', monospace;
                         margin: auto;
-                        margin-bottom: 12px;
-                        margin-top: 48px;
                         width: 100%;
                     }
 

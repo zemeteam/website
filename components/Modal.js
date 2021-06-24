@@ -1,5 +1,6 @@
 import React from 'react'
 import Details from './Details'
+import Create from './Create'
 import Header from './Header'
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
 
@@ -43,6 +44,9 @@ export default class Modal extends React.Component {
         
         // enable body scrolling
         enableBodyScroll(this.targetElement)
+
+        // ensure body scrolling is enabled
+        clearAllBodyScrollLocks()
     }
 
     escFunction = (event) => {
@@ -77,10 +81,7 @@ export default class Modal extends React.Component {
             <div className={`modal ${visible ? "modal-show" : "modal-hide"}`} ref={this.targetRef}>
                 <div className="modal-body">
 
-                    <Header 
-                        background="#ffffff"
-                        handleClose={this.handleClose}
-                        logo="zemeteam-logo-dark" />
+                    <Header background="#ffffff" handleClose={this.handleClose} logo="zemeteam-logo-dark" />
 
                     <div className="modal-close" onClick={() => this.handleClose() }>
                         <img src="/icon-close.png" alt="Close" />
@@ -93,7 +94,7 @@ export default class Modal extends React.Component {
                     } 
 
                     {visible && page === 'create' && 
-                        <div>CREATE ZEME</div>
+                        <Create display="modal" />
                     } 
                 </div>
 

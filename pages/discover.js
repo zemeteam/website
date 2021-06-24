@@ -7,7 +7,6 @@ import Layout from '../components/Layout'
 import Grid from '../components/Grid'
 import Background from '../components/Background'
 import Modal from '../components/Modal'
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
 
 const POST_STATUS_LIVE = 1
 const POSTS_PER_PAGE = 500
@@ -45,11 +44,6 @@ class Discover extends React.Component {
         })
     }
 
-    componentWillUnmount() {
-        // clear body scroll locks
-        clearAllBodyScrollLocks()
-    }
-
     handleTabChange = (tab) => {
         // update state
         this.setState({
@@ -70,9 +64,6 @@ class Discover extends React.Component {
         // change router state
         if (this.state.createModalVisible) {
             this.state.router.push('/discover') //todo change this to / instead of /discover
-            // disableBodyScroll(this.targetElement)
-        } else {
-            // enableBodyScroll(this.targetElement)
         }
 
         this.setState({ 
@@ -89,8 +80,6 @@ class Discover extends React.Component {
             page: 'details',
             title: post.title + ' - Zeme Team🛡️'
         })   
-
-        // disableBodyScroll(this.targetElement)
     }
 
     handleCloseDetailsModal = () => {
@@ -102,8 +91,6 @@ class Discover extends React.Component {
             page: 'discover',
             title: ''
         })   
-
-        // enableBodyScroll(this.targetElement)
     }
 
     fetchLatest = async (first = true, reset = false) => {

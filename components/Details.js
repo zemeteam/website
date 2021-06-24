@@ -296,7 +296,9 @@ export default class Details extends React.Component {
                                 </div>
                             </div>
 
-                            <Wallets visible={this.state.showWallets} />
+                            <div className="wallets">
+                                <Wallets visible={this.state.showWallets} />
+                            </div>
                         </div>
 
                         <div className="tooltip">
@@ -524,6 +526,11 @@ export default class Details extends React.Component {
                     .post-details .wallet {
                         color: #F4B728;
                         float: left;
+                    }
+
+                    .post-details .wallets {
+                        margin-bottom: 12px;
+                        margin-top: 48px;
                     }
 
                     .post-details .report:hover,

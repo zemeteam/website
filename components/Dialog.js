@@ -1,6 +1,7 @@
 import React from 'react'
 import { Supabase } from '../lib/supabase'
 import ReCAPTCHA from 'react-google-recaptcha'
+import Button from './Button'
 
 export default class Dialog extends React.Component {
     constructor(props) {
@@ -44,10 +45,6 @@ export default class Dialog extends React.Component {
         this.setState({
             reason: reason
         })      
-    }
-
-    handleRecaptchaChange = () => {
-
     }
 
     handleReportPost = async (event) => {
@@ -130,20 +127,23 @@ export default class Dialog extends React.Component {
                                         <input name="report" id="spam" value="spam" type="radio" onChange={() => this.handleReasonChange('spam')} />
                                         <label htmlFor="spam">Spam</label>
                                     </div>
+
                                     <div className="form-row">
                                         <input name="report" id="inappropriate" value="inappropriate" type="radio" onChange={() => this.handleReasonChange('inappropriate')} />
                                         <label htmlFor="inappropriate">Harmful / Inappropriate content</label>
                                     </div>
+
                                     <div className="form-row">
                                         <input name="report" id="harassment" value="harassment" type="radio" onChange={() => this.handleReasonChange('harassment')} />
                                         <label htmlFor="harassment">Bullying / Harassment</label>
                                     </div>
+
                                     <div className="form-row">
                                         <input name="report" id="unrelated" value="unrelated" type="radio" onChange={() => this.handleReasonChange('unrelated')} />
                                         <label htmlFor="unrelated">Unrelated to Zcash</label>
                                     </div>
 
-                                    <ReCAPTCHA sitekey="6LePDksbAAAAAPhvZ2I1IAQ1bHnn7z3F7ikHnExd" ref={this.recaptchaRef} onChange={this.handleRecaptchaChange} />
+                                    <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY} ref={this.recaptchaRef} />
                                     
                                     {this.state.status === 'error' &&
                                         <div className="form-error">
@@ -186,6 +186,7 @@ export default class Dialog extends React.Component {
                         box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.2);
                         font-family: 'Overpass Mono', monospace !important;
                         font-size: 14px;
+                        letter-spacing: -0.6px;
                         line-height: 20px;
                         left: calc(50% - 250px);
                         padding: 0 24px;
