@@ -14,7 +14,6 @@ const TRENDING_DAYS_BACK = 7
 
 class Discover extends React.Component {
     
-
     constructor(props) {
         super(props)  
 
@@ -38,7 +37,7 @@ class Discover extends React.Component {
         // listen for browser back button clicks
         window.addEventListener('popstate', (event) => {
             if (event.state) {
-                // this.handleCreateModal()
+                this.handleCloseCreateModal()
                 this.handleCloseDetailsModal()
             }
         })
@@ -61,11 +60,6 @@ class Discover extends React.Component {
     }
 
     handleCreateModal = () => {
-        // change router state
-        if (this.state.createModalVisible) {
-            this.state.router.push('/discover') //todo change this to / instead of /discover
-        }
-
         this.setState({ 
             createModalVisible: !this.state.createModalVisible,
             page: !this.state.createModalVisible ? 'create' : 'discover'
@@ -88,6 +82,16 @@ class Discover extends React.Component {
 
         this.setState({ 
             detailsModalVisible: false,
+            page: 'discover',
+            title: ''
+        })   
+    }
+
+    handleCloseCreateModal = () => {
+        // change router state
+        this.state.router.push('/discover') //todo change this to / instead of /discover
+        this.setState({ 
+            createModalVisible: false,
             page: 'discover',
             title: ''
         })   
@@ -156,7 +160,7 @@ class Discover extends React.Component {
                         page='create' 
                         post={[]}
                         visible={this.state.createModalVisible} 
-                        handleCloseModal={this.handleCreateModal} />
+                        handleCloseModal={this.handleCloseCreateModal} />
                 }
 
                 {this.state.detailsModalVisible &&
