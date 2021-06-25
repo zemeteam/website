@@ -60,25 +60,27 @@ export default class Menu extends React.Component {
 
                             <ul>
                                 <li>
-                                    <a href="/discover" title="Zeme Team🛡️: Zcash memes, Zcash gifs, Zcash art">Home</a>
+                                    <a href="/discover" title="Zeme Team🛡️: Zcash memes, Zcash gifs, Zcash art">
+                                        Home
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="mailto:hi@zeme.team" title="Contact">
+                                    <a href="mailto:hi@zeme.team" title="Contact" target="_blank">
                                         Contact
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/content-policy" title="Content Policy">
+                                    <a href="/content-policy" title="Content Policy" target="_blank">
                                         Content Policy
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/privacy-policy" title="Privacy Policy">
+                                    <a href="/privacy-policy" title="Privacy Policy" target="_blank">
                                         Privacy Policy
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/terms" title="Terms of Service">
+                                    <a href="/terms" title="Terms of Service" target="_blank">
                                         Terms
                                     </a>
                                 </li>
