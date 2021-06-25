@@ -507,7 +507,7 @@ export default class Details extends React.Component {
                     }
 
                     .post-details .report,
-                    .post-details .wallet {
+                    .post-details .wallet { 
                         color: #909090;
                         cursor: url(/pointer.png), auto;
                         cursor: -webkit-image-set(
