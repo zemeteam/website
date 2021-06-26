@@ -62,7 +62,7 @@ export default class QR extends React.Component {
         }  
 
         // insert the post object into Supabase
-        const id = this.generateId(8)
+        const id = this.generateId(6)
         const slug = this.slugify(this.state.title.trim()) + '-' + id
         const { data, error } = await Supabase
         .from('posts')
