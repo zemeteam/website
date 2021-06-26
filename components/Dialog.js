@@ -1,7 +1,6 @@
 import React from 'react'
 import { Supabase } from '../lib/supabase'
 import ReCAPTCHA from 'react-google-recaptcha'
-import Button from './Button'
 
 export default class Dialog extends React.Component {
     constructor(props) {
@@ -80,13 +79,14 @@ export default class Dialog extends React.Component {
                     })                         
                 }
             } else {
-                // 
+                // captcha not completed
                 this.setState({ 
                     status: 'error', 
                     error: 'Please complete the CAPTCHA.' 
                 })   
             }
         } else {
+            // the user didn't select a report reason
             this.setState({ 
                 status: 'error', 
                 error: 'Please specify a reason.' 
