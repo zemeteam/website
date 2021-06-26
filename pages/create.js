@@ -1,12 +1,16 @@
 import Layout from '../components/Layout'
-import styles from '../styles/Home.module.css'
+import Create from '../components/Create'
 
-export default function CreateZeme() {
+export default function CreatePage() {
   return (
-    <Layout title="Create Zeme — Zeme Team 🛡️" description="" url="">
-        <main className={styles.main}>
-            CREATE ZEME
-        </main>
+    <Layout 
+      header={true}
+      logo="dark"
+      title="Create Zeme — Zeme Team 🛡️" 
+      description="" 
+      url="https://zeme.team/create" >
+
+          <Create display="modal" />
 
         <style jsx>{`
         

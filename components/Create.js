@@ -8,7 +8,7 @@ import Wallets from './Wallets'
 const TYPE_IMAGE_POST = 1
 const STATUS_PUBLIC = 1
 
-export default class QR extends React.Component {
+export default class Create extends React.Component {
     constructor(props) {
         super(props)
 
