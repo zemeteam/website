@@ -73,9 +73,6 @@ export default class Wallets extends React.Component {
                     }
 
                     @media only screen and (max-width: 800px) {
-                        .download-wallets {
-                            padding: 0 16px;
-                        }
 
                         .download-wallets .wallet-choice .name {
                             font-size: 12px;

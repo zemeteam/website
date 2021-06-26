@@ -44,7 +44,14 @@ export default class Discover extends React.Component {
     render() {
         // if the post is not found, display the error view
         if (this.props.statusCode === 404) {
-            return <Error statusCode={this.props.statusCode} />
+            return (
+                    <Layout 
+                        logo="dark"
+                        header={true}
+                        url={`https://zeme.team/404`}>
+                            <Error statusCode={this.props.statusCode} />
+                    </Layout>
+            )
         }
     
         const post = this.props.post[0]
@@ -53,9 +60,9 @@ export default class Discover extends React.Component {
             <Layout 
                 logo="dark"
                 header={true}
-                title={` ${post.title} - Zeme Team🛡️`} 
+                title={`${post.title} - Zeme Team🛡️`} 
                 description={post.description} 
-                url="https://zeme.team">
+                url={`https://zeme.team/${post.slug}`}>
                 
                 <main className="details">
                     <Details 

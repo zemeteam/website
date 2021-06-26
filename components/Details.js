@@ -643,6 +643,10 @@ export default class Details extends React.Component {
                             padding-left: 20px;
                         }
 
+                        .post-details .wallets {
+                            padding: 0 16px;
+                        }
+
                         .post-details .report {
                             padding-right: 20px;
                         }

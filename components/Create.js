@@ -1,5 +1,7 @@
 import React from 'react'
 import { Supabase } from '../lib/supabase'
+import { bech32, bech32m } from 'bech32'
+import striptags from 'striptags'
 import ReCAPTCHA from 'react-google-recaptcha'
 import Wallets from './Wallets'
 
@@ -11,14 +13,15 @@ export default class QR extends React.Component {
         super(props)
 
         this.state = {
-            address: null,
-            description: null,
+            address: '',
+            description: '',
             error: null,
+            loading: false,
             progress: false,
             reason: null,
             status: 'ready',
             showWallets: false,
-            title: null
+            title: ''
         }
 
         this.recaptchaRef = React.createRef()
@@ -33,69 +36,79 @@ export default class QR extends React.Component {
     handleSubmit = async (event) => {
         event.preventDefault()
         const recaptchaValue = this.recaptchaRef.current.getValue()
-        
-        // check to ensure the title was entered
-        if (this.state.title === null) {
-            this.setState({ 
-                status: 'error', 
-                error: 'Please enter a title.' 
-            })   
-            return
-        }
 
-        // check to ensure the z-address was entered
-        if (this.state.address === null) {
-            this.setState({ 
-                status: 'error', 
-                error: 'Please enter a valid Zcash z-address.' 
-            }) 
-            return
-        }  
-
-        // check to ensure captcha was completed
-        if (!recaptchaValue) {
-            this.setState({ 
-                status: 'error', 
-                error: 'Please complete the CAPTCHA.' 
-            })   
-            return
-        }  
-
-        // insert the post object into Supabase
-        const id = this.generateId(6)
-        const slug = this.slugify(this.state.title.trim()) + '-' + id
-        const { data, error } = await Supabase
-        .from('posts')
-        .insert([
-            { 
-                address: this.state.address.trim(),
-                asset_url: 'https://res.cloudinary.com/zemeteam/image/upload/v1623541173/e77462601d5a7e7dd500dca25c4ee5aeed7e270e_tr7ujl.jpg', //todo set this dynamically from cloudinary
-                description: this.state.description.trim(),
-                pid: id,
-                title: this.state.title.trim(),
-                type: TYPE_IMAGE_POST,
-                slug: slug,
-                status: STATUS_PUBLIC,
+        // only proceed if the form isn't already submitting
+        if (!this.state.loading) {
+            // set loading state to true
+            this.setState({ loading: true }) 
+            
+            // check to ensure the title was entered
+            if (this.state.title === '') {
+                this.setState({ 
+                    loading: false,
+                    status: 'error', 
+                    error: 'Please enter a title.' 
+                })   
+                return
             }
-        ])
 
-        // if the submit completed update the ui
-        if (data) {
-            this.setState({
-                status: 'complete'
-            })      
+            // check to ensure the z-address was entered
+            if (this.state.address === '' || this.validateAddress(this.state.address) !== 'zs') {
+                this.setState({ 
+                    loading: false,
+                    status: 'error', 
+                    error: 'Please enter a valid Zcash z-address.' 
+                }) 
+                return
+            }  
 
-            // redirect to the live post
-            window.location.href = "/" + slug
-        }
+            // check to ensure captcha was completed
+            if (!recaptchaValue) {
+                this.setState({ 
+                    loading: false,
+                    status: 'error', 
+                    error: 'Please complete the CAPTCHA.' 
+                })   
+                return
+            }  
 
-        // if the submit errored out update the ui
-        if (error) {
-            this.setState({ 
-                status: 'error', 
-                error: 'An unknow error happened. Please try again.' 
-            })  
-            return                       
+            // insert the post object into Supabase
+            const id = this.generateId(6)
+            const slug = this.slugify(this.state.title.trim()) + '-' + id
+            const { data, error } = await Supabase
+            .from('posts')
+            .insert([
+                { 
+                    address: striptags(this.state.address.trim()),
+                    asset_url: 'https://res.cloudinary.com/zemeteam/image/upload/v1623541173/e77462601d5a7e7dd500dca25c4ee5aeed7e270e_tr7ujl.jpg', //todo set this dynamically from cloudinary
+                    description: striptags(this.state.description.trim()),
+                    pid: id,
+                    title: striptags(this.state.title.trim().substring(0,99)),
+                    type: TYPE_IMAGE_POST,
+                    slug: slug,
+                    status: STATUS_PUBLIC,
+                }
+            ])
+
+            // if the submit completed update the ui
+            if (data) {
+                this.setState({
+                    status: 'complete'
+                })      
+
+                // redirect to the live post
+                window.location.href = "/" + slug
+            }
+
+            // if the submit errored out update the ui
+            if (error) {
+                this.setState({ 
+                    loading: false,
+                    status: 'error', 
+                    error: 'An unknow error happened. Please try again.' 
+                })  
+                return                       
+            }
         }
     }
 
@@ -115,19 +128,19 @@ export default class QR extends React.Component {
 
     handleAddressChange = (event) => {
         this.setState({
-            address: event.target.value.trim()
+            address: striptags(event.target.value.trim())
         })
     }
 
     handleTitleChange = (event) => {
         this.setState({
-            title: event.target.value.trim()
+            title: striptags(event.target.value.trim().substring(0,99))
         })
     }
 
     handleDescriptionChange = (event) => {
         this.setState({
-            description: event.target.value.trim()
+            description: striptags(event.target.value.trim())
         })
     }
 
@@ -156,6 +169,15 @@ export default class QR extends React.Component {
         return result
     }
 
+    validateAddress = (address) => {
+        try {
+            bech32.decode(address)
+            return bech32.decode(address).prefix
+        } catch (error) {
+            return false
+        }
+    }
+
     render() {
         const display = this.props.display
 
@@ -164,21 +186,21 @@ export default class QR extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-row">
                         <label htmlFor="title">Title<span className="required">*</span></label><br />
-                        <input id="title" placeholder="Add a title" onChange={this.handleProgress} type="text" onChange={this.handleTitleChange} />
+                        <input id="title" placeholder="Add a title" onChange={this.handleProgress} type="text" onChange={this.handleTitleChange} autoComplete="off" maxLength="100" />
                     </div>
 
                     <div className="form-row">
                         <label htmlFor="description">Description</label><br />
-                        <textarea id="description" placeholder="Write a description (optional)" style={{height: 120}} onChange={this.handleDescriptionChange}></textarea>
+                        <textarea id="description" placeholder="Write a description (optional)" style={{height: 120}} onChange={this.handleDescriptionChange} autoComplete="off"></textarea>
                     </div>
 
                     <div className="form-row">
-                        <label htmlFor="address">Zcash z-addr<span className="required">*</span></label><br />
-                        <input id="address" placeholder="e.g. zs1n7pjuk54xp9..." type="text" onChange={this.handleAddressChange} />
+                        <label htmlFor="address">Zcash z-address<span className="required">*</span></label><br />
+                        <input id="address" placeholder="e.g. zs1n7pjuk54xp9..." type="text" onChange={this.handleAddressChange} style={{marginBottom: 6}} />
                     </div>
 
                     <div className="wallet">
-                        <div onClick={() => this.handleNeedWallet() }>Need a Zcash z-addr?</div>
+                        <div onClick={() => this.handleNeedWallet() }>Need a Zcash z-address?</div>
                     </div>
 
                     <div className="wallets">
@@ -195,7 +217,7 @@ export default class QR extends React.Component {
                         </div>
                     }
 
-                    <div className="button">
+                    <div className={`button ${this.state.loading ? 'disabled' : ''}`}>
                         <button className="post" type="submit">Post</button>
                     </div>
 
@@ -221,19 +243,27 @@ export default class QR extends React.Component {
                     .create textarea {
                         background-color: #F5F5F5;
                         border-radius: 16px;
-                        border: 0;
+                        border: solid 1px #F5F5F5;
                         color: #000000;
                         font-family: 'Overpass Mono', monospace !important;
+                        font-size: 15px;
+                        letter-spacing: -0.6px;
                         margin-bottom: 16px;
                         margin-top: 6px;
+                        outline: none;
                         padding: 14px;
+                        transition: background .25s;
                         width: 640px;
                     }
 
                     .create input {
-                        font-size: 14px;
                         height: 56px;
-                        line-height: 56px;
+                    }
+
+                    .create input:focus, 
+                    .create textarea:focus {
+                        background-color: #ffffff;
+                        border: solid 1px #F4B728;
                     }
 
                     .create input::placeholder, 
@@ -269,6 +299,10 @@ export default class QR extends React.Component {
                         display: flex;
                         justify-content: flex-end;
                         margin-top: 16px;
+                    }
+
+                    .create .disabled{
+                        opacity: .5;
                     }
 
                     .create .button .post {
@@ -308,6 +342,7 @@ export default class QR extends React.Component {
 
                         .create input, 
                         .create textarea {
+                            font-size: 16px;
                             width: 100%
                         }
                     }

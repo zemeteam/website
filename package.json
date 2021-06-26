@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^1.11.10",
+    "bech32": "^2.0.0",
     "body-scroll-lock": "^3.1.5",
     "cloudinary": "^1.25.1",
     "next": "10.0.4",
@@ -22,6 +23,7 @@
     "react-qrcode-logo": "^2.4.0",
     "react-tooltip": "^4.2.19",
     "react-visibility-sensor": "^5.1.1",
+    "striptags": "^3.2.0",
     "underscore": "^1.13.1",
     "underscore.string": "^3.3.5"
   },
