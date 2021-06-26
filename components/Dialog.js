@@ -114,7 +114,7 @@ export default class Dialog extends React.Component {
                         <h3 style={{paddingLeft: 32}}>Report</h3>
                         {this.state.status !== 'complete' &&
                             <div className="dialog-warning">
-                                Please contact us at <a href="mailto:hi@zeme.team" title="Contact">hi@zeme.team</a> to report copyright violations.
+                                Please contact us at <a href="mailto:hi.zeme.team@gmail.com" title="Contact">hi.zeme.team@gmail.com</a> to report copyright violations.
                             </div>
                         }
                         

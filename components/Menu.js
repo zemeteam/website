@@ -65,7 +65,7 @@ export default class Menu extends React.Component {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="mailto:hi@zeme.team" title="Contact" target="_blank">
+                                    <a href="mailto:hi.zeme.team@gmail.com" title="Contact" target="_blank">
                                         Contact
                                     </a>
                                 </li>

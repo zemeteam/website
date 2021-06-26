@@ -1,6 +1,6 @@
 import React from 'react'
 import { Supabase } from '../lib/supabase'
-import { bech32, bech32m } from 'bech32'
+import { bech32 } from 'bech32'
 import striptags from 'striptags'
 import ReCAPTCHA from 'react-google-recaptcha'
 import Wallets from './Wallets'
