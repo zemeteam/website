@@ -228,7 +228,7 @@ export default class Create extends React.Component {
                         font-family: 'Overpass Mono', monospace !important;
                         letter-spacing: -0.6px;
                         margin: auto;
-                        margin-bottom: 200px;
+                        padding-bottom: 200px;
                         padding-top: 100px;
                         text-align: left;
                         width: 640px;
