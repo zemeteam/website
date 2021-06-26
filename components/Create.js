@@ -81,7 +81,7 @@ export default class Create extends React.Component {
                 { 
                     address: striptags(this.state.address.trim()),
                     asset_url: 'https://res.cloudinary.com/zemeteam/image/upload/v1623541173/e77462601d5a7e7dd500dca25c4ee5aeed7e270e_tr7ujl.jpg', //todo set this dynamically from cloudinary
-                    description: striptags(this.state.description.trim()),
+                    description: striptags(this.state.description.trim().substring(0,4999)),
                     pid: id,
                     title: striptags(this.state.title.trim().substring(0,99)),
                     type: TYPE_IMAGE_POST,
@@ -140,7 +140,7 @@ export default class Create extends React.Component {
 
     handleDescriptionChange = (event) => {
         this.setState({
-            description: striptags(event.target.value.trim())
+            description: striptags(event.target.value.trim().substring(0,4999))
         })
     }
 
@@ -191,7 +191,7 @@ export default class Create extends React.Component {
 
                     <div className="form-row">
                         <label htmlFor="description">Description</label><br />
-                        <textarea id="description" placeholder="Write a description (optional)" style={{height: 120}} onChange={this.handleDescriptionChange} autoComplete="off"></textarea>
+                        <textarea id="description" placeholder="Write a description (optional)" style={{height: 120}} onChange={this.handleDescriptionChange} autoComplete="off" maxLength="5000"></textarea>
                     </div>
 
                     <div className="form-row">
