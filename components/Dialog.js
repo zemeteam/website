@@ -56,14 +56,15 @@ export default class Dialog extends React.Component {
             // only proceed if the captcha was filled out
             if (recaptchaValue) {
 
-                const report = await fetch(`${server}/api/post/report/${this.props.post.id}`, {
+                const res = await fetch(`${server}/api/post/report/${this.props.post.id}`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({ id: this.props.post.id, reason: this.state.reason }),
                 })
+                const data = await res.json()
 
                 // if the submit completed update the ui
-                if (report) {
+                if (data) {
                     this.setState({
                         status: 'complete'
                     })      

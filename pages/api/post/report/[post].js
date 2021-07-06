@@ -8,9 +8,21 @@ export default async(req, res) => {
         case 'POST':
             if (req.body.id && req.body.reason) {
                 // insert the report into Supabase
-                await Supabase.from('reports').insert({ post_id: req.body.id, reason: req.body.reason })
+                const { data, error } = await Supabase.from('reports')
+                    .insert(
+                        { 
+                            post_id: req.body.id, 
+                            reason: req.body.reason 
+                        }
+                    )
+                
+                if (data) {
+                    res.status(200).json({ message: `Succesfully reported post with slug ${slug}.`})
+                }
 
-                res.status(200).json({ message: `Succesfully reported post with slug ${slug}.`})
+                if (error) {
+                    res.status(400).json({ message: `Failed to report post with slug ${slug}.` })
+                }
             } else {
                 res.status(400).json({ message: `Failed to report post with slug ${slug}.` })
             }
