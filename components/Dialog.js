@@ -64,7 +64,7 @@ export default class Dialog extends React.Component {
                 const data = await res.json()
 
                 // if the submit completed update the ui
-                if (data) {
+                if (res.ok && data) {
                     this.setState({
                         status: 'complete'
                     })      
