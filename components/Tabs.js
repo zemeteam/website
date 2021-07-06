@@ -165,6 +165,7 @@ export default class Tabs extends React.Component {
                         line-height: 56px;
                         margin: 11px 0;
                         transition: opacity .5s;
+                        user-select: none;
                         width: 32px;
                     }
 

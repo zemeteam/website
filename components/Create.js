@@ -7,6 +7,8 @@ import Wallets from './Wallets'
 
 const TYPE_IMAGE_POST = 1
 const STATUS_PUBLIC = 1
+const FILE_TYPES_ACCEPTED = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/webp']
+const FILE_SIZE_LIMIT = 10000000 // 10mb
 
 export default class Create extends React.Component {
     constructor(props) {
@@ -16,6 +18,7 @@ export default class Create extends React.Component {
             address: '',
             description: '',
             error: null,
+            image: '',
             loading: false,
             progress: false,
             reason: null,
@@ -41,6 +44,16 @@ export default class Create extends React.Component {
         if (!this.state.loading) {
             // set loading state to true
             this.setState({ loading: true }) 
+
+            // check to ensure a file was selected
+            if (this.state.image === '') {
+                this.setState({ 
+                    loading: false,
+                    status: 'error', 
+                    error: 'Please upload a file (jpg, png, gif, webp).' 
+                })   
+                return
+            }
             
             // check to ensure the title was entered
             if (this.state.title === '') {
@@ -144,6 +157,18 @@ export default class Create extends React.Component {
         })
     }
 
+    handleFileChange = (event) => {
+        const file = event.target.files[0]
+        
+        // ensure the file size is less than the limit and the file is a supported image type
+        if (file && FILE_SIZE_LIMIT >= file.size && FILE_TYPES_ACCEPTED.includes(file.type)) {
+            console.log(file)
+            this.setState({
+                image: file
+            })
+        }
+      }
+
     slugify = (string) => {
         const a = 'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;'
         const b = 'aaaaaaaaaacccddeeeeeeeegghiiiiiilmnnnnoooooooooprrsssssttuuuuuuuuuwxyyzzz------'
@@ -184,6 +209,10 @@ export default class Create extends React.Component {
         return ( 
             <div className="create">
                 <form onSubmit={this.handleSubmit}>
+
+                    <div className="form-row">
+                        <input onChange={this.handleFileChange} accept=".jpg, .png, .jpeg, .gif, .webp" type="file" />
+                    </div>
                     <div className="form-row">
                         <label htmlFor="title">Title<span className="required">*</span></label><br />
                         <input id="title" placeholder="Add a title" onChange={this.handleProgress} type="text" onChange={this.handleTitleChange} autoComplete="off" maxLength="100" />
@@ -228,7 +257,6 @@ export default class Create extends React.Component {
                         font-family: 'Overpass Mono', monospace !important;
                         letter-spacing: -0.6px;
                         margin: auto;
-                        padding-bottom: 200px;
                         padding-top: 100px;
                         text-align: left;
                         width: 640px;
@@ -322,6 +350,7 @@ export default class Create extends React.Component {
                         font-size: 13px;
                         height: 42px;
                         line-height: 42px;
+                        margin-bottom: 200px;
                         text-transform: uppercase; 
                         transition: all .5s;
                         user-select: none;
