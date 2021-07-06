@@ -1,5 +1,5 @@
 import React from 'react'
-import { Supabase } from '../lib/supabase'
+import { server } from '../config'
 import _ from 'underscore'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import ReactTooltip from 'react-tooltip'
@@ -12,8 +12,6 @@ import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'bo
 
 const POST_STATUS_LIVE = 1
 const POST_STATUS_IN_REVIEW = 2
-const POST_VIEW_THRESHOLD = 5
-const POSTS_PER_PAGE = 500
 
 export default class Details extends React.Component {
     constructor(props) {
@@ -21,8 +19,6 @@ export default class Details extends React.Component {
 
         this.state = {
             copied: false,
-            currentRangeStart: 0,
-            currentRangeEnd: POSTS_PER_PAGE,
             dialogVisible: false,
             hasMore: true,
             imgWidth: 700,
@@ -64,30 +60,14 @@ export default class Details extends React.Component {
     }
 
     fetchRandom = async (views) => {
-        // display random posts based on their view_count
-        if (views >= POST_VIEW_THRESHOLD) {
-            var { data, error } = await Supabase
-                .from('posts')
-                .select('id, slug, asset_url, title, description, address, created_at, status, view_count')
-                .range(this.state.currentRangeStart, this.state.currentRangeEnd)
-                .filter('status', 'eq', POST_STATUS_LIVE)
-                .lte('view_count', views)     
-        } else {
-            var { data, error } = await Supabase
-                .from('posts')
-                .select('id, slug, asset_url, title, description, address, created_at, status, view_count')
-                .range(this.state.currentRangeStart, this.state.currentRangeEnd)
-                .filter('status', 'eq', POST_STATUS_LIVE)
-                .gte('view_count', views)  
-        }
-            
+        const res = await fetch(`${server}/api/posts/random?view_count=${views}`)
+        const posts = await res.json()
+
         // check to ensure the query returned results
-        if (data.length > 0){
+        if (posts.length > 0){
             // update states 
             this.setState({ 
-                posts: [...this.state.posts, ..._.shuffle(data)],
-                currentRangeStart: this.state.currentRangeStart + POSTS_PER_PAGE + 1,
-                currentRangeEnd: this.state.currentRangeEnd + POSTS_PER_PAGE + 1,
+                posts: [...this.state.posts, ...posts],
                 hasMore: false
             })
         
@@ -114,21 +94,12 @@ export default class Details extends React.Component {
     }
 
     savePageView = async (id, status) => {
-        // only update the counters if the post is live
+        // only update the counters if the post is live and approved
         if (status === POST_STATUS_LIVE) {
-            // save the page view to the database 
-            // no identifying information is saved
-            const { data, error } = await Supabase
-            .from('views')
-            .insert([
-                { post_id: id, }
-            ])
-
-            // increment the counter on the posts object
-            const { data1, error1 } = await Supabase
-            .rpc('increment', { 
-                x: 1, 
-                post_id: id 
+            await fetch(`${server}/api/post/${this.props.post.id}`, {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ id: id, status: status }),
             })
         }
     }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { withRouter } from 'next/router'
-import { Supabase } from '../lib/supabase'
+import { server } from '../config'
 import InfiniteScroll from 'react-infinite-scroller'
 import Tabs from '../components/Tabs'
 import Layout from '../components/Layout'
@@ -8,12 +8,9 @@ import Grid from '../components/Grid'
 import Background from '../components/Background'
 import Modal from '../components/Modal'
 
-const POST_STATUS_LIVE = 1
 const POSTS_PER_PAGE = 500
-const TRENDING_DAYS_BACK = 7
 
 class Discover extends React.Component {
-    
     constructor(props) {
         super(props)  
 
@@ -53,7 +50,7 @@ class Discover extends React.Component {
         })
 
         // fetch post data
-        tab === 'trending' ? this.fetchTrending(true, true) : this.fetchLatest(true, true)
+        tab === 'trending' ? this.fetchTrending() : this.fetchLatest()
 
         // scroll to top
         window.scrollTo(0, 0)
@@ -90,6 +87,7 @@ class Discover extends React.Component {
     handleCloseCreateModal = () => {
         // change router state
         this.state.router.push('/discover') //todo change this to / instead of /discover
+
         this.setState({ 
             createModalVisible: false,
             page: 'discover',
@@ -97,24 +95,17 @@ class Discover extends React.Component {
         })   
     }
 
-    fetchLatest = async (first = true, reset = false) => {
-        const { data, error } = await Supabase
-            .from('posts')
-            .select('id, slug, asset_url, title, description, address, created_at, status, view_count')
-            .range(reset ? 0 : this.state.currentRangeStart, reset ? POSTS_PER_PAGE : this.state.currentRangeEnd)
-            .filter('status', 'eq', POST_STATUS_LIVE)
-            .order('created_at', { 
-                ascending: false 
-            })
+    fetchLatest = async () => {
+        const res = await fetch(`${server}/api/posts/latest`)
+        const posts = await res.json()
 
         // check to ensure the query returned results
-        if (data.length > 0){
-
+        if (posts.length > 0){
             // update states 
-            this.setState({ posts: [...this.state.posts, ...data],
+            this.setState({ posts: [...this.state.posts, ...posts],
                 currentRangeStart: this.state.currentRangeStart + POSTS_PER_PAGE + 1,
                 currentRangeEnd: this.state.currentRangeEnd + POSTS_PER_PAGE + 1,
-                hasMore: data.length === (POSTS_PER_PAGE + 1) ? true : false
+                hasMore: posts.length === (POSTS_PER_PAGE + 1) ? true : false
             })
 
         } else {
@@ -123,24 +114,18 @@ class Discover extends React.Component {
         }            
     }
 
-    fetchTrending = async (first = true, reset = false) => {
-        const { data, error } = await Supabase
-            .from('posts')
-            .select('id, slug, asset_url, title, description, address, created_at, status, view_count')
-            .range(reset ? 0 : this.state.currentRangeStart, reset ? POSTS_PER_PAGE : this.state.currentRangeEnd)
-            .filter('status', 'eq', POST_STATUS_LIVE)
-            .order('view_count', { 
-                ascending: false 
-            })          
+    fetchTrending = async () => {
+        const res = await fetch(`${server}/api/posts/trending`)
+        const posts = await res.json()
 
         // check to ensure the query returned results
-        if (data.length > 0){
+        if (posts.length > 0){
             // update states 
             this.setState({ 
-                posts: [...this.state.posts, ...data],
+                posts: [...this.state.posts, ...posts],
                 currentRangeStart: this.state.currentRangeStart + POSTS_PER_PAGE + 1,
                 currentRangeEnd: this.state.currentRangeEnd + POSTS_PER_PAGE + 1,
-                hasMore: data.length === (POSTS_PER_PAGE + 1) ? true : false
+                hasMore: posts.length === (POSTS_PER_PAGE + 1) ? true : false
             })
             
         } else {

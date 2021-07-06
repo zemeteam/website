@@ -1,5 +1,5 @@
 import React from 'react'
-import { Supabase } from '../lib/supabase'
+import { server } from '../config'
 import Layout from '../components/Layout'
 import Details from '../components/Details'
 import Error from './_error'
@@ -8,21 +8,15 @@ export default class Discover extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-
-        }
+        this.state = {}
     }
 
     static async getInitialProps({ query, res }) {
         let statusCode
-        const slug = query.post
+        const api = await fetch(`${server}/api/post/${query.post}`)
+        const post = await api.json()
 
-        const { data, error } = await Supabase
-            .from('posts')
-            .select('id, slug, asset_url, title, description, address, created_at, status, view_count')
-            .eq('slug', slug)  
-
-        if (data.length >= 1){
+        if (post.length >= 1){
             statusCode = 200
             res.statusCode = 200
         } else {
@@ -30,7 +24,7 @@ export default class Discover extends React.Component {
             res.statusCode = 404
         }
 
-        return { post: data, statusCode: statusCode }
+        return { post: post, statusCode: statusCode }
     }
 
     componentDidMount() {

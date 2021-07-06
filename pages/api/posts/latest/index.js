@@ -5,15 +5,16 @@ const POSTS_PER_PAGE = 500
 const TRENDING_DAYS_BACK = 7
 
 export default async(req, res) => {
-    const body = req.body
     const method = req.method
+    const start = req.query.start ? req.query.start : 0
+    const end = req.query.end ? req.query.end : POSTS_PER_PAGE
 
     switch(method) {
         case 'GET':
             const { data } = await Supabase
                 .from('posts')
                 .select('id, slug, asset_url, title, description, address, created_at, status, view_count')
-                .range(body.start ? body.start : 0, body.end ? body.end : POSTS_PER_PAGE)
+                .range(start, end)
                 .filter('status', 'eq', POST_STATUS_LIVE)
                 .order('created_at', { 
                     ascending: false 

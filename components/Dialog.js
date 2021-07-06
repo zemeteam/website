@@ -1,5 +1,5 @@
 import React from 'react'
-import { Supabase } from '../lib/supabase'
+import { server } from '../config'
 import ReCAPTCHA from 'react-google-recaptcha'
 
 export default class Dialog extends React.Component {
@@ -55,24 +55,19 @@ export default class Dialog extends React.Component {
 
             // only proceed if the captcha was filled out
             if (recaptchaValue) {
-                const { data, error } = await Supabase
-                .from('reports')
-                .insert([
-                    { 
-                        post_id: this.props.post.id,
-                        reason: this.state.reason
-                    }
-                ])
+
+                const report = await fetch(`${server}/api/post/report/${this.props.post.id}`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ id: this.props.post.id, reason: this.state.reason }),
+                })
 
                 // if the submit completed update the ui
-                if (data) {
+                if (report) {
                     this.setState({
                         status: 'complete'
                     })      
-                }
-
-                // if the submit errored out update the ui
-                if (error) {
+                } else {
                     this.setState({ 
                         status: 'error', 
                         error: 'An unknow error happened. Please try again.' 

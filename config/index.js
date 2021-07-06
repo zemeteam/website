@@ -1,0 +1,1 @@
+export const server = process.env.NEXT_PUBLIC_ENVIRONMENT === 'local' ? 'http://localhost:3000' : 'https://zeme.team'
