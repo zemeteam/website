@@ -13,7 +13,6 @@ export default class Create extends React.Component {
         super(props)
 
         this.state = {
-            address: '',
             description: '',
             error: null,
             image: '',
@@ -22,7 +21,8 @@ export default class Create extends React.Component {
             reason: null,
             status: 'ready',
             showWallets: false,
-            title: ''
+            title: '',
+            zaddress: ''
         }
 
         this.recaptchaRef = React.createRef()
@@ -48,7 +48,7 @@ export default class Create extends React.Component {
                 this.setState({ 
                     loading: false,
                     status: 'error', 
-                    error: 'Please upload a file (jpg, png, gif, webp).' 
+                    error: 'Please upload a valid image (jpg, png, gif, webp).' 
                 })   
                 return
             }
@@ -64,7 +64,7 @@ export default class Create extends React.Component {
             }
 
             // check to ensure the z-address was entered
-            if (this.state.address === '' || this.validateAddress(this.state.address) !== 'zs') {
+            if (this.state.zaddress === '' || this.validateAddress(this.state.zaddress) !== 'zs') {
                 this.setState({ 
                     loading: false,
                     status: 'error', 
@@ -83,17 +83,17 @@ export default class Create extends React.Component {
                 return
             }  
 
-            // insert the post object into Supabase
+            const formData = new FormData()
+            formData.append('address', this.state.zaddress)
+            formData.append('description', this.state.description)
+            formData.append('title', this.state.title)
+            formData.append('image', this.state.image)
+
+
+            // call the create post API
             const res = await fetch(`${server}/api/post`, {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(
-                    { 
-                        address: striptags(this.state.address.trim()), 
-                        description: striptags(this.state.description.trim().substring(0,4999)),
-                        title: striptags(this.state.title.trim().substring(0,99)),
-                    }
-                )
+                body: formData
             })
             const data = await res.json()
 
@@ -132,7 +132,7 @@ export default class Create extends React.Component {
 
     handleAddressChange = (event) => {
         this.setState({
-            address: striptags(event.target.value.trim())
+            zaddress: striptags(event.target.value.trim())
         })
     }
 
@@ -153,7 +153,6 @@ export default class Create extends React.Component {
         
         // ensure the file size is less than the limit and the file is a supported image type
         if (file && FILE_SIZE_LIMIT >= file.size && FILE_TYPES_ACCEPTED.includes(file.type)) {
-            console.log(file)
             this.setState({
                 image: file
             })
@@ -177,21 +176,24 @@ export default class Create extends React.Component {
                 <form onSubmit={this.handleSubmit}>
 
                     <div className="form-row">
-                        <input onChange={this.handleFileChange} accept=".jpg, .png, .jpeg, .gif, .webp" type="file" />
+                        <label htmlFor="image">Image<span className="required">*</span></label><br />
+                        <input id="image" onChange={this.handleFileChange} accept=".jpg, .png, .jpeg, .gif, .webp" type="file" style={{fontSize: 13, height: '100%', marginBottom: 4}} />
+                        <div className="helper">.jpg, .png, .gif, and .webp supported, up to 10MB. Recommended aspect ratio between 1:2 and 2:1.</div>
                     </div>
+
                     <div className="form-row">
                         <label htmlFor="title">Title<span className="required">*</span></label><br />
-                        <input id="title" placeholder="Add a title" onChange={this.handleProgress} type="text" onChange={this.handleTitleChange} autoComplete="off" maxLength="100" />
+                        <input id="title" name="title" placeholder="Add a title" onChange={this.handleProgress} type="text" onChange={this.handleTitleChange} autoComplete="off" maxLength="100" />
                     </div>
 
                     <div className="form-row">
                         <label htmlFor="description">Description</label><br />
-                        <textarea id="description" placeholder="Write a description (optional)" style={{height: 120}} onChange={this.handleDescriptionChange} autoComplete="off" maxLength="5000"></textarea>
+                        <textarea id="description" name="description" placeholder="Write a description (optional)" style={{height: 120}} onChange={this.handleDescriptionChange} autoComplete="off" maxLength="5000"></textarea>
                     </div>
 
                     <div className="form-row">
-                        <label htmlFor="address">Zcash z-address<span className="required">*</span></label><br />
-                        <input id="address" placeholder="e.g. zs1n7pjuk54xp9..." type="text" onChange={this.handleAddressChange} style={{marginBottom: 6}} />
+                        <label htmlFor="zaddress">Zcash z-address<span className="required">*</span></label><br />
+                        <input id="zaddress" name="zaddress" placeholder="e.g. zs1n7pjuk54xp9..." type="text" onChange={this.handleAddressChange} style={{marginBottom: 6}} />
                     </div>
 
                     <div className="wallet">
@@ -233,6 +235,15 @@ export default class Create extends React.Component {
                         font-weight: 800;
                     }
 
+                    .create .helper {
+                        color: #666666;
+                        font-size: 12px;
+                        line-height: 18px;
+                        margin: 0;
+                        margin-bottom: 14px;
+                        padding: 0;
+                    }
+
                     .create input, 
                     .create textarea {
                         background-color: #F5F5F5;
@@ -263,6 +274,12 @@ export default class Create extends React.Component {
                     .create input::placeholder, 
                     .create textarea::placeholder {
                         color: #666666;
+                    }
+
+                    .create input[type=text] { 
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+                        appearance: none;
                     }
 
                     .create .wallet {
@@ -327,7 +344,7 @@ export default class Create extends React.Component {
                         background-color: #FFCB51;
                     }
 
-                    @media only screen and (max-width: 600px) {
+                    @media only screen and (max-width: 650px) {
                         .create {
                             padding: 0 16px;
                             padding-top: 100px;

@@ -933,10 +933,10 @@
   "resolved" "https://registry.npmjs.org/cloudinary-core/-/cloudinary-core-2.11.4.tgz"
   "version" "2.11.4"
 
-"cloudinary@^1.25.1":
-  "integrity" "sha512-8iyMyOrRhRudJabdNc34GU/Vnr/ltDRq8gmkwQ4NpuJ1lD5Qw88DJGBNeODZnGSNXIPTLln708gsADVKe0AQMw=="
-  "resolved" "https://registry.npmjs.org/cloudinary/-/cloudinary-1.25.1.tgz"
-  "version" "1.25.1"
+"cloudinary@^1.26.2":
+  "integrity" "sha512-C42qx+Be+pOIbZSZ9+qYTzKpddYkXqdFioD0mf+Tp7K6Lb61rUjROAqJhsz+RP/ZOnGBHTAkhujcooAyZkx0Kw=="
+  "resolved" "https://registry.npmjs.org/cloudinary/-/cloudinary-1.26.2.tgz"
+  "version" "1.26.2"
   dependencies:
     "cloudinary-core" "^2.10.2"
     "core-js" "3.6.5"
@@ -1661,6 +1661,11 @@
   "integrity" "sha1-gQaNKVqBQuwKxybG4iAMMPttXoA="
   "resolved" "https://registry.npmjs.org/for-in/-/for-in-1.0.2.tgz"
   "version" "1.0.2"
+
+"formidable@^1.2.2":
+  "integrity" "sha512-V8gLm+41I/8kguQ4/o1D3RIHRmhYFG4pnNyonvua+40rqcEmT4+V71yaZ3B457xbbgCsCfjSPi65u/W6vK1U5Q=="
+  "resolved" "https://registry.npmjs.org/formidable/-/formidable-1.2.2.tgz"
+  "version" "1.2.2"
 
 "fragment-cache@^0.2.1":
   "integrity" "sha1-QpD60n8T6Jvn8zeZxrxaCr//DRk="

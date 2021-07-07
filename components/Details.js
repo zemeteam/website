@@ -90,6 +90,8 @@ export default class Details extends React.Component {
         const regex = /([^\/]+)(?=\.\w+$)/
         const imageId = asset_url.match(regex)[0]
 
+        console.log(imageId)
+
         return imageId
     }
 

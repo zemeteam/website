@@ -1,11 +1,25 @@
 import striptags from 'striptags'
+import formidable from 'formidable'
 import { bech32 } from 'bech32'
 import { Supabase } from '../../../lib/supabase'
+const cloudinary = require("cloudinary").v2
+
+cloudinary.config({
+    cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_NAME,
+    api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
+    api_secret: process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET,
+})
 
 const TYPE_IMAGE_POST = 1
 const STATUS_PUBLIC = 1
 const FILE_TYPES_ACCEPTED = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/webp']
 const FILE_SIZE_LIMIT = 10000000 // 10mb
+
+export const config = {
+    api: {
+        bodyParser: false
+    }
+}
 
 export default async(req, res) => {
     const method = req.method
@@ -34,7 +48,7 @@ export default async(req, res) => {
           .replace(/^-+/, '') // Trim - from start of text
           .replace(/-+$/, '') // Trim - from end of text
     }
-    
+
     const validateAddress = (address) => {
         try {
             bech32.decode(address)
@@ -46,20 +60,45 @@ export default async(req, res) => {
 
     switch(method) {
         case 'POST':
-            const post = req.body
+            const post = await new Promise((resolve, reject) => {
+                const form = new formidable()
+            
+                form.parse(req, (err, fields, files) => {
+                    if (err) reject({ err })
+                    resolve({ err, fields, files })
+                }) 
+            })
 
-            if (post.address && post.description && post.title) {
+            // ensure the file size is less than the limit and the file is a supported image type
+            if (post.files.image && FILE_SIZE_LIMIT <= post.files.image.size && !FILE_TYPES_ACCEPTED.includes(post.files.image.type)) {
+                res.status(400).json({ message: `Image invalid. File too large or not supported format.` })
+                return
+            }
+
+            // check to ensure the z-address was entered
+            if (post.fields.address === '' || validateAddress(post.fields.address) !== 'zs') {
+                res.status(400).json({ message: `Z-address invalid. Please enter a valid Zcash z-address.` })
+                return
+            }  
+
+            // if the post is valid then proceed to save it
+            if (post.fields.address && post.fields.description && post.fields.title) {
                 const id = generateId(6)
-                const slug = slugify(post.title.trim()) + '-' + id
+                const slug = slugify(post.fields.title.trim()) + '-' + id
+
+                // upload image to cloudinary
+                const image = await cloudinary.uploader.upload(post.files.image.path, { public_id: slug })
+
+                // save to database
                 const { data, error } = await Supabase
                     .from('posts')
                     .insert(
                         { 
-                            address: striptags(post.address.trim()),
-                            asset_url: 'https://res.cloudinary.com/zemeteam/image/upload/v1623541173/e77462601d5a7e7dd500dca25c4ee5aeed7e270e_tr7ujl.jpg', //todo set this dynamically from cloudinary
-                            description: striptags(post.description.trim().substring(0,4999)),
+                            address: striptags(post.fields.address.trim()),
+                            asset_url: image.secure_url, 
+                            description: striptags(post.fields.description.trim().substring(0,4999)),
                             pid: id,
-                            title: striptags(post.title.trim().substring(0,99)),
+                            title: striptags(post.fields.title.trim().substring(0,99)),
                             type: TYPE_IMAGE_POST,
                             slug: slug,
                             status: STATUS_PUBLIC
