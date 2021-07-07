@@ -164,7 +164,7 @@ export default class Details extends React.Component {
                 return "Oct"    
             case 11:
                 return "Nov"   
-            case 12:
+            case 12: 
                 return "Dec"    
             default:
                 return "Jan"
