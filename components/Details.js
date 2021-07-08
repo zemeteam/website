@@ -188,7 +188,7 @@ export default class Details extends React.Component {
                 {post.status === POST_STATUS_LIVE &&
                     <div>
                         <div className="inner" style={{ width: this.state.imgWidth }}>
-                            <div className={`image-container ${!this.state.isLoaded ? 'pulsate' : '' }`}>
+                            <div className={`image-container ${!this.state.isLoaded ? 'pulsate' : '' }`} style={{backgroundColor: `${this.state.isLoaded ? '#ffffff' : '#ececec'}`}}>
                                 <picture>
                                     <source 
                                         srcSet={this.setImageUrl(post.asset_url, '.webp')}
