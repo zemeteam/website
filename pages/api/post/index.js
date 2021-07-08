@@ -9,6 +9,8 @@ const STATUS_PUBLIC = 1
 const STATUS_IN_REVIEW = 2
 const FILE_TYPES_ACCEPTED = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/webp']
 const FILE_SIZE_LIMIT = 10000000 // 10mb
+const IMAGE_ASPECT_RATIO_MIN = 0.5
+const IMAGE_ASPECT_RATIO_MAX = 2
 
 export const config = {
     api: {
@@ -55,69 +57,84 @@ export default async(req, res) => {
 
     switch(method) {
         case 'POST':
-            const post = await new Promise((resolve, reject) => {
-                const form = new formidable()
-            
-                form.parse(req, (err, fields, files) => {
-                    if (err) reject({ err })
-                    resolve({ err, fields, files })
-                }) 
-            })
 
-            // ensure the file size is less than the limit and the file is a supported image type
-            if (post.files.image && FILE_SIZE_LIMIT <= post.files.image.size && !FILE_TYPES_ACCEPTED.includes(post.files.image.type)) {
-                res.status(400).json({ message: `Image invalid. File too large or not supported format.` })
-                return
-            }
-
-            // check to ensure the z-address was entered
-            if (post.fields.address === '' || validateAddress(post.fields.address) !== 'zs') {
-                res.status(400).json({ message: `Z-address invalid. Please enter a valid Zcash z-address.` })
-                return
-            }  
-
-            // if the post is valid then proceed to save it
-            if (post.fields.address && post.fields.title) {
-                const id = generateId(6)
-                const slug = slugify(post.fields.title.trim()) + '-' + id
-
-                // upload image to cloudinary (create additional sizes needed)
-                const image = await Cloudinary.uploader.upload(post.files.image.path, { 
-                    public_id: slug, 
-                    moderation: 'aws_rek',
-                    eager: [
-                        { crop: 'scale', width: 700 },
-                        { format: 'webp', crop: 'scale' },
-                        { format: 'webp', crop: 'scale', width: 700 },
-                        { format: 'webp', crop: 'scale', width: 1200 }
-                    ] 
+            try {
+                const post = await new Promise((resolve, reject) => {
+                    const form = new formidable()
+                
+                    form.parse(req, (err, fields, files) => {
+                        if (err) reject({ err })
+                        resolve({ err, fields, files })
+                    }) 
                 })
 
-                // save to database
-                const { data, error } = await Supabase
-                    .from('posts')
-                    .insert(
-                        { 
-                            address: striptags(post.fields.address.trim()),
-                            asset_url: image.secure_url, 
-                            description: striptags(post.fields.description ? post.fields.description.trim().substring(0,4999) : ''),
-                            pid: id,
-                            title: striptags(post.fields.title.trim().substring(0,99)),
-                            type: TYPE_IMAGE_POST,
-                            slug: slug,
-                            status: image.moderation[0].status !== 'rejected' ? STATUS_PUBLIC : STATUS_IN_REVIEW
+                // ensure the file size is less than the limit and the file is a supported image type
+                if (post.files.image && FILE_SIZE_LIMIT <= post.files.image.size && !FILE_TYPES_ACCEPTED.includes(post.files.image.type)) {
+                    res.status(400).json({ message: `Image invalid. File too large or not supported format.` })
+                    return
+                }
+
+                // check to ensure the z-address was entered
+                if (post.fields.address === '' || validateAddress(post.fields.address) !== 'zs') {
+                    res.status(400).json({ message: `Z-address invalid. Please enter a valid Zcash z-address.` })
+                    return
+                }  
+
+                // if the post is valid then proceed to save it
+                if (post.fields.address && post.fields.title) {
+                    const id = generateId(6)
+                    const slug = slugify(post.fields.title.trim()) + '-' + id
+
+                    // upload image to cloudinary (create additional sizes needed)
+                    const image = await Cloudinary.uploader.upload(post.files.image.path, { 
+                        public_id: slug, 
+                        moderation: 'aws_rek',
+                        eager: [
+                            { crop: 'scale', width: 700 },
+                            { format: 'webp', crop: 'scale' },
+                            { format: 'webp', crop: 'scale', width: 700 },
+                            { format: 'webp', crop: 'scale', width: 1200 }
+                        ] 
+                    })
+
+                    // ensure the image ratio is within our accepted boundaries 
+                    if ((image.height / image.width) >= IMAGE_ASPECT_RATIO_MIN && (image.height / image.width) <= IMAGE_ASPECT_RATIO_MAX ) {
+
+                        // save to database
+                        const { data, error } = await Supabase
+                            .from('posts')
+                            .insert(
+                                { 
+                                    address: striptags(post.fields.address.trim()),
+                                    asset_url: image.secure_url, 
+                                    description: striptags(post.fields.description ? post.fields.description.trim().substring(0,4999) : ''),
+                                    pid: id,
+                                    title: striptags(post.fields.title.trim().substring(0,99)),
+                                    type: TYPE_IMAGE_POST,
+                                    slug: slug,
+                                    status: image.moderation[0].status !== 'rejected' ? STATUS_PUBLIC : STATUS_IN_REVIEW
+                                }
+                            )
+                            if (data) {
+                                res.status(200).json({ message: `Succesfully created post with slug ${slug}.`, slug: slug })
+                            }
+            
+                            if (error) {
+                                res.status(400).json({ message: `An unknow error happened. Please try again.` })
+                            }
+
+                        } else {
+                            // delete the image from Cloudinary since the ratio is not accepted
+                            await Cloudinary.uploader.destroy(slug)
+
+                            res.status(400).json({ message: `Image aspect ratio must be between 1:2 and 2:1.` })
                         }
-                    )
-                    if (data) {
-                        res.status(200).json({ message: `Succesfully created post with slug ${slug}.`, slug: slug })
+                    } else {
+                        res.status(400).json({ message: `Title and z-address are required.` })
                     }
-    
-                    if (error) {
-                        res.status(400).json({ message: `Failed to create post with slug ${slug}.` })
-                    }
-            } else {
-                res.status(400).json({ message: `Failed to create post with slug ${slug}.` })
-            }
+                } catch (error) {
+                    res.status(400).json({ message: error })
+                }
 
             break
 

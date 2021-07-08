@@ -22,7 +22,7 @@ export default class QR extends React.Component {
         return ( 
             <div className="QR-code">
                 <div className="inner">
-                    <div className="label">Tip</div>
+                    <div className="label">Send Tip</div>
                     <QRCode 
                         value={address} 
                         logoImage="/zcash.png" 
