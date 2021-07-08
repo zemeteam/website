@@ -36,8 +36,8 @@ export default class Layout extends React.Component {
                     <meta property="og:image" content={image} />
                     <meta property="og:url" content={url} />
                     <meta name="twitter:card" content="summary_large_image" />
-                    <meta property="og:site_name" content="Zeme Team" />
-                    <meta name="twitter:image:alt" content="Zeme Team" />
+                    <meta property="og:site_name" content="Zeme Team🛡️" />
+                    <meta name="twitter:image:alt" content="Zeme Team🛡️" />
                 </Head>
                 
                 <div className="container">
