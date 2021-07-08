@@ -23,21 +23,12 @@ class Discover extends React.Component {
             detailsModalVisible: false,
             hasMore: false,
             tabsVisible: true,
+            latest: [],
             page: 'discover',
             title: '',
-            posts: [],
+            trending: [],
             router: props.router,
         }
-    }
-
-    static async getInitialProps({ query, res }) {
-        const trendingApi = await fetch(`${server}/api/posts/trending`)
-        const trending = await trendingApi.json()
-
-        const latestApi = await fetch(`${server}/api/posts/latest`)
-        const latest = await latestApi.json()
-
-        return { trending: trending, latest: latest }
     }
 
 
@@ -49,6 +40,10 @@ class Discover extends React.Component {
                 this.handleCloseDetailsModal()
             }
         })
+
+        // fetch content
+        this.fetchTrending()
+        this.fetchLatest()
     }
 
     handleTabChange = (tab) => {
@@ -57,7 +52,8 @@ class Discover extends React.Component {
             currentRangeStart: 0,
             currentRangeEnd: POSTS_PER_PAGE,
             currentTab: tab,
-            posts: []
+            latest: [],
+            trending: [],
         })
 
         // fetch post data
@@ -113,7 +109,7 @@ class Discover extends React.Component {
         // check to ensure the query returned results
         if (posts.length > 0){
             // update states 
-            this.setState({ posts: [...this.state.posts, ...posts],
+            this.setState({ latest: [...this.state.latest, ...posts],
                 currentRangeStart: this.state.currentRangeStart + POSTS_PER_PAGE + 1,
                 currentRangeEnd: this.state.currentRangeEnd + POSTS_PER_PAGE + 1,
                 hasMore: posts.length === (POSTS_PER_PAGE + 1) ? true : false
@@ -133,7 +129,7 @@ class Discover extends React.Component {
         if (posts.length > 0){
             // update states 
             this.setState({ 
-                posts: [...this.state.posts, ...posts],
+                trending: [...this.state.trending, ...posts],
                 currentRangeStart: this.state.currentRangeStart + POSTS_PER_PAGE + 1,
                 currentRangeEnd: this.state.currentRangeEnd + POSTS_PER_PAGE + 1,
                 hasMore: posts.length === (POSTS_PER_PAGE + 1) ? true : false
@@ -182,7 +178,7 @@ class Discover extends React.Component {
                             display="modal"
                             hasMore={this.state.hasMore}
                             handleDetailsModal={this.handleDetailsModal}
-                            posts={this.state.currentTab === 'trending' ? this.props.trending : this.props.latest} 
+                            posts={this.state.currentTab === 'trending' ? this.state.trending : this.state.latest} 
                             theme="discover" />
 
                     </InfiniteScroll>
