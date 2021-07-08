@@ -90,8 +90,6 @@ export default class Details extends React.Component {
         const regex = /([^\/]+)(?=\.\w+$)/
         const imageId = asset_url.match(regex)[0]
 
-        console.log(imageId)
-
         return imageId
     }
 
@@ -175,7 +173,7 @@ export default class Details extends React.Component {
         if (asset.includes('.gif')) {
             return `https://res.cloudinary.com/zemeteam/image/upload/c_scale/${this.extractImageId(asset)}.webp`
         } else {
-            return `https://res.cloudinary.com/zemeteam/image/upload/w_1200,c_scale/${this.extractImageId(asset)}${extension}`
+            return `https://res.cloudinary.com/zemeteam/image/upload/c_scale,w_1200/${this.extractImageId(asset)}${extension}`
         }
     }
 

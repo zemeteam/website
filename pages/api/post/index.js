@@ -2,13 +2,7 @@ import striptags from 'striptags'
 import formidable from 'formidable'
 import { bech32 } from 'bech32'
 import { Supabase } from '../../../lib/supabase'
-const cloudinary = require("cloudinary").v2
-
-cloudinary.config({
-    cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_NAME,
-    api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
-    api_secret: process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET,
-})
+import { Cloudinary } from '../../../lib/cloudinary'
 
 const TYPE_IMAGE_POST = 1
 const STATUS_PUBLIC = 1
@@ -86,8 +80,16 @@ export default async(req, res) => {
                 const id = generateId(6)
                 const slug = slugify(post.fields.title.trim()) + '-' + id
 
-                // upload image to cloudinary
-                const image = await cloudinary.uploader.upload(post.files.image.path, { public_id: slug })
+                // upload image to cloudinary (create additional sizes needed)
+                const image = await Cloudinary.uploader.upload(post.files.image.path, { 
+                    public_id: slug, 
+                    eager: [
+                        { crop: 'scale', width: 700 },
+                        { format: 'webp', crop: 'scale' },
+                        { format: 'webp', crop: 'scale', width: 700 },
+                        { format: 'webp', crop: 'scale', width: 1200 }
+                    ] 
+                })
 
                 // save to database
                 const { data, error } = await Supabase

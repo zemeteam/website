@@ -208,14 +208,20 @@ export default class Create extends React.Component {
                         <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY} ref={this.recaptchaRef} />
                     </div>
 
-                    {this.state.status === 'error' &&
+                    {this.state.status === 'error' && !this.state.loading &&
                         <div className="form-error">
                             {this.state.error}
                         </div>
                     }
 
+                    {this.state.loading &&
+                        <div className="form-uploading">
+                            🕒 Hang tight. Uploading can take up to a minute.
+                        </div>
+                    }
+
                     <div className={`button ${this.state.loading ? 'disabled' : ''}`}>
-                        <button className="post" type="submit">{this.state.loading ? 'Posting...' : 'Post'}</button>
+                        <button className="post" type="submit">{this.state.loading ? 'Uploading...' : 'Post'}</button>
                     </div>
 
 
@@ -302,6 +308,12 @@ export default class Create extends React.Component {
 
                     .create .form-error {
                         color: #FF3D45;
+                        margin: 12px 0;
+                        text-align: right;
+                    }
+
+                    .create .form-uploading {
+                        color: #666666;
                         margin: 12px 0;
                         text-align: right;
                     }
