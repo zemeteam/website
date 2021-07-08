@@ -215,7 +215,7 @@ export default class Create extends React.Component {
                     }
 
                     <div className={`button ${this.state.loading ? 'disabled' : ''}`}>
-                        <button className="post" type="submit">Post</button>
+                        <button className="post" type="submit">{this.state.loading ? 'Posting...' : 'Post'}</button>
                     </div>
 
 
@@ -276,7 +276,8 @@ export default class Create extends React.Component {
                         color: #666666;
                     }
 
-                    .create input[type=text] { 
+                    .create input[type=text],
+                    .create textarea { 
                         -webkit-appearance: none;
                         -moz-appearance: none;
                         appearance: none;
