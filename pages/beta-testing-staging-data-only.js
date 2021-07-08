@@ -8,7 +8,7 @@ import Grid from '../components/Grid'
 import Background from '../components/Background'
 import Modal from '../components/Modal'
 
-const POSTS_PER_PAGE = 500
+const POSTS_PER_PAGE = 1000
 
 class Discover extends React.Component {
     constructor(props) {
@@ -21,7 +21,7 @@ class Discover extends React.Component {
             currentRangeStart: 0,
             currentRangeEnd: POSTS_PER_PAGE,
             detailsModalVisible: false,
-            hasMore: true,
+            hasMore: false,
             tabsVisible: true,
             page: 'discover',
             title: '',
@@ -29,6 +29,17 @@ class Discover extends React.Component {
             router: props.router,
         }
     }
+
+    static async getInitialProps({ query, res }) {
+        const trendingApi = await fetch(`${server}/api/posts/trending`)
+        const trending = await trendingApi.json()
+
+        const latestApi = await fetch(`${server}/api/posts/latest`)
+        const latest = await latestApi.json()
+
+        return { trending: trending, latest: latest }
+    }
+
 
     componentDidMount() {
         // listen for browser back button clicks
@@ -75,7 +86,7 @@ class Discover extends React.Component {
 
     handleCloseDetailsModal = () => {
         // change router state
-        this.state.router.push('/beta') 
+        this.state.router.push('/beta-testing-staging-data-only') 
 
         this.setState({ 
             detailsModalVisible: false,
@@ -86,7 +97,7 @@ class Discover extends React.Component {
 
     handleCloseCreateModal = () => {
         // change router state 
-        this.state.router.push('/beta') 
+        this.state.router.push('/beta-testing-staging-data-only') 
 
         this.setState({ 
             createModalVisible: false,
@@ -164,7 +175,6 @@ class Discover extends React.Component {
                 <main className="discover">
                     <InfiniteScroll
                         pageStart={0}
-                        loadMore={this.state.currentTab === 'trending' ? this.fetchTrending : this.fetchLatest}
                         hasMore={this.state.hasMore}
                         threshold={1500}>
 
@@ -172,7 +182,7 @@ class Discover extends React.Component {
                             display="modal"
                             hasMore={this.state.hasMore}
                             handleDetailsModal={this.handleDetailsModal}
-                            posts={this.state.posts} 
+                            posts={this.state.currentTab === 'trending' ? this.props.trending : this.props.latest} 
                             theme="discover" />
 
                     </InfiniteScroll>

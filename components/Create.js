@@ -216,7 +216,7 @@ export default class Create extends React.Component {
 
                     {this.state.loading &&
                         <div className="form-uploading">
-                            🕒 Hang tight. Uploading can take up to a minute.
+                            Hang tight. Uploading can take up to a minute.
                         </div>
                     }
 

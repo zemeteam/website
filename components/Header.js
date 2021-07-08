@@ -45,7 +45,7 @@ export default class Header extends React.Component {
 
                 {!this.props.handleClose &&
                     <div className="logo">
-                        <a href="/beta" title="Zeme Team🛡️: Zcash memes, Zcash gifs, Zcash art"> 
+                        <a href="/beta-testing-staging-data-only" title="Zeme Team🛡️: Zcash memes, Zcash gifs, Zcash art"> 
                             <img src={`/${logo}.png`} alt="Zeme Team" />
                         </a>
                     </div>

@@ -1,7 +1,7 @@
 import { Supabase } from '../../../../lib/supabase'
 
 const POST_STATUS_LIVE = 1
-const POSTS_PER_PAGE = 500
+const POSTS_PER_PAGE = 1000
 
 export default async(req, res) => {
     const method = req.method

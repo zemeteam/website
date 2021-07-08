@@ -536,7 +536,7 @@ export default class Details extends React.Component {
                     }
 
                     .post-details .pending-review {
-                        padding-top: 54px;
+                        padding-top: 124px;
                         text-align: center;
                     }
 

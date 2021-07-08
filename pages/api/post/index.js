@@ -6,6 +6,7 @@ import { Cloudinary } from '../../../lib/cloudinary'
 
 const TYPE_IMAGE_POST = 1
 const STATUS_PUBLIC = 1
+const STATUS_IN_REVIEW = 2
 const FILE_TYPES_ACCEPTED = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/webp']
 const FILE_SIZE_LIMIT = 10000000 // 10mb
 
@@ -76,13 +77,14 @@ export default async(req, res) => {
             }  
 
             // if the post is valid then proceed to save it
-            if (post.fields.address && post.fields.description && post.fields.title) {
+            if (post.fields.address && post.fields.title) {
                 const id = generateId(6)
                 const slug = slugify(post.fields.title.trim()) + '-' + id
 
                 // upload image to cloudinary (create additional sizes needed)
                 const image = await Cloudinary.uploader.upload(post.files.image.path, { 
                     public_id: slug, 
+                    moderation: 'aws_rek',
                     eager: [
                         { crop: 'scale', width: 700 },
                         { format: 'webp', crop: 'scale' },
@@ -98,12 +100,12 @@ export default async(req, res) => {
                         { 
                             address: striptags(post.fields.address.trim()),
                             asset_url: image.secure_url, 
-                            description: striptags(post.fields.description.trim().substring(0,4999)),
+                            description: striptags(post.fields.description ? post.fields.description.trim().substring(0,4999) : ''),
                             pid: id,
                             title: striptags(post.fields.title.trim().substring(0,99)),
                             type: TYPE_IMAGE_POST,
                             slug: slug,
-                            status: STATUS_PUBLIC
+                            status: image.moderation[0].status !== 'rejected' ? STATUS_PUBLIC : STATUS_IN_REVIEW
                         }
                     )
                     if (data) {
