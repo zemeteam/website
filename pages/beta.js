@@ -85,7 +85,7 @@ class Discover extends React.Component {
     }
 
     handleCloseCreateModal = () => {
-        // change router state
+        // change router state 
         this.state.router.push('/beta') 
 
         this.setState({ 
