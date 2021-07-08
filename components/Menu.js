@@ -60,7 +60,7 @@ export default class Menu extends React.Component {
 
                             <ul>
                                 <li>
-                                    <a href="/discover" title="Zeme Team🛡️: Zcash memes, Zcash gifs, Zcash art">
+                                    <a href="/beta" title="Zeme Team🛡️: Zcash memes, Zcash gifs, Zcash art">
                                         Home
                                     </a>
                                 </li>

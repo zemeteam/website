@@ -19,7 +19,7 @@ export default class Tabs extends React.Component {
             <div>
                 <div className="tabs">
                     <Link 
-                        href={`/discover?page=create`} 
+                        href={`/beta?page=create`} 
                         as={`/create`}
                         scroll={false}
                     >

@@ -75,7 +75,7 @@ class Discover extends React.Component {
 
     handleCloseDetailsModal = () => {
         // change router state
-        this.state.router.push('/discover') //todo change this to / instead of /discover
+        this.state.router.push('/beta') 
 
         this.setState({ 
             detailsModalVisible: false,
@@ -86,7 +86,7 @@ class Discover extends React.Component {
 
     handleCloseCreateModal = () => {
         // change router state
-        this.state.router.push('/discover') //todo change this to / instead of /discover
+        this.state.router.push('/beta') 
 
         this.setState({ 
             createModalVisible: false,
