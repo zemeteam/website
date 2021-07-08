@@ -56,6 +56,7 @@ export default class Discover extends React.Component {
                 header={true}
                 title={`${post.title} - Zeme Team🛡️`} 
                 description={post.description} 
+                image={post.asset_url}
                 url={`https://zeme.team/${post.slug}`}>
                 
                 <main className="details">

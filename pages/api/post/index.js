@@ -8,7 +8,7 @@ const TYPE_IMAGE_POST = 1
 const STATUS_PUBLIC = 1
 const STATUS_IN_REVIEW = 2
 const FILE_TYPES_ACCEPTED = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/webp']
-const FILE_SIZE_LIMIT = 10000000 // 10mb
+const FILE_SIZE_LIMIT = 20000000 // 20MB
 const IMAGE_ASPECT_RATIO_MIN = 0.5
 const IMAGE_ASPECT_RATIO_MAX = 2
 

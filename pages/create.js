@@ -7,7 +7,6 @@ export default function CreatePage() {
       header={true}
       logo="dark"
       title="Create Zeme — Zeme Team 🛡️" 
-      description="" 
       url="https://zeme.team/create" >
 
           <Create display="modal" />
