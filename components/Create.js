@@ -346,7 +346,7 @@ export default class Create extends React.Component {
                         font-size: 13px;
                         height: 42px;
                         line-height: 42px;
-                        margin-bottom: 100px;
+                        margin-bottom: 140px;
                         text-transform: uppercase; 
                         transition: all .5s;
                         user-select: none;
