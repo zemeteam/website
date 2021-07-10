@@ -6,7 +6,7 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import Wallets from './Wallets'
 
 const FILE_TYPES_ACCEPTED = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/webp']
-const FILE_SIZE_LIMIT = 20000000 // 20MB
+const FILE_SIZE_LIMIT = 5000000 // 5MB
 
 export default class Create extends React.Component {
     constructor(props) {
@@ -48,7 +48,7 @@ export default class Create extends React.Component {
                 this.setState({ 
                     loading: false,
                     status: 'error', 
-                    error: 'Please upload a valid image (jpg, png, gif, webp).' 
+                    error: 'Please upload a image (jpg, png, gif, webp) under 5MB.' 
                 })   
                 return
             }
@@ -178,7 +178,7 @@ export default class Create extends React.Component {
                     <div className="form-row">
                         <label htmlFor="image">Image<span className="required">*</span></label><br />
                         <input id="image" onChange={this.handleFileChange} accept=".jpg, .png, .jpeg, .gif, .webp" type="file" style={{fontSize: 13, height: '100%', marginBottom: 4}} />
-                        <div className="helper">.jpg, .png, .gif, .webp supported, up to 20MB. Aspect ratio between 1:2 and 2:1.</div>
+                        <div className="helper">.jpg, .png, .gif, .webp supported, up to 5MB. Aspect ratio between 1:2 and 2:1.</div>
                     </div>
 
                     <div className="form-row">
