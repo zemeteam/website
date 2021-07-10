@@ -169,8 +169,6 @@ export default class Create extends React.Component {
     }
 
     render() {
-        const display = this.props.display
-
         return ( 
             <div className="create">
                 <form onSubmit={this.handleSubmit}>

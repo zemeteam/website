@@ -35,6 +35,17 @@ export default class Discover extends React.Component {
         window.scrollTo(0, 0)
     }
 
+    setImageUrl = (asset) => {
+        return `https://res.cloudinary.com/zemeteam/image/upload/c_scale,w_700/${this.extractImageId(asset)}.webp`
+    }
+
+    extractImageId = (asset_url) => {
+        const regex = /([^\/]+)(?=\.\w+$)/
+        const imageId = asset_url.match(regex)[0]
+
+        return imageId
+    }
+
     render() {
         // if the post is not found, display the error view
         if (this.props.statusCode === 404) {
@@ -56,7 +67,7 @@ export default class Discover extends React.Component {
                 header={true}
                 title={`${post.title} - Zeme Team🛡️`} 
                 description={post.description} 
-                image={post.asset_url}
+                image={this.setImageUrl(post.asset_url)}
                 url={`https://zeme.team/${post.slug}`}>
                 
                 <main className="details">
