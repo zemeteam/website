@@ -88,6 +88,11 @@ export default async(req, res) => {
                     const image = await Cloudinary.uploader.upload(post.files.image.path, { 
                         public_id: slug, 
                         moderation: 'aws_rek',
+                        eager: [
+                            { format: 'webp', crop: 'scale' },
+                            { format: 'webp', crop: 'scale', width: 700 },
+                            { format: 'webp', crop: 'scale', width: 1200 }
+                        ] 
                     })
 
                     // ensure the image ratio is within our accepted boundaries 
@@ -109,14 +114,6 @@ export default async(req, res) => {
                                 }
                             )
                             if (data) {
-                                // run the transformations
-                                await Cloudinary.image(slug, {transformation: [
-                                    { crop: 'scale', width: 700 },
-                                    { format: 'webp', crop: 'scale' },
-                                    { format: 'webp', crop: 'scale', width: 700 },
-                                    { format: 'webp', crop: 'scale', width: 1200 }
-                                ]})
-
                                 res.status(200).json({ message: `Succesfully created post with slug ${slug}.`, slug: slug })
                             }
             
