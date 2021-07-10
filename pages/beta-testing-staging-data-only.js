@@ -52,12 +52,7 @@ class Discover extends React.Component {
             currentRangeStart: 0,
             currentRangeEnd: POSTS_PER_PAGE,
             currentTab: tab,
-            latest: [],
-            trending: [],
         })
-
-        // fetch post data
-        tab === 'trending' ? this.fetchTrending() : this.fetchLatest()
 
         // scroll to top
         window.scrollTo(0, 0)
