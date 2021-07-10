@@ -3,6 +3,7 @@ import _ from 'underscore'
 
 const POST_STATUS_LIVE = 1
 const POSTS_PER_PAGE = 1000
+const POST_SCORE_CUTOFF = 2
 
 export default async(req, res) => {
     const method = req.method
@@ -16,12 +17,28 @@ export default async(req, res) => {
                 .select('id, slug, asset_url, title, description, address, created_at, status, view_count')
                 .range(start, end)
                 .filter('status', 'eq', POST_STATUS_LIVE)
-                .order('view_count', { 
-                    ascending: false 
-                })  
                 
                 if (data.length > 0){
-                    res.status(200).json(data)
+                    const posts = []
+
+                    // loop over the posts and determine how old they are and apply a sort score
+                    _.each(data, function(post){
+                        let created = new Date(post.created_at)
+                        let today = new Date()
+                        let diff = Math.abs(today - created)
+                        let daysLive = Math.ceil(diff / (1000 * 60 * 60 * 24))
+
+                        // append the calculated score to the post
+                        post.score = daysLive <= POST_SCORE_CUTOFF ? post.view_count / daysLive : (post.view_count / (daysLive * .25))
+
+                        // append the post to posts
+                        posts.push(post)
+                    })
+
+                    // sort the posts array by score
+                    const sorted = _.sortBy(posts, 'score').reverse()
+
+                    res.status(200).json(sorted)
                 } else {
                     res.status(400).json({ message: `Trending posts not found` })
                 }
