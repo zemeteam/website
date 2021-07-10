@@ -142,7 +142,7 @@ class Discover extends React.Component {
     }
 
     render() {
-        return (
+        return ( 
             <Layout title={this.state.title} url="https://zeme.team" header={true}>
 
                 <Background animate />
