@@ -87,7 +87,7 @@ export default async(req, res) => {
                     // upload image to cloudinary (create additional sizes needed)
                     const image = await Cloudinary.uploader.upload(post.files.image.path, { 
                         public_id: slug, 
-                        moderation: 'aws_rek'
+                        moderation: 'aws_rek',
                     })
 
                     // ensure the image ratio is within our accepted boundaries 
@@ -110,7 +110,7 @@ export default async(req, res) => {
                             )
                             if (data) {
                                 // run the transformations
-                                Cloudinary.image(slug, {transformation: [
+                                await Cloudinary.image(slug, {transformation: [
                                     { crop: 'scale', width: 700 },
                                     { format: 'webp', crop: 'scale' },
                                     { format: 'webp', crop: 'scale', width: 700 },
