@@ -4,6 +4,7 @@ import _ from 'underscore'
 const POST_STATUS_LIVE = 1
 const POSTS_PER_PAGE = 1000
 const POST_SCORE_CUTOFF = 2
+const POST_SCORE_CUTOFF_MULTIPLIER = 3
 
 export default async(req, res) => {
     const method = req.method
@@ -29,7 +30,7 @@ export default async(req, res) => {
                         let daysLive = Math.ceil(diff / (1000 * 60 * 60 * 24))
 
                         // append the calculated score to the post
-                        post.score = daysLive <= POST_SCORE_CUTOFF ? post.view_count / daysLive : (post.view_count / (daysLive * .25))
+                        post.score = daysLive <= POST_SCORE_CUTOFF ? post.view_count / daysLive : post.view_count / (daysLive * POST_SCORE_CUTOFF_MULTIPLIER)
 
                         // append the post to posts
                         posts.push(post)
