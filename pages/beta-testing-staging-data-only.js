@@ -31,7 +31,6 @@ class Discover extends React.Component {
         }
     }
 
-
     componentDidMount() {
         // listen for browser back button clicks
         window.addEventListener('popstate', (event) => {

@@ -21,7 +21,7 @@ export default class Background extends React.Component {
                 
                 <style jsx>{`
                     .background-gradient {
-                        background-image: url(/background-gradient.png);
+                        background-image: url(/background-gradient.webp);
                         background-position: top center;
                         background-repeat: no-repeat;
                         background-size: cover;
@@ -33,7 +33,7 @@ export default class Background extends React.Component {
                     }
                       
                     .background-logo {
-                        background-image: url(/background-zcash-logo.png);
+                        background-image: url(/background-zcash-logo.webp);
                         background-position: top center;
                         background-repeat: no-repeat;
                         background-size: cover;
