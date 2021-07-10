@@ -13,7 +13,7 @@ export default class Create extends React.Component {
         super(props)
 
         this.state = {
-            description: '',
+            description: '', 
             error: null,
             image: '',
             loading: false,
