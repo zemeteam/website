@@ -57,7 +57,6 @@ export default async(req, res) => {
 
     switch(method) {
         case 'POST':
-
             try {
                 const post = await new Promise((resolve, reject) => {
                     const form = new formidable()
