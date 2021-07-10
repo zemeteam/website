@@ -6,7 +6,7 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import Wallets from './Wallets'
 
 const FILE_TYPES_ACCEPTED = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/webp']
-const FILE_SIZE_LIMIT = 5000000 // 5MB
+const FILE_SIZE_LIMIT = 20000000 // 20MB
 
 export default class Create extends React.Component {
     constructor(props) {
