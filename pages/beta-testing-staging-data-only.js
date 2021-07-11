@@ -173,7 +173,7 @@ class Discover extends React.Component {
 
 
                 <main className="discover">
-                    <SwipeableViews resistance enableMouseEvents index={this.state.tabIndex} onChangeIndex={this.handleChangeIndex}>     
+                    <SwipeableViews resistance enableMouseEvents hysteresis={0.85} threshold={10} index={this.state.tabIndex} onChangeIndex={this.handleChangeIndex}>     
                         <div className="trending">      
                             <Grid 
                                 display="modal"
