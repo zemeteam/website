@@ -18,7 +18,7 @@ export default class Layout extends React.Component {
         const title = this.props.title ? this.props.title : 'Zeme Team🛡️: Zcash memes, Zcash gifs, Zcash art'
         const logo = this.props.logo === 'dark' ? 'zemeteam-logo-dark' : 'zemeteam-logo'
         const header = this.props.header
-        const image = this.props.image ? this.props.image : 'https://zeme.team/zeme-team-logo.png'
+        const image = this.props.image ? this.props.image : 'https://zeme.team/zeme-team-logo.webp'
         const url = this.props.url ? this.props.url : 'https://zeme.team'
 
         return ( 
