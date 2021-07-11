@@ -28,8 +28,8 @@ export default async(req, res) => {
             }
             
             if (data.length > 0) {
-                // set cache 1min
-                res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=60')
+                // set cache 1 hour
+                res.setHeader('Cache-Control', 'public, max-age=3600, s-maxage=3600')
                 res.status(200).json(_.shuffle(data))
             } else {
                 res.status(400).json({ message: `Random posts not found` })
