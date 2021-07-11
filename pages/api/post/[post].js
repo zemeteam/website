@@ -13,7 +13,7 @@ export default async(req, res) => {
 
             if (data.length > 0){
                 // set cache 1 day
-                res.setHeader('Cache-Control', 'maxage=86400, s-maxage=86400, stale-while-revalidate')
+                res.setHeader('Cache-Control', 'maxage=86400, s-maxage=86400, stale-while-revalidate=86400')
                 res.status(200).json(data)
             } else {
                 res.status(400).json({ message: `Post with slug ${slug} not found` })

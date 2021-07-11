@@ -40,7 +40,7 @@ export default async(req, res) => {
                     const sorted = _.sortBy(posts, 'score').reverse()
 
                     // set cache 10min
-                    res.setHeader('Cache-Control', 'maxage=600, s-maxage=600, stale-while-revalidate')
+                    res.setHeader('Cache-Control', 'maxage=600, s-maxage=600, stale-while-revalidate=600')
                     res.status(200).json(sorted)
                 } else {
                     res.status(400).json({ message: `Trending posts not found` })
