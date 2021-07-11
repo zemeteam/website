@@ -1,7 +1,6 @@
 import React from 'react'
 import { withRouter } from 'next/router'
 import { server } from '../config'
-import InfiniteScroll from 'react-infinite-scroller'
 import Tabs from '../components/Tabs'
 import Layout from '../components/Layout'
 import Grid from '../components/Grid'

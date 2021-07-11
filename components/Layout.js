@@ -40,7 +40,7 @@ export default class Layout extends React.Component {
                     <meta name="twitter:image:alt" content="Zeme Team🛡️" />
                 </Head>
                 
-                <div className="container">
+                <div className="container" style={{ backgroundColor: this.props.logo === 'dark' ? '#FFFFFF' : '#F9D149' }}>
                     {header &&
                         <Header 
                             background="transparent"
@@ -61,7 +61,6 @@ export default class Layout extends React.Component {
 
                     .container {
                         align-items: center;
-                        background-color: #ffffff;
                         justify-content: center;
                         min-height: 100vh;
                         padding: 0;
