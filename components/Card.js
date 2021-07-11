@@ -196,7 +196,7 @@ export default class Card extends React.Component {
                         font-family: 'Overpass Mono', monospace;
                         font-size: 12px;
                         left: calc(50% - 90px);
-                        overflow: hidden;
+                        overflow: hidden; 
                         position: absolute;
                         text-align: center;
                         text-overflow: ellipsis;
