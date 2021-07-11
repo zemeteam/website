@@ -73,6 +73,7 @@ export default class Wallets extends React.Component {
                             url('/pointer@2x.png') 2x,
                             url('/pointer@3x.png') 3x
                         ), auto;  
+                        display: none;
                         height: 50px;
                         line-height: 50px;
                         position: absolute;
@@ -154,6 +155,10 @@ export default class Wallets extends React.Component {
                             position: fixed;
                             transition: all .2s;
                             z-index: 10;
+                        }
+
+                        .wallet-close {
+                            display: block;
                         }
 
                         .wallet-show {

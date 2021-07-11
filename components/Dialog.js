@@ -336,8 +336,8 @@ export default class Dialog extends React.Component {
                             border-radius: 0;
                             border-top-left-radius: 20px;
                             border-top-right-radius: 20px;
-                            bottom: -70vh;
-                            height: 70vh;
+                            bottom: -85vh;
+                            height: 85vh;
                             left: 0;
                             overflow: scroll;
                             top: unset;
@@ -354,7 +354,7 @@ export default class Dialog extends React.Component {
 
                         .dialog-hide {
                             animation: unset;
-                            bottom: -70vh;
+                            bottom: -85vh;
                         }
                     }
                 `}</style>
