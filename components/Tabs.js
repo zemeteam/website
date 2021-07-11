@@ -8,12 +8,12 @@ export default class Tabs extends React.Component {
 
     static async getInitialProps(context) {
         return { 
-            active: this.props.active 
+            tabIndex: this.props.tabIndex 
         }
     }
 
     render() {
-        const active = this.props.active 
+        const tabIndex = this.props.tabIndex 
 
         return ( 
             <div>
@@ -32,22 +32,22 @@ export default class Tabs extends React.Component {
 
                     <ul>
                         <li 
-                            className={active === "trending" ? "active" : ''}
-                            onClick={() => { this.props.handleTabChange('trending') }}
+                            className={tabIndex === 0 ? "active" : ''}
+                            onClick={() => { this.props.handleTabChange(0) }}
                             style={{ marginRight: 0 }}
                         >
                             <div className="icon">
-                                <img src={active === "trending" ? "/icon-trending-white.png" : '/icon-trending-gray.png'} style={{width: 24}} />
+                                <img src={tabIndex === 0 ? "/icon-trending-white.png" : '/icon-trending-gray.png'} style={{width: 24}} />
                             </div>
                             <div className="label">Trending</div>
                         </li>
 
                         <li 
-                            className={active === "latest" ? "active" : ''}
-                            onClick={() => { this.props.handleTabChange('latest') }}
+                            className={tabIndex === 1 ? "active" : ''}
+                            onClick={() => { this.props.handleTabChange(1) }}
                         >
                             <div className="icon">
-                                <img src={active === "latest" ? "/icon-latest-white.png" : '/icon-latest-gray.png'} style={{width: 24}} />
+                                <img src={tabIndex === 1 ? "/icon-latest-white.png" : '/icon-latest-gray.png'} style={{width: 24}} />
                             </div>
                             <div className="label">Latest</div>
                         </li>

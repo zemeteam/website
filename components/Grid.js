@@ -51,7 +51,7 @@ export default class Grid extends React.Component {
     }
 
     render() {
-        const loading = _(isMobile ? 1 : 9).times(id => <div id={id} key={id} className={styles.loading} style={{height: this.setRandomHeight(200,544)}}></div>)
+        const loading = _(isMobile ? 3 : 9).times(id => <div id={id} key={id} className={styles.loading} style={{height: this.setRandomHeight(200,544)}}></div>)
 
         return ( 
             <div className="grid">
@@ -63,7 +63,7 @@ export default class Grid extends React.Component {
                             <Card 
                                 post={post} 
                                 key={`${this.props.theme}-${post.slug}`} 
-                                id={post.slug} 
+                                id={`${this.props.theme}-${post.slug}`} 
                                 theme={this.props.theme} 
                                 display={this.props.display}
                                 handleOpenModal={this.props.handleDetailsModal} />

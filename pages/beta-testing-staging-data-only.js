@@ -7,6 +7,7 @@ import Layout from '../components/Layout'
 import Grid from '../components/Grid'
 import Background from '../components/Background'
 import Modal from '../components/Modal'
+import SwipeableViews from 'react-swipeable-views'
 
 const POSTS_PER_PAGE = 1000
 
@@ -17,7 +18,6 @@ class Discover extends React.Component {
         this.state = { 
             createModalVisible: false,
             currentPost: [],
-            currentTab: 'trending',
             currentRangeStart: 0,
             currentRangeEnd: POSTS_PER_PAGE,
             detailsModalVisible: false,
@@ -25,6 +25,7 @@ class Discover extends React.Component {
             tabsVisible: true,
             latest: [],
             page: 'discover',
+            tabIndex: 0,
             title: '',
             trending: [],
             router: props.router,
@@ -45,16 +46,16 @@ class Discover extends React.Component {
         this.fetchLatest()
     }
 
-    handleTabChange = (tab) => {
+    handleTabChange = (tabIndex) => {
+        // scroll to top
+        window.scrollTo(0, 0)
+        
         // update state
         this.setState({
             currentRangeStart: 0,
             currentRangeEnd: POSTS_PER_PAGE,
-            currentTab: tab,
+            tabIndex: tabIndex
         })
-
-        // scroll to top
-        window.scrollTo(0, 0)
     }
 
     handleCreateModal = () => {
@@ -94,6 +95,14 @@ class Discover extends React.Component {
             page: 'discover',
             title: ''
         })   
+    }
+
+    handleChangeIndex = (index) => {
+        this.setState({
+            tabIndex: index
+        })
+
+        this.handleTabChange(index)
     }
 
     fetchLatest = async () => {
@@ -158,25 +167,33 @@ class Discover extends React.Component {
                 }   
                 
                 <Tabs 
-                    active={this.state.currentTab} 
+                    tabIndex={this.state.tabIndex} 
                     handleTabChange={this.handleTabChange} 
                     handleCreateModal={this.handleCreateModal} />
 
+
                 <main className="discover">
-                    <InfiniteScroll
-                        pageStart={0}
-                        hasMore={this.state.hasMore}
-                        threshold={1500}>
+                    <SwipeableViews resistance enableMouseEvents index={this.state.tabIndex} onChangeIndex={this.handleChangeIndex}>     
+                        <div className="trending">      
+                            <Grid 
+                                display="modal"
+                                hasMore={false}
+                                handleDetailsModal={this.handleDetailsModal}
+                                posts={this.state.trending} 
+                                theme="discover" />
+                        </div>
 
-                        <Grid 
-                            display="modal"
-                            hasMore={this.state.hasMore}
-                            handleDetailsModal={this.handleDetailsModal}
-                            posts={this.state.currentTab === 'trending' ? this.state.trending : this.state.latest} 
-                            theme="discover" />
-
-                    </InfiniteScroll>
+                        <div className="latest">
+                            <Grid 
+                                display="modal"
+                                hasMore={false}
+                                handleDetailsModal={this.handleDetailsModal}
+                                posts={this.state.latest} 
+                                theme="discover" />
+                        </div>
+                    </SwipeableViews>
                 </main>
+
 
                 <style jsx>{`
                     .discover {
@@ -188,6 +205,14 @@ class Discover extends React.Component {
                         position: relative;
                         transition: opacity .25s ease-in;
                         z-index: 3;
+                    }
+
+                    .trending {
+                        overflow: hidden;
+                    }
+
+                    .latest {
+                        overflow: hidden;
                     }
 
                     @keyframes fade {
@@ -205,9 +230,14 @@ class Discover extends React.Component {
                     }
 
                     @media only screen and (max-width: 940px) {
-                        .discover {
-                            padding-left: 16px;
-                            padding-right: 16px;
+                        .trending {
+                            margin: auto;
+                            width: calc(100% - 32px);
+                        }
+
+                        .latest {
+                            margin: auto;
+                            width: calc(100% - 32px);
                         }
                     }
                 `}</style>
