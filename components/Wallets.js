@@ -124,7 +124,7 @@ export default class Wallets extends React.Component {
                         width: 33.3%;
                     }
 
-                    .download-wallets .wallet-choice:nth-child(3) {
+                    .download-wallets .wallet-choice:nth-child(4) {
                         margin-right: 0;   
                     }
 
