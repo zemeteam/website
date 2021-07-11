@@ -331,12 +331,30 @@ export default class Dialog extends React.Component {
                         }
                     }
 
-                    @media only screen and (max-width: 600px) {
+                    @media only screen and (max-width: 800px) {
                         .dialog-body {
+                            border-radius: 0;
+                            border-top-left-radius: 20px;
+                            border-top-right-radius: 20px;
+                            bottom: -70vh;
+                            height: 70vh;
                             left: 0;
-                            margin: 5%;
-                            top: 0;
-                            width: 90%;
+                            overflow: scroll;
+                            top: unset;
+                            transition: all .2s;
+                            width: 100%;
+                        }
+
+                        .dialog-show {
+                            animation: unset;
+                            transition: all .2s;
+
+                            bottom: 0;
+                        }
+
+                        .dialog-hide {
+                            animation: unset;
+                            bottom: -70vh;
                         }
                     }
                 `}</style>

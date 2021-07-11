@@ -89,7 +89,6 @@ export default class Create extends React.Component {
             formData.append('title', this.state.title)
             formData.append('image', this.state.image)
 
-
             // call the create post API
             const res = await fetch(`${server}/api/post`, {
                 method: 'POST',
@@ -199,7 +198,7 @@ export default class Create extends React.Component {
                     </div>
 
                     <div className="wallets">
-                        <Wallets visible={this.state.showWallets} />
+                        <Wallets visible={this.state.showWallets} handleCloseWallet={this.handleNeedWallet} />
                     </div>
 
                     <div className="recaptcha">

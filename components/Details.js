@@ -212,7 +212,7 @@ export default class Details extends React.Component {
                             </div>
 
                             <div className="created" ref={this.tipRef}>
-                                {this.convertMonthToString(dateCreated.getMonth())} {dateCreated.getDate()} {dateCreated.getFullYear()}  &nbsp; {post.view_count} views
+                                {this.convertMonthToString(dateCreated.getMonth())} {dateCreated.getDate()} {dateCreated.getFullYear()}
                             </div>
 
                             <div className="QR">
@@ -268,7 +268,7 @@ export default class Details extends React.Component {
                             </div>
 
                             <div className="wallets">
-                                <Wallets visible={this.state.showWallets} />
+                                <Wallets visible={this.state.showWallets} handleCloseWallet={this.handleNeedWallet} />
                             </div>
                         </div>
 
