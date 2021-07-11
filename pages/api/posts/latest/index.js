@@ -22,7 +22,7 @@ export default async(req, res) => {
 
                 if (data.length > 0){
                     // set cache 1min
-                    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate')
+                    res.setHeader('Cache-Control', 'maxage=60, s-maxage=60, stale-while-revalidate')
                     res.status(200).json(data)
                 } else {
                     res.status(400).json({ message: `Latest posts not found` })
