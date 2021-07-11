@@ -177,7 +177,7 @@ export default class Card extends React.Component {
                     }
 
                     .post-card-inner {
-                        transition: opacity .5s;
+                        transition: opacity .25s;
                     }
 
                     .post-card-loading {
