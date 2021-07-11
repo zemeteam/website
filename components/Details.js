@@ -169,11 +169,13 @@ export default class Details extends React.Component {
           }
     }
 
-    setImageUrl = (asset, extension) => {
+    setImageUrl = (asset, extension = null) => {
+        const ext = extension ? extension : asset.split('.').pop()
+
         if (asset.includes('.gif')) {
             return `https://res.cloudinary.com/zemeteam/image/upload/c_scale/${this.extractImageId(asset)}.webp`
         } else {
-            return `https://res.cloudinary.com/zemeteam/image/upload/c_scale,w_1200/${this.extractImageId(asset)}${extension}`
+            return `https://res.cloudinary.com/zemeteam/image/upload/c_scale,w_1200/${this.extractImageId(asset)}${ext}`
         }
     }
 
