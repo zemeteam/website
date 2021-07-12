@@ -1,5 +1,5 @@
-import { Supabase } from '../../../../lib/supabase'
 import _ from 'underscore'
+import { Supabase } from '../../../../lib/supabase'
 
 const POST_STATUS_LIVE = 1
 const POSTS_PER_PAGE = 1000
@@ -22,7 +22,7 @@ export default async(req, res) => {
                 if (data.length > 0){
                     const posts = []
 
-                    // loop over the posts and determine how old they are and apply a sort score
+                    // loop over the posts and determine their age and apply a ranking score
                     _.each(data, function(post){
                         let created = new Date(post.created_at)
                         let today = new Date()
