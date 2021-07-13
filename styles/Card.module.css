@@ -1,6 +1,6 @@
 .postCardHover {
     animation: fade .25s;
-    background-color: #ffffff;
+    background-color: rgba(255,255,255,.97);
     border-radius: 10px;
     cursor: url(/pointer.png), auto;
     cursor: -webkit-image-set(
