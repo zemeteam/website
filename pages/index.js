@@ -76,7 +76,7 @@ class Discover extends React.Component {
 
     handleCloseDetailsModal = () => {
         // change router state
-        this.state.router.push('/beta-testing-staging-data-only') 
+        this.state.router.push('/') 
 
         this.setState({ 
             detailsModalVisible: false,
@@ -87,7 +87,7 @@ class Discover extends React.Component {
 
     handleCloseCreateModal = () => {
         // change router state 
-        this.state.router.push('/beta-testing-staging-data-only') 
+        this.state.router.push('/') 
 
         this.setState({ 
             createModalVisible: false,

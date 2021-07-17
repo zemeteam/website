@@ -111,7 +111,7 @@ export default class Card extends React.Component {
                                         {/* if the card is being opened in a modal the Link needs to use Next.js links */}
                                         {this.props.display === 'modal' &&
                                             <Link 
-                                                href={`/beta-testing-staging-data-only?page=discover&id=${post.id}`} 
+                                                href={`/?page=discover&id=${post.id}`} 
                                                 as={`/${post.slug}`}
                                                 scroll={false}
                                             >
@@ -149,7 +149,7 @@ export default class Card extends React.Component {
                                 {/* if PostCard is being opened in a modal the Link needs to use Next.js links */}
                                 {isVisible && this.props.display === 'modal' &&
                                     <Link 
-                                        href={`/beta-testing-staging-data-only?page=discover&id=${post.id}`} 
+                                        href={`/?page=discover&id=${post.id}`} 
                                         as={`/${post.slug}`}
                                         scroll={false}
                                     >
