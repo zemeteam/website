@@ -36,7 +36,7 @@ export default class Discover extends React.Component {
     }
 
     setImageUrl = (asset) => {
-        return `https://res.cloudinary.com/zemeteam/image/upload/c_scale,w_700/${this.extractImageId(asset)}.webp`
+        return `https://res.cloudinary.com/zemeteam/image/upload/w_600/${this.extractImageId(asset)}.webp`
     }
 
     extractImageId = (asset_url) => {

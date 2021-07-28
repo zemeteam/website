@@ -75,11 +75,11 @@ export default class Card extends React.Component {
         const picture = (
             <picture>
                 <source 
-                    srcSet={`https://res.cloudinary.com/zemeteam/image/upload/c_scale,w_700/${this.extractImageId(post.asset_url)}.webp`}
+                    srcSet={`https://res.cloudinary.com/zemeteam/image/upload/w_600/${this.extractImageId(post.asset_url)}.webp`}
                     onLoad={this.onImgLoad}
                     type="image/webp" />
                 <img 
-                    src={`https://res.cloudinary.com/zemeteam/image/upload/c_scale,w_700/${this.extractImageId(post.asset_url)}`}
+                    src={`https://res.cloudinary.com/zemeteam/image/upload/w_600/${this.extractImageId(post.asset_url)}`}
                     alt={post.title}
                     onLoad={this.onImgLoad} />
             </picture>    

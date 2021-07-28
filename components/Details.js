@@ -173,9 +173,9 @@ export default class Details extends React.Component {
         const ext = extension ? extension : asset.split('.').pop()
 
         if (asset.includes('.gif')) {
-            return `https://res.cloudinary.com/zemeteam/image/upload/c_scale/${this.extractImageId(asset)}.webp`
+            return `https://res.cloudinary.com/zemeteam/image/upload/${this.extractImageId(asset)}.webp`
         } else {
-            return `https://res.cloudinary.com/zemeteam/image/upload/c_scale,w_1200/${this.extractImageId(asset)}${ext}`
+            return `https://res.cloudinary.com/zemeteam/image/upload/w_1200/${this.extractImageId(asset)}${ext}`
         }
     }
 
