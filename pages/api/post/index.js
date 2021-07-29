@@ -111,7 +111,7 @@ export default async(req, res) => {
                                     title: striptags(post.fields.title.trim().substring(0,99)),
                                     type: TYPE_IMAGE_POST,
                                     slug: slug,
-                                    status: image.moderation[0].status !== 'rejected' ? STATUS_LIVE_WITH_LIMITS : STATUS_IN_REVIEW
+                                    status: image.moderation[0].status !== 'rejected' ? STATUS_IN_REVIEW : STATUS_IN_REVIEW
                                 }
                             )
                             if (data) {
