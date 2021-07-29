@@ -324,7 +324,7 @@ export default class Details extends React.Component {
 
                 {(post.status === POST_STATUS_LIVE || post.status === POST_STATUS_LIVE_WITH_LIMITS) &&
                     <div>
-                        <a href={`https://twitter.com/intent/tweet?url=https://zeme.team/${encodeURIComponent(post.slug)}&text=${encodeURIComponent(post.title)}%20on%20@zemeteam%20%24ZEC%0D%0D&hashtags=Zcash%2CZeme`} target="_blank" title="Tweet">
+                        <a href={`https://twitter.com/intent/tweet?url=https://zeme.team/${encodeURIComponent(post.slug)}&text=${encodeURIComponent(post.title)}%20@zemeteam%20%24ZEC%0D%0D&hashtags=Zcash%2CZeme`} target="_blank" title="Tweet">
                             <Button label="Tweet" type="button-tweet" />
                         </a>
                     
