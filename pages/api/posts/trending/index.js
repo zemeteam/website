@@ -3,7 +3,7 @@ import { Supabase } from '../../../../lib/supabase'
 
 const POST_STATUS_LIVE = 1
 const POSTS_PER_PAGE = 1000
-const POST_SCORE_CUTOFF = 2
+const POST_SCORE_CUTOFF = 1
 const POST_SCORE_CUTOFF_MULTIPLIER = 3
 
 export default async(req, res) => {
