@@ -186,7 +186,7 @@ export default class Details extends React.Component {
 
         return ( 
             <div className="post-details">
-                {post.status === POST_STATUS_LIVE || post.status === POST_STATUS_LIVE_WITH_LIMITS &&
+                {(post.status === POST_STATUS_LIVE || post.status === POST_STATUS_LIVE_WITH_LIMITS) &&
                     <div>
                         <div className="inner" style={{ width: this.state.imgWidth }}>
                             <div className={`image-container ${!this.state.isLoaded ? 'pulsate' : '' }`} style={{backgroundColor: `${this.state.isLoaded ? '#ffffff' : '#ececec'}`}}>
