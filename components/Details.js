@@ -13,6 +13,7 @@ import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'bo
 const POST_STATUS_LIVE = 1
 const POST_STATUS_IN_REVIEW = 2
 const POST_STATUS_LIVE_WITH_LIMITS = 3
+const POST_STATUS_NEW_POST = 4
 
 export default class Details extends React.Component {
     constructor(props) {
@@ -286,7 +287,7 @@ export default class Details extends React.Component {
                 }
 
                 {/* the post is pending review */}
-                {post.status === POST_STATUS_IN_REVIEW &&
+                {(post.status === POST_STATUS_IN_REVIEW || post.status === POST_STATUS_NEW_POST ) &&
                     <div className="pending-review">
                         <img src="in-review.png" />
                         <div className="header">
@@ -321,7 +322,7 @@ export default class Details extends React.Component {
 
                 </div>
 
-                {post.status === POST_STATUS_LIVE &&
+                {(post.status === POST_STATUS_LIVE || post.status === POST_STATUS_LIVE_WITH_LIMITS) &&
                     <div>
                         <a href={`https://twitter.com/intent/tweet?url=https://zeme.team/${encodeURIComponent(post.slug)}&text=${encodeURIComponent(post.title)}%20on%20@zemeteam%20%24ZEC%0D%0D&hashtags=Zcash%2CZeme`} target="_blank" title="Tweet">
                             <Button label="Tweet" type="button-tweet" />
