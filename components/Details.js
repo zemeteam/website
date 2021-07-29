@@ -12,6 +12,7 @@ import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'bo
 
 const POST_STATUS_LIVE = 1
 const POST_STATUS_IN_REVIEW = 2
+const POST_STATUS_LIVE_WITH_LIMITS = 3
 
 export default class Details extends React.Component {
     constructor(props) {
@@ -185,7 +186,7 @@ export default class Details extends React.Component {
 
         return ( 
             <div className="post-details">
-                {post.status === POST_STATUS_LIVE &&
+                {post.status === POST_STATUS_LIVE || post.status === POST_STATUS_LIVE_WITH_LIMITS &&
                     <div>
                         <div className="inner" style={{ width: this.state.imgWidth }}>
                             <div className={`image-container ${!this.state.isLoaded ? 'pulsate' : '' }`} style={{backgroundColor: `${this.state.isLoaded ? '#ffffff' : '#ececec'}`}}>

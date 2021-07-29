@@ -17,7 +17,6 @@ export default async(req, res) => {
                 .select('id, slug, asset_url, title, description, address, created_at, status, view_count')
                 .range(start, end)
                 .or(`status.eq.${POST_STATUS_LIVE},status.eq.${POST_STATUS_LIVE_WITH_LIMITS}`)
-                .filter('status', 'eq', POST_STATUS_LIVE)
                 .order('created_at', { 
                     ascending: false 
                 })
