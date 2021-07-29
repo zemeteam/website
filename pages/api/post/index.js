@@ -7,6 +7,7 @@ import { Cloudinary } from '../../../lib/cloudinary'
 const TYPE_IMAGE_POST = 1
 const STATUS_IN_REVIEW = 2
 const STATUS_LIVE_WITH_LIMITS = 3
+const STATUS_NEW_POST = 4
 const FILE_TYPES_ACCEPTED = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/webp']
 const FILE_SIZE_LIMIT = 20000000 // 20MB
 const IMAGE_ASPECT_RATIO_MIN = 0.5
@@ -111,7 +112,7 @@ export default async(req, res) => {
                                     title: striptags(post.fields.title.trim().substring(0,99)),
                                     type: TYPE_IMAGE_POST,
                                     slug: slug,
-                                    status: image.moderation[0].status !== 'rejected' ? STATUS_IN_REVIEW : STATUS_IN_REVIEW
+                                    status: image.moderation[0].status !== 'rejected' ? STATUS_NEW_POST : STATUS_IN_REVIEW
                                 }
                             )
                             if (data) {
