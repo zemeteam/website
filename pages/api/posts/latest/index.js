@@ -1,7 +1,6 @@
 import { Supabase } from '../../../../lib/supabase'
 
 const POST_STATUS_LIVE = 1
-const POST_STATUS_LIVE_WITH_LIMITS = 3
 const POSTS_PER_PAGE = 1000
 const TRENDING_DAYS_BACK = 7
 
@@ -16,7 +15,7 @@ export default async(req, res) => {
                 .from('posts')
                 .select('id, slug, asset_url, title, description, address, created_at, status, view_count')
                 .range(start, end)
-                .or(`status.eq.${POST_STATUS_LIVE},status.eq.${POST_STATUS_LIVE_WITH_LIMITS}`)
+                .filter('status', 'eq', POST_STATUS_LIVE)
                 .order('created_at', { 
                     ascending: false 
                 })
