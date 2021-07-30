@@ -1,7 +1,7 @@
 import { Supabase } from '../../../../lib/supabase'
 
 const POST_STATUS_LIVE = 1
-const POSTS_PER_PAGE = 1000
+const POSTS_PER_PAGE = 150
 const TRENDING_DAYS_BACK = 7
 
 export default async(req, res) => {
