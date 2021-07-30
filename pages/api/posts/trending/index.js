@@ -18,6 +18,9 @@ export default async(req, res) => {
                 .select('id, slug, asset_url, title, description, address, created_at, status, view_count')
                 .range(start, end)
                 .filter('status', 'eq', POST_STATUS_LIVE)
+                .order('created_at', { 
+                    ascending: false 
+                })
                 
                 if (data.length > 0){
                     const posts = []
