@@ -24,7 +24,7 @@ export default class ContentPolicy extends React.Component {
                         <br />
                         
                         <h2>Don’t bully or harass others.</h2>
-                        <p>Don’t bully, harass, or attack anyone for any reason. We don’t tolerate threats of violence, hate speech, and content that aims to degrade, shame, or harm other people. </p>
+                        <p>Don’t bully, harass, or attack anyone for any reason. We don’t tolerate threats of violence, hate speech, and content that aims to degrade, shame, or harm other people. Posts that are trolling or bullying Zcash will be removed as well.</p>
                         <br />
                         
                         <h2>Keep it appropriate.</h2>
