@@ -2,7 +2,7 @@ import { Supabase } from '../../../../lib/supabase'
 import _ from 'underscore'
 
 const POST_STATUS_LIVE = 1
-const POSTS_PER_PAGE = 150
+const POSTS_PER_PAGE = 100
 const POST_VIEW_THRESHOLD = 5
 
 export default async(req, res) => {
