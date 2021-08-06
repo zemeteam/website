@@ -191,20 +191,13 @@ export default class Details extends React.Component {
                     <div>
                         <div className="inner" style={{ width: this.state.imgWidth }}>
                             <div className={`image-container ${!this.state.isLoaded ? 'pulsate' : '' }`} style={{backgroundColor: `${this.state.isLoaded ? '#ffffff' : '#ececec'}`}}>
-                                <picture>
-                                    <source 
-                                        srcSet={this.setImageUrl(post.asset_url, '.webp')}
-                                        className="image"
-                                        onLoad={this.onImgLoad}
-                                        type="image/webp" />
                                     <img 
-                                        src={this.setImageUrl(post.asset_url)}
+                                        srcSet={this.setImageUrl(post.asset_url, '.webp')}
                                         alt={post.title}
                                         ref={this.image}
                                         className="image"
                                         style={{ width: this.state.imgWidth }}
                                         onLoad={this.onImgLoad} />
-                                </picture>    
                             </div>
 
                             <div className="title">
