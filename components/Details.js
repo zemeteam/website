@@ -177,7 +177,7 @@ export default class Details extends React.Component {
         if (asset.includes('.gif')) {
             return `https://res.cloudinary.com/zemeteam/image/upload/${this.extractImageId(asset)}.webp`
         } else {
-            return `https://res.cloudinary.com/zemeteam/image/upload/w_1200/${this.extractImageId(asset)}${ext}`
+            return `https://res.cloudinary.com/zemeteam/image/upload/w_1195/${this.extractImageId(asset)}${ext}`
         }
     }
 

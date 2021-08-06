@@ -74,7 +74,7 @@ export default class Card extends React.Component {
         )
         const picture = (
                 <img 
-                    src={`https://res.cloudinary.com/zemeteam/image/upload/w_400/${this.extractImageId(post.asset_url)}.webp`}
+                    src={`https://res.cloudinary.com/zemeteam/image/upload/w_420/${this.extractImageId(post.asset_url)}.webp`}
                     alt={post.title}
                     onLoad={this.onImgLoad} />
         )
