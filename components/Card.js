@@ -43,13 +43,13 @@ export default class Card extends React.Component {
 
     handleMouseEnter = () => {
         this.setState({
-            isHovering: true
+            // isHovering: true // disable for now
         })
     }
 
     handleMouseLeave = () => {
         this.setState({
-            isHovering: false
+            isHovering: false 
         })
     }
 
