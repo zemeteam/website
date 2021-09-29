@@ -41,10 +41,11 @@ export default async(req, res) => {
 
                     // sort the posts array by score
                     const sorted = _.sortBy(posts, 'score').reverse()
+                    const random = _.shuffle(posts) // using this temporarily for more variety
 
                     // set cache 10min
                     res.setHeader('Cache-Control', 'public, max-age=600, s-maxage=600')
-                    res.status(200).json(sorted)
+                    res.status(200).json(random)
                 } else {
                     res.status(400).json({ message: `Trending posts not found` })
                 }

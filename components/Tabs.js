@@ -39,7 +39,7 @@ export default class Tabs extends React.Component {
                             <div className="icon">
                                 <img src={tabIndex === 0 ? "/icon-trending-white.png" : '/icon-trending-gray.png'} style={{width: 24}} />
                             </div>
-                            <div className="label">Trending</div>
+                            <div className="label">Featured</div>
                         </li>
 
                         <li 
