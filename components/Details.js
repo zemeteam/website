@@ -89,7 +89,7 @@ export default class Details extends React.Component {
             imgWidth: img.offsetWidth,
             isLoaded: true
         })
-    }
+    } 
 
     extractImageId = (asset_url) => {
         const regex = /([^\/]+)(?=\.\w+$)/
