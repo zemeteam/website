@@ -56,9 +56,6 @@ export default class Details extends React.Component {
 
         // fetch random posts
         this.fetchRandom(this.props.post.view_count)
-
-        // save page view
-        this.savePageView(this.props.post.id, this.props.post.status)
     }
 
     fetchRandom = async (views) => {
@@ -93,17 +90,6 @@ export default class Details extends React.Component {
         const imageId = asset_url.match(regex)[0]
 
         return imageId
-    }
-
-    savePageView = async (id, status) => {
-        // only update the counters if the post is live and approved
-        if (status === POST_STATUS_LIVE) {
-            await fetch(`${server}/api/post/${this.props.post.id}`, {
-                method: 'PUT',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ id: id, status: status }),
-            })
-        }
     }
 
     handleDetailsModal = (post) => {

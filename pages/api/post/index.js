@@ -88,13 +88,6 @@ export default async(req, res) => {
                     // upload image to cloudinary (create additional sizes needed)
                     const image = await Cloudinary.uploader.upload(post.files.image.path, { 
                         public_id: slug, 
-                        moderation: 'aws_rek',
-                        // eager: [
-                        //     { crop: 'scale', width: 700 },
-                        //     { format: 'webp', crop: 'scale' },
-                        //     { format: 'webp', crop: 'scale', width: 700 },
-                        //     { format: 'webp', crop: 'scale', width: 1200 }
-                        // ] 
                     })
 
                     // ensure the image ratio is within our accepted boundaries 
@@ -112,7 +105,7 @@ export default async(req, res) => {
                                     title: striptags(post.fields.title.trim().substring(0,99)),
                                     type: TYPE_IMAGE_POST,
                                     slug: slug,
-                                    status: image.moderation[0].status !== 'rejected' ? STATUS_NEW_POST : STATUS_IN_REVIEW
+                                    status: STATUS_NEW_POST
                                 }
                             )
                             if (data) {
