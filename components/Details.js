@@ -115,7 +115,7 @@ export default class Details extends React.Component {
         this.setState({
             showWallets: !this.state.showWallets
         })
-    }
+    } 
 
     handleReport = () => {
         // enable or disable body scroll if dialog is open
